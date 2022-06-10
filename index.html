@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="js/index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+        body{
+            font-family: 'Open Sans', sans-serif !important;
+        }
+        .container{
+            max-width: 1200px; margin: auto;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .box{
+             border:1px solid #ddd; padding-block: 25px; border-radius: 25px;
+        }
+        .mt-10{
+            margin-top: 10px;
+        }
+        .mt-20{
+            margin-top: 20px;
+        }
+        .mb-20{
+            margin-bottom: 20px;
+        }
+        .d-flex{
+            display: flex;
+        }
+        .justify-content-around{
+            justify-content: space-around;
+        }
+        .btn{
+            all: unset;
+            cursor: pointer;
+            padding: 5px 15px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .btn-warning{
+            border-color: #FFCC00;
+            color: #FFCC00;
+        }
+        .btn-fail{
+            border-color: #FC100D;
+            color: #FC100D;
+        }
+        .btn-success{
+            border-color: #198754;
+            color: #198754;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-10">
+        <h1 class="mb-20">AnyBox JS Alpha Version</h1>
+        <h3>Lightbox</h3>
+    </div>
+
+    <div class="container text-center box mt-10">
+        <img class="any-box_lightbox" src="https://via.placeholder.com/350x200.png?text=Image1">
+        <img class="any-box_lightbox" src="https://via.placeholder.com/350x200.png?text=Image2">
+        <img class="any-box_lightbox" src="https://via.placeholder.com/350x200.png?text=Image3">
+    </div>
+    <div class="container mt-10">
+        <h3>Alertbox</h3>
+    </div>
+    <div class="container box mt-20 d-flex justify-content-around mt-10">
+        <button class="btn btn-success" id="success">Success</button>
+        <button class="btn btn-fail" id="fail">Fail</button>
+        <button class="btn btn-warning" id="warning">Warning</button>
+    </div>
+</body>
+</html>
