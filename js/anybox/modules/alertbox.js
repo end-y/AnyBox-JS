@@ -26,6 +26,10 @@ class Alertbox extends Base{
     constructor(lBsettings){
         super()
         this.run(lBsettings)
+        window.addEventListener("resize", () => {
+            console.log(window.innerHeight)
+            console.log(window.innerWidth)
+        })
     }
     run = (settings) => {
         let {bgColor, opacity, top, closeButton,message,headline, buttons, svgStatus,animation} = settings

@@ -1,12 +1,16 @@
 class Base{
     id = Date.now()
     constructor(){
-
+        window.addEventListener("resize", () => {
+            document.getElementById("bg_anybox-" + this.id).style.width = window.innerWidth + "px"
+            document.getElementById("bg_anybox-" + this.id).style.height = window.innerHeight + "px"
+            document.getElementById("bg_anybox-" + this.id).querySelector(".box_anybox").style.width = `calc(100% - ${window.innerWidth-350}px)`
+        })
     }
     getBg = (animation = false) => {
         const bg = document.createElement("div")
-        bg.style.width = "100%"
-        bg.style.height = "100%"
+        bg.style.width = window.innerWidth + "px"
+        bg.style.height = window.innerHeight + "px"
         bg.style.position = "absolute"
         bg.style.top = "0"
         bg.style.left = "0"
@@ -34,7 +38,7 @@ class Base{
         box.style.transform = "translate(-50%,-50%)"
         box.style.boxShadow= "rgba(0, 0, 0, 0.24) 0px 3px 8px";
         box.style.borderRadius = "15px"
-        
+        box.style.width = `calc(100% - ${window.innerWidth-350}px)`
         return box
     }
     getCloseButton = (closeButton,animation = null) => {

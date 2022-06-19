@@ -67,6 +67,8 @@ class Lightbox extends Base{
             img.setAttribute("anybox_id", i)
             img.style.display = "none"
             img.style.margin = "auto"
+            img.style.width = "100%"
+            img.style.height = "auto"
             img.className = "any-box_lightbox_images"
             box.appendChild(img)
         }
@@ -75,7 +77,8 @@ class Lightbox extends Base{
         for(let image of images){
             image.addEventListener("click", (evt) => {
                 bg.style.display = "block"
-                box.style.width = evt.currentTarget.naturalWidth + 50 + "px"
+                box.style.maxWidth = evt.currentTarget.naturalWidth + 50 + "px"
+                box.style.width = "100%"
                 this.showImage(evt.currentTarget,top,animation)
             })
         }
