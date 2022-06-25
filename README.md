@@ -3,9 +3,7 @@
 You can create fancy alertbox or lightbox
 
 ## TODOS
-  1.prepare webpack version
-  
-  2.prepare react version
+  1.prepare react version
 
 ### Lightbox
 
