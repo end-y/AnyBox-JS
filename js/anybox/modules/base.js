@@ -1,5 +1,7 @@
+import Animation from "./animations.js"
 class Base{
     id = Date.now()
+    globalAnimation =  new Animation()
     constructor(){
         window.addEventListener("resize", () => {
             document.getElementById("bg_anybox-" + this.id).style.width = window.innerWidth + "px"
@@ -8,6 +10,7 @@ class Base{
         })
     }
     getBg = (animation = false) => {
+
         const bg = document.createElement("div")
         bg.style.width = window.innerWidth + "px"
         bg.style.height = window.innerHeight + "px"
@@ -19,10 +22,18 @@ class Base{
         bg.className = "bg_anybox"
         bg.addEventListener("click", (evt) => {
             if(evt.target.className == "bg_anybox"){
-                document.getElementById("bg_anybox-"+this.id).style.display = "none"
+                let d = 0
                 if(animation){
-                    this.minus(animation.animationType)
+                    d = this.minus(animation.type)
                 }
+                setTimeout(() => {
+                    document.getElementById("bg_anybox-"+this.id).style.transition = "all .2s ease"
+                    document.getElementById("bg_anybox-"+this.id).style.opacity = "0"
+                    setTimeout(() => {
+                        document.getElementById("bg_anybox-"+this.id).style.display = "none"
+                    }, 220); 
+                }, d/1.2);
+                
             }
         })
         return bg
@@ -30,7 +41,7 @@ class Base{
     getBox = (top) => {
         const box = document.createElement("div");
         box.classList.add("box_anybox")
-        box.style.top = top
+        box.style.top = top + "%"
         box.style.left = "50%"
         box.style.backgroundColor = "white"
         box.style.position = "absolute"
@@ -72,10 +83,17 @@ class Base{
         obj.children[0].style.fill = btnColor
         console.log(this.id)
         obj.addEventListener("click", (evt) => {
-            document.getElementById("bg_anybox-"+this.id).style.display = "none"
+            let d = 0
             if(animation){
-                this.minus(animationType)
+                d = this.minus(animation.type)
             }
+            setTimeout(() => {
+                document.getElementById("bg_anybox-"+this.id).style.transition = "all .2s ease"
+                document.getElementById("bg_anybox-"+this.id).style.opacity = "0"
+                setTimeout(() => {
+                    document.getElementById("bg_anybox-"+this.id).style.display = "none"
+                }, 220); 
+            }, d/1.2);
         })
 
         div.appendChild(obj)

@@ -6,6 +6,7 @@ class Alertbox extends Base{
     svg = svg
     fail = fail
     warning = warning
+
     status = {
         "success":{
             svg: this.success,
@@ -39,18 +40,19 @@ class Alertbox extends Base{
         if(status){
             document.getElementById("bg_anybox-"+this.id).querySelector(".svgDiv").remove()
             let {svg, color, dash} = this.status[status]
-            let svgDiv = new Animation().statusAnimation(svg,color,dash)
+            let svgDiv = this.globalAnimation.statusAnimation(svg,color,dash)
             document.getElementById("bg_anybox-"+this.id).querySelector("#svgPlace").appendChild(svgDiv)
         }
         if(animation){
             document.getElementById("bg_anybox-"+this.id).querySelector("#all").parentElement.style.transform= "scale(0) translate(-50%,-50%)"
-            new Animation().animate({
+            this.globalAnimation.animate({
                 el: document.getElementById("bg_anybox-"+this.id).querySelector("#all"),
                 type: "center",
-                duration:1000
+                duration:1000,
+                top:40
             })
         }
-        
+        document.getElementById("bg_anybox-"+this.id).style.opacity = "1"
         document.getElementById("bg_anybox-"+this.id).style.display = "block"
     }
     loadBaseElements = (color="0,0,0", opacity="0.5", top="50%", closeButton=false, message=false, headline=false, buttons=false, svgStatus=false,animation=false) => {
@@ -152,6 +154,7 @@ class Alertbox extends Base{
         }
     }
     defaultClickFunction = () => {
+        document.getElementById("bg_anybox-"+this.id).style.opacity = "0"
         document.getElementById("bg_anybox-"+this.id).style.display = "none"
     }
     addButtons = (buttons,closeButton) => {

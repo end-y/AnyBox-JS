@@ -1,12 +1,14 @@
-import Animation from "./animations.js"
+
 import Base from "./base.js";
 import {left,right, svg} from "./svg.js"
 class Lightbox extends Base{
     left = left;
     right = right;
     svg = svg
+    duration;
     constructor(lBsettings){
         super()
+        this.duration = lBsettings.animation.duration
         this.run(lBsettings)
     }
     run = (settings) => {
@@ -23,13 +25,12 @@ class Lightbox extends Base{
 
     getImages = () => Array.from(document.querySelectorAll(".any-box_lightbox"))
 
-    loadBaseElements = (srcs, color="0,0,0", opacity="0.5", top="50%", closeButton=false, animation=false, slider=false) => {
+    loadBaseElements = (srcs, color="0,0,0", opacity="0.5", top=50, closeButton=false, animation=false, slider=false) => {
         if(typeof animation == "boolean" && animation){
             animation = {}
             animation.type = "opacity"
             animation.duration = 1000
         }
-
         const bg = this.getBg(animation)
 
         const box = this.getBox(top)
@@ -42,7 +43,7 @@ class Lightbox extends Base{
         
 
         if(slider){
-            let element = this.activeSlider(slider.buttonColor, slider.information)
+            let element = this.activeSlider(slider.buttonColor, slider.information,animation.type)
             box.appendChild(element)
         }
 
@@ -50,9 +51,9 @@ class Lightbox extends Base{
             box.style.opacity = "0"
         } 
         if (animation.type == "top"){
-            box.style.top = "0%"    
+            box.style.top = "50%"    
         }else{
-            box.style.top = top
+            box.style.top = top + "%"
         }
         if(animation.type == "left"){
             box.style.left = "0%"
@@ -76,8 +77,11 @@ class Lightbox extends Base{
         let images = this.getImages()
         for(let image of images){
             image.addEventListener("click", (evt) => {
+                bg.style.opacity = "1"
                 bg.style.display = "block"
                 box.style.maxWidth = evt.currentTarget.naturalWidth + 50 + "px"
+                console.log(document.querySelector(".box_anybox"))
+                
                 box.style.width = "100%"
                 this.showImage(evt.currentTarget,top,animation)
             })
@@ -97,7 +101,7 @@ class Lightbox extends Base{
         const filtered = Array.from(document.querySelectorAll(".any-box_lightbox_images")).filter(e => e.src == evt.src)
         const notFiltered = Array.from(document.querySelectorAll(".any-box_lightbox_images")).filter(e => e.src != evt.src)
         if(animation){
-            let animate = new Animation().animate({
+           this.globalAnimation.animate({
                 el:filtered[0],
                 duration: animation.duration,
                 type: animation.type,
@@ -105,7 +109,6 @@ class Lightbox extends Base{
             })
         }
 
-        filtered[0].parentElement
         filtered[0].style.display = "block"
         filtered[0].classList.add("display_anybox") 
         filtered[0].classList.remove("hide_anybox") 
@@ -120,7 +123,7 @@ class Lightbox extends Base{
         }
         
     }
-    activeSlider = (color="#111", information) => {
+    activeSlider = (color="#111", information, animation) => {
         let butonDiv = document.createElement("div")
             butonDiv.style.position = "absolute";
             butonDiv.id = "butonDiv_anybox"
@@ -160,19 +163,15 @@ class Lightbox extends Base{
             btn_left.addEventListener("click", () => {
                 let id = parseInt(document.getElementById("butonDiv_anybox").getAttribute("btn_id_anybox"))-1
                 let images = this.getImages()
-                if(images[id-1]){
-                    document.querySelector(".bg_anybox").click()
-                    images[id-1].click()                    
-                }
+                console.log(images[id-1])
+                images[id-1].click()
             })
 
             btn_right.addEventListener("click", () => {
                 let id = parseInt(document.getElementById("butonDiv_anybox").getAttribute("btn_id_anybox"))-1
                 let images = this.getImages()
-                if(images[id+1]){
-                    document.querySelector(".bg_anybox").click()
-                    images[id+1].click()
-                }
+                console.log(images[id+1])
+                images[id+1].click()
             })
 
             
@@ -198,10 +197,17 @@ class Lightbox extends Base{
         obj.children[0].style.fill = btnColor
 
         obj.addEventListener("click", (evt) => {
-            document.body.querySelector(".bg_anybox").style.display = "none"
+            let d = 0
             if(animation){
-                this.minus(animationType)
+                d = this.minus(animationType)
             }
+            setTimeout(() => {
+                document.body.querySelector(".bg_anybox").style.transition = "all .2s ease"
+                document.body.querySelector(".bg_anybox").style.opacity = "0"
+                setTimeout(() => {
+                    document.body.querySelector(".bg_anybox").style.display = "none"
+                }, 220); 
+            }, d/1.2);
         })
 
         div.appendChild(obj)
@@ -211,15 +217,16 @@ class Lightbox extends Base{
     minus = (type) => {
         switch(type){
             case "opacity":
-                new Animation().opacityMinus(document.querySelector(".bg_anybox").children[0])
+                this.globalAnimation.opacityMinus(this.globalAnimation.getAnimation("opacity"))
                 break
             case "top":
-                new Animation().topMinus(document.querySelector(".bg_anybox").children[0])
+                this.globalAnimation.opacityMinus(this.globalAnimation.getAnimation("top"))
                 break
             case "left":
-                new Animation().leftMinus(document.querySelector(".bg_anybox").children[0])
+                this.globalAnimation.opacityMinus(this.globalAnimation.getAnimation("left"))
                 break
         }
+        return this.duration;
     }
     getChosenImage = () => document.querySelector(".display_anybox").getAttribute("anybox_id")
 }

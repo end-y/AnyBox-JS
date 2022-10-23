@@ -1,7 +1,7 @@
 let lightBox = new Anybox("lightbox",{
     bgColor:"0,0,0",
     opacity:"0.3",
-    top: "40%",
+    top: 40,
     slider:{
         buttonColor:"#111",
         information:true
@@ -46,7 +46,7 @@ let alertBox = new Anybox("alertbox",{
         },
     ],
     opacity:"0.3",
-    top: "40%",
+    top: 40,
     closeButton: {
         size: 25,
         fill: "#111",

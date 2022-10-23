@@ -34,91 +34,138 @@ __webpack_require__.d(__webpack_exports__, {
 
 ;// CONCATENATED MODULE: ./js/anybox/modules/animations.js
 function Animation() {
+  var _this = this;
+
+  this.ca;
+  this.ta;
+  this.la;
+  this.oa;
+
   this.animate = function (_ref) {
     var el = _ref.el,
         type = _ref.type,
         duration = _ref.duration,
         _ref$top = _ref.top,
-        top = _ref$top === void 0 ? 0 : _ref$top;
-    var start = performance.now();
-    var v, t;
+        top = _ref$top === void 0 ? 50 : _ref$top;
 
-    if (type == "top") {
-      t = top.match(/%|px/g);
-      v = top.replace(/%|px/g, "");
+    switch (type) {
+      case "center":
+        centerAnimation(el.parentElement, top, duration);
+        break;
+
+      case "left":
+        leftAnimation(el.parentElement, duration);
+        break;
+
+      case "top":
+        topAnimation(el.parentElement, top, duration);
+        break;
+
+      case "opacity":
+        opacityAnimation(el.parentElement, duration, top);
+        break;
     }
+  };
 
-    requestAnimationFrame(function animate(time) {
-      var timeFraction = (time - start) / duration;
-      if (timeFraction > 1) timeFraction = 1;
-
-      switch (type) {
-        case "center":
-          var progressCenter = centerAnimation(timeFraction);
-          el.parentElement.style.transform = "scale(".concat(progressCenter * 1, ") translate(-50%,-50%)");
-          el.parentElement.style.transformOrigin = "top left";
-          break;
-
-        case "left":
-          var progressLeft = leftAnimation(timeFraction);
-          el.parentElement.style.left = progressLeft * 50 + '%';
-          break;
-
-        case "top":
-          var progressTop = topAnimation(timeFraction);
-          el.parentElement.style.top = progressTop * parseInt(v) + t;
-          break;
-
-        case "opacity":
-          var opaq = opacityAnimation(timeFraction);
-          el.parentElement.style.opacity = opaq;
-          break;
-      }
-
-      if (timeFraction < 1) {
-        requestAnimationFrame(animate);
-      }
+  var centerAnimation = function centerAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1.1) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
     });
   };
 
-  var centerAnimation = function centerAnimation(timeFraction) {
-    if (timeFraction.toFixed(2) > "0.05" && timeFraction.toFixed(2) < "0.55") {
-      return 1.2;
-    }
-
-    return 1;
+  var topAnimation = function topAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.transformOrigin = "center";
+    _this.ta = el.animate([{
+      top: "0%"
+    }, {
+      top: top + 5 + "%"
+    }, {
+      top: top + "%"
+    }, {
+      top: top + "%"
+    }, {
+      top: top + "%"
+    }, {
+      top: top + "%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
   };
 
-  var topAnimation = function topAnimation(timeFraction) {
-    if (timeFraction.toFixed(2) > "0.05" && timeFraction.toFixed(2) < "0.35") {
-      return 1.2;
-    }
-
-    return 1;
+  var leftAnimation = function leftAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    _this.la = el.animate([{
+      left: "0%"
+    }, {
+      left: "55%"
+    }, {
+      left: "50%"
+    }, {
+      left: "50%"
+    }, {
+      left: "50%"
+    }, {
+      left: "50%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
   };
 
-  var leftAnimation = function leftAnimation(timeFraction) {
-    if (timeFraction.toFixed(2) > "0.05" && timeFraction.toFixed(2) < "0.35") {
-      return 1.2;
-    }
-
-    return 1;
+  var opacityAnimation = function opacityAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 50;
+    el.style.top = top + "%";
+    _this.oa = el.animate([{
+      opacity: "0"
+    }, {
+      opacity: "1"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
   };
 
-  var opacityAnimation = function opacityAnimation(timeFraction) {
-    return Math.sqrt(timeFraction, 2);
+  this.getAnimation = function (type) {
+    var an = {
+      "center": _this.ca,
+      "left": _this.la,
+      "top": _this.ta,
+      "opacity": _this.oa
+    };
+    return an[type];
   };
 
   this.opacityMinus = function (el) {
-    el.style.opacity = "0";
+    el.reverse(); // el.style.opacity = "0"
   };
 
   this.topMinus = function (el) {
-    el.style.top = "0";
+    el.reverse(); // el.style.top = "0%"
   };
 
   this.leftMinus = function (el) {
-    el.style.left = "0";
+    el.reverse(); // el.style.left = "0%"
   };
 
   this.statusAnimation = function (success) {
@@ -211,12 +258,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
 var Base = /*#__PURE__*/_createClass(function Base() {
   var _this = this;
 
   _classCallCheck(this, Base);
 
   _defineProperty(this, "id", Date.now());
+
+  _defineProperty(this, "globalAnimation", new animations());
 
   _defineProperty(this, "getBg", function () {
     var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -231,11 +282,19 @@ var Base = /*#__PURE__*/_createClass(function Base() {
     bg.className = "bg_anybox";
     bg.addEventListener("click", function (evt) {
       if (evt.target.className == "bg_anybox") {
-        document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+        var d = 0;
 
         if (animation) {
-          _this.minus(animation.animationType);
+          d = _this.minus(animation.type);
         }
+
+        setTimeout(function () {
+          document.getElementById("bg_anybox-" + _this.id).style.transition = "all .2s ease";
+          document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
+          setTimeout(function () {
+            document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+          }, 220);
+        }, d / 1.2);
       }
     });
     return bg;
@@ -244,7 +303,7 @@ var Base = /*#__PURE__*/_createClass(function Base() {
   _defineProperty(this, "getBox", function (top) {
     var box = document.createElement("div");
     box.classList.add("box_anybox");
-    box.style.top = top;
+    box.style.top = top + "%";
     box.style.left = "50%";
     box.style.backgroundColor = "white";
     box.style.position = "absolute";
@@ -296,11 +355,19 @@ var Base = /*#__PURE__*/_createClass(function Base() {
     obj.children[0].style.fill = btnColor;
     console.log(_this.id);
     obj.addEventListener("click", function (evt) {
-      document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+      var d = 0;
 
       if (animation) {
-        _this.minus(animationType);
+        d = _this.minus(animation.type);
       }
+
+      setTimeout(function () {
+        document.getElementById("bg_anybox-" + _this.id).style.transition = "all .2s ease";
+        document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
+        setTimeout(function () {
+          document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+        }, 220);
+      }, d / 1.2);
     });
     div.appendChild(obj);
     return div;
@@ -361,7 +428,6 @@ function lightbox_defineProperty(obj, key, value) { if (key in obj) { Object.def
 
 
 
-
 var Lightbox = /*#__PURE__*/function (_Base) {
   _inherits(Lightbox, _Base);
 
@@ -379,6 +445,8 @@ var Lightbox = /*#__PURE__*/function (_Base) {
     lightbox_defineProperty(_assertThisInitialized(_this), "right", right);
 
     lightbox_defineProperty(_assertThisInitialized(_this), "svg", svg);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "duration", void 0);
 
     lightbox_defineProperty(_assertThisInitialized(_this), "run", function (settings) {
       var srcs = _this.getSrcs();
@@ -409,7 +477,7 @@ var Lightbox = /*#__PURE__*/function (_Base) {
     lightbox_defineProperty(_assertThisInitialized(_this), "loadBaseElements", function (srcs) {
       var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "0,0,0";
       var opacity = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "0.5";
-      var top = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "50%";
+      var top = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 50;
       var closeButton = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
       var animation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
       var slider = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
@@ -433,7 +501,7 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       }
 
       if (slider) {
-        var element = _this.activeSlider(slider.buttonColor, slider.information);
+        var element = _this.activeSlider(slider.buttonColor, slider.information, animation.type);
 
         box.appendChild(element);
       }
@@ -443,9 +511,9 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       }
 
       if (animation.type == "top") {
-        box.style.top = "0%";
+        box.style.top = "50%";
       } else {
-        box.style.top = top;
+        box.style.top = top + "%";
       }
 
       if (animation.type == "left") {
@@ -475,8 +543,10 @@ var Lightbox = /*#__PURE__*/function (_Base) {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var image = _step.value;
           image.addEventListener("click", function (evt) {
+            bg.style.opacity = "1";
             bg.style.display = "block";
             box.style.maxWidth = evt.currentTarget.naturalWidth + 50 + "px";
+            console.log(document.querySelector(".box_anybox"));
             box.style.width = "100%";
 
             _this.showImage(evt.currentTarget, top, animation);
@@ -513,7 +583,7 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       });
 
       if (animation) {
-        var animate = new animations().animate({
+        _this.globalAnimation.animate({
           el: filtered[0],
           duration: animation.duration,
           type: animation.type,
@@ -521,7 +591,6 @@ var Lightbox = /*#__PURE__*/function (_Base) {
         });
       }
 
-      filtered[0].parentElement;
       filtered[0].style.display = "block";
       filtered[0].classList.add("display_anybox");
       filtered[0].classList.remove("hide_anybox");
@@ -540,6 +609,7 @@ var Lightbox = /*#__PURE__*/function (_Base) {
     lightbox_defineProperty(_assertThisInitialized(_this), "activeSlider", function () {
       var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#111";
       var information = arguments.length > 1 ? arguments[1] : undefined;
+      var animation = arguments.length > 2 ? arguments[2] : undefined;
       var butonDiv = document.createElement("div");
       butonDiv.style.position = "absolute";
       butonDiv.id = "butonDiv_anybox";
@@ -577,20 +647,16 @@ var Lightbox = /*#__PURE__*/function (_Base) {
 
         var images = _this.getImages();
 
-        if (images[id - 1]) {
-          document.querySelector(".bg_anybox").click();
-          images[id - 1].click();
-        }
+        console.log(images[id - 1]);
+        images[id - 1].click();
       });
       btn_right.addEventListener("click", function () {
         var id = parseInt(document.getElementById("butonDiv_anybox").getAttribute("btn_id_anybox")) - 1;
 
         var images = _this.getImages();
 
-        if (images[id + 1]) {
-          document.querySelector(".bg_anybox").click();
-          images[id + 1].click();
-        }
+        console.log(images[id + 1]);
+        images[id + 1].click();
       });
       butonDiv.appendChild(btn_left);
 
@@ -618,11 +684,19 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       obj.innerHTML = _this.svg;
       obj.children[0].style.fill = btnColor;
       obj.addEventListener("click", function (evt) {
-        document.body.querySelector(".bg_anybox").style.display = "none";
+        var d = 0;
 
         if (animation) {
-          _this.minus(animationType);
+          d = _this.minus(animationType);
         }
+
+        setTimeout(function () {
+          document.body.querySelector(".bg_anybox").style.transition = "all .2s ease";
+          document.body.querySelector(".bg_anybox").style.opacity = "0";
+          setTimeout(function () {
+            document.body.querySelector(".bg_anybox").style.display = "none";
+          }, 220);
+        }, d / 1.2);
       });
       div.appendChild(obj);
       return div;
@@ -631,22 +705,29 @@ var Lightbox = /*#__PURE__*/function (_Base) {
     lightbox_defineProperty(_assertThisInitialized(_this), "minus", function (type) {
       switch (type) {
         case "opacity":
-          new animations().opacityMinus(document.querySelector(".bg_anybox").children[0]);
+          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("opacity"));
+
           break;
 
         case "top":
-          new animations().topMinus(document.querySelector(".bg_anybox").children[0]);
+          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("top"));
+
           break;
 
         case "left":
-          new animations().leftMinus(document.querySelector(".bg_anybox").children[0]);
+          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("left"));
+
           break;
       }
+
+      return _this.duration;
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "getChosenImage", function () {
       return document.querySelector(".display_anybox").getAttribute("anybox_id");
     });
+
+    _this.duration = lBsettings.animation.duration;
 
     _this.run(lBsettings);
 
@@ -748,19 +829,24 @@ var Alertbox = /*#__PURE__*/function (_Base) {
             _svg = _this$status$status.svg,
             color = _this$status$status.color,
             dash = _this$status$status.dash;
-        var svgDiv = new animations().statusAnimation(_svg, color, dash);
+
+        var svgDiv = _this.globalAnimation.statusAnimation(_svg, color, dash);
+
         document.getElementById("bg_anybox-" + _this.id).querySelector("#svgPlace").appendChild(svgDiv);
       }
 
       if (animation) {
         document.getElementById("bg_anybox-" + _this.id).querySelector("#all").parentElement.style.transform = "scale(0) translate(-50%,-50%)";
-        new animations().animate({
+
+        _this.globalAnimation.animate({
           el: document.getElementById("bg_anybox-" + _this.id).querySelector("#all"),
           type: "center",
-          duration: 1000
+          duration: 1000,
+          top: 40
         });
       }
 
+      document.getElementById("bg_anybox-" + _this.id).style.opacity = "1";
       document.getElementById("bg_anybox-" + _this.id).style.display = "block";
     });
 
@@ -889,6 +975,7 @@ var Alertbox = /*#__PURE__*/function (_Base) {
     });
 
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "defaultClickFunction", function () {
+      document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
       document.getElementById("bg_anybox-" + _this.id).style.display = "none";
     });
 

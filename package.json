@@ -22,6 +22,7 @@
     "url": "https://github.com/end-y/AnyBox-JS/issues"
   },
   "dependencies": {
+    "@babel/core": "^7.19.3",
     "@types/webpack-dev-server": "^4.7.2",
     "babel-loader": "^8.2.5",
     "raw-loader": "^4.0.2",
