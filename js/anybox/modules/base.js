@@ -10,11 +10,10 @@ class Base{
         })
     }
     getBg = (animation = false) => {
-
         const bg = document.createElement("div")
         bg.style.width = window.innerWidth + "px"
         bg.style.height = window.innerHeight + "px"
-        bg.style.position = "absolute"
+        bg.style.position = "fixed"
         bg.style.top = "0"
         bg.style.left = "0"
         bg.style.display = "none"

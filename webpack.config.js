@@ -5,7 +5,7 @@ module.exports = {
     'anybox.min': './js/anybox/init.js',
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/test/dist',
     filename: '[name].js',
     library: 'Anybox',
     libraryExport: 'default' ,
