@@ -1925,12 +1925,705 @@ var Alertbox = /*#__PURE__*/function (_Base) {
 }(base);
 
 /* harmony default export */ const alertbox = (Alertbox);
+;// CONCATENATED MODULE: ./js/anybox/modules/tooltip.js
+function tooltip_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function tooltip_createClass(Constructor, protoProps, staticProps) { if (protoProps) tooltip_defineProperties(Constructor.prototype, protoProps); if (staticProps) tooltip_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function tooltip_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function tooltip_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _tooltipIdCounter = 0;
+
+var Tooltip = /*#__PURE__*/tooltip_createClass( // Defaults
+// top | bottom | left | right
+function Tooltip() {
+  var _this = this;
+
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  tooltip_classCallCheck(this, Tooltip);
+
+  tooltip_defineProperty(this, "_id", "anybox-tooltip-" + ++_tooltipIdCounter + "-" + Date.now());
+
+  tooltip_defineProperty(this, "_tooltipEl", null);
+
+  tooltip_defineProperty(this, "_arrow", null);
+
+  tooltip_defineProperty(this, "_showTimeout", null);
+
+  tooltip_defineProperty(this, "_hideTimeout", null);
+
+  tooltip_defineProperty(this, "_boundShow", null);
+
+  tooltip_defineProperty(this, "_boundHide", null);
+
+  tooltip_defineProperty(this, "_boundReposition", null);
+
+  tooltip_defineProperty(this, "_targets", []);
+
+  tooltip_defineProperty(this, "_bgColor", "rgba(15,15,20,0.92)");
+
+  tooltip_defineProperty(this, "_textColor", "#fff");
+
+  tooltip_defineProperty(this, "_fontSize", 13);
+
+  tooltip_defineProperty(this, "_padding", "6px 12px");
+
+  tooltip_defineProperty(this, "_borderRadius", 6);
+
+  tooltip_defineProperty(this, "_maxWidth", 260);
+
+  tooltip_defineProperty(this, "_offset", 8);
+
+  tooltip_defineProperty(this, "_placement", "top");
+
+  tooltip_defineProperty(this, "_delay", 0);
+
+  tooltip_defineProperty(this, "_hideDelay", 0);
+
+  tooltip_defineProperty(this, "_arrow_enabled", true);
+
+  tooltip_defineProperty(this, "_init", function (selector) {
+    var els = document.querySelectorAll(selector);
+
+    _this._boundShow = function (evt) {
+      return _this._handleShow(evt);
+    };
+
+    _this._boundHide = function (evt) {
+      return _this._handleHide(evt);
+    };
+
+    els.forEach(function (el) {
+      el.addEventListener("mouseenter", _this._boundShow);
+      el.addEventListener("mouseleave", _this._boundHide);
+      el.addEventListener("focus", _this._boundShow);
+      el.addEventListener("blur", _this._boundHide);
+
+      _this._targets.push(el);
+    });
+  });
+
+  tooltip_defineProperty(this, "_handleShow", function (evt) {
+    clearTimeout(_this._hideTimeout);
+    var target = evt.currentTarget;
+    var text = target.getAttribute("data-anybox-tooltip") || target.getAttribute("title") || "";
+    if (!text) return; // Prevent native title
+
+    if (target.hasAttribute("title")) {
+      target.setAttribute("data-anybox-tooltip", target.getAttribute("title"));
+      target.removeAttribute("title");
+    }
+
+    _this._showTimeout = setTimeout(function () {
+      _this._createTooltip(text);
+
+      _this._positionTooltip(target);
+
+      _this._animateIn();
+    }, _this._delay);
+  });
+
+  tooltip_defineProperty(this, "_handleHide", function () {
+    clearTimeout(_this._showTimeout);
+    _this._hideTimeout = setTimeout(function () {
+      _this._animateOut();
+    }, _this._hideDelay);
+  });
+
+  tooltip_defineProperty(this, "_createTooltip", function (text) {
+    _this._removeTooltip();
+
+    var el = document.createElement("div");
+    el.id = _this._id;
+    el.style.position = "fixed";
+    el.style.zIndex = "99999";
+    el.style.backgroundColor = _this._bgColor;
+    el.style.color = _this._textColor;
+    el.style.fontSize = _this._fontSize + "px";
+    el.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    el.style.padding = _this._padding;
+    el.style.borderRadius = _this._borderRadius + "px";
+    el.style.maxWidth = _this._maxWidth + "px";
+    el.style.lineHeight = "1.4";
+    el.style.wordWrap = "break-word";
+    el.style.pointerEvents = "none";
+    el.style.opacity = "0";
+    el.style.whiteSpace = "normal";
+    el.style.boxShadow = "0 4px 14px rgba(0,0,0,0.25)";
+    el.textContent = text; // Arrow
+
+    if (_this._arrow_enabled) {
+      var arrow = document.createElement("div");
+      arrow.style.position = "absolute";
+      arrow.style.width = "8px";
+      arrow.style.height = "8px";
+      arrow.style.backgroundColor = _this._bgColor;
+      arrow.style.transform = "rotate(45deg)";
+      arrow.style.pointerEvents = "none";
+      el.appendChild(arrow);
+      _this._arrow = arrow;
+    }
+
+    document.body.appendChild(el);
+    _this._tooltipEl = el;
+  });
+
+  tooltip_defineProperty(this, "_positionTooltip", function (target) {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var tr = target.getBoundingClientRect();
+    var elW = el.offsetWidth;
+    var elH = el.offsetHeight;
+    var offset = _this._offset;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var placement = _this._placement;
+    var top, left; // Calculate ideal position
+
+    var positions = {
+      top: {
+        top: tr.top - elH - offset,
+        left: tr.left + tr.width / 2 - elW / 2
+      },
+      bottom: {
+        top: tr.bottom + offset,
+        left: tr.left + tr.width / 2 - elW / 2
+      },
+      left: {
+        top: tr.top + tr.height / 2 - elH / 2,
+        left: tr.left - elW - offset
+      },
+      right: {
+        top: tr.top + tr.height / 2 - elH / 2,
+        left: tr.right + offset
+      }
+    }; // Overflow detection — flip if needed
+
+    var ideal = positions[placement];
+    if (placement === "top" && ideal.top < 4) placement = "bottom";else if (placement === "bottom" && ideal.top + elH > vh - 4) placement = "top";else if (placement === "left" && ideal.left < 4) placement = "right";else if (placement === "right" && ideal.left + elW > vw - 4) placement = "left";
+    var pos = positions[placement];
+    top = pos.top;
+    left = pos.left; // Clamp horizontal
+
+    if (left < 4) left = 4;
+    if (left + elW > vw - 4) left = vw - 4 - elW; // Clamp vertical
+
+    if (top < 4) top = 4;
+    if (top + elH > vh - 4) top = vh - 4 - elH;
+    el.style.top = top + "px";
+    el.style.left = left + "px"; // Arrow positioning
+
+    if (_this._arrow_enabled && _this._arrow) {
+      var a = _this._arrow;
+      a.style.top = "";
+      a.style.bottom = "";
+      a.style.left = "";
+      a.style.right = "";
+
+      if (placement === "top") {
+        a.style.bottom = "-4px";
+        a.style.left = Math.min(Math.max(tr.left + tr.width / 2 - left - 4, 8), elW - 12) + "px";
+      } else if (placement === "bottom") {
+        a.style.top = "-4px";
+        a.style.left = Math.min(Math.max(tr.left + tr.width / 2 - left - 4, 8), elW - 12) + "px";
+      } else if (placement === "left") {
+        a.style.right = "-4px";
+        a.style.top = Math.min(Math.max(tr.top + tr.height / 2 - top - 4, 6), elH - 10) + "px";
+      } else if (placement === "right") {
+        a.style.left = "-4px";
+        a.style.top = Math.min(Math.max(tr.top + tr.height / 2 - top - 4, 6), elH - 10) + "px";
+      }
+    } // Store placement for animation direction
+
+
+    el.dataset.placement = placement;
+  });
+
+  tooltip_defineProperty(this, "_animateIn", function () {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var p = el.dataset.placement;
+    var from = p === "top" ? "translateY(4px)" : p === "bottom" ? "translateY(-4px)" : p === "left" ? "translateX(4px)" : "translateX(-4px)";
+    el.animate([{
+      opacity: 0,
+      transform: from
+    }, {
+      opacity: 1,
+      transform: "translate(0)"
+    }], {
+      duration: 150,
+      fill: "forwards",
+      easing: "ease-out"
+    });
+  });
+
+  tooltip_defineProperty(this, "_animateOut", function () {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var a = el.animate([{
+      opacity: 1
+    }, {
+      opacity: 0
+    }], {
+      duration: 100,
+      fill: "forwards",
+      easing: "ease-in"
+    });
+
+    a.onfinish = function () {
+      return _this._removeTooltip();
+    };
+  });
+
+  tooltip_defineProperty(this, "_removeTooltip", function () {
+    if (_this._tooltipEl) {
+      _this._tooltipEl.remove();
+
+      _this._tooltipEl = null;
+      _this._arrow = null;
+    }
+  });
+
+  tooltip_defineProperty(this, "destroy", function () {
+    _this._removeTooltip();
+
+    _this._targets.forEach(function (el) {
+      el.removeEventListener("mouseenter", _this._boundShow);
+      el.removeEventListener("mouseleave", _this._boundHide);
+      el.removeEventListener("focus", _this._boundShow);
+      el.removeEventListener("blur", _this._boundHide);
+    });
+
+    _this._targets = [];
+  });
+
+  if (settings.bgColor) this._bgColor = settings.bgColor;
+  if (settings.textColor) this._textColor = settings.textColor;
+  if (settings.fontSize) this._fontSize = settings.fontSize;
+  if (settings.padding) this._padding = settings.padding;
+  if (settings.borderRadius !== undefined) this._borderRadius = settings.borderRadius;
+  if (settings.maxWidth) this._maxWidth = settings.maxWidth;
+  if (settings.offset !== undefined) this._offset = settings.offset;
+  if (settings.placement) this._placement = settings.placement;
+  if (settings.delay !== undefined) this._delay = settings.delay;
+  if (settings.hideDelay !== undefined) this._hideDelay = settings.hideDelay;
+  if (settings.arrow !== undefined) this._arrow_enabled = settings.arrow;
+
+  this._init(settings.selector || "[data-anybox-tooltip]");
+});
+
+/* harmony default export */ const tooltip = (Tooltip);
+;// CONCATENATED MODULE: ./js/anybox/modules/notification.js
+function notification_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function notification_createClass(Constructor, protoProps, staticProps) { if (protoProps) notification_defineProperties(Constructor.prototype, protoProps); if (staticProps) notification_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function notification_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function notification_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _notifContainers = {};
+
+var Notification = /*#__PURE__*/notification_createClass( // Defaults
+// top-right | top-left | top-center | bottom-center | bottom-left | bottom-right
+// how long notification stays visible (ms)
+// slide | fade | bounce
+function Notification() {
+  var _this = this;
+
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  notification_classCallCheck(this, Notification);
+
+  notification_defineProperty(this, "_position", "top-right");
+
+  notification_defineProperty(this, "_duration", 4000);
+
+  notification_defineProperty(this, "_animationType", "slide");
+
+  notification_defineProperty(this, "_animationDuration", 300);
+
+  notification_defineProperty(this, "_maxWidth", 380);
+
+  notification_defineProperty(this, "_gap", 10);
+
+  notification_defineProperty(this, "_offset", 20);
+
+  notification_defineProperty(this, "_showProgress", true);
+
+  notification_defineProperty(this, "_closeOnClick", true);
+
+  notification_defineProperty(this, "_pauseOnHover", true);
+
+  notification_defineProperty(this, "_statusConfig", {
+    success: {
+      color: "#198754",
+      icon: "&#x2714;",
+      label: "Success"
+    },
+    danger: {
+      color: "#FC100D",
+      icon: "&#x2718;",
+      label: "Error"
+    },
+    warning: {
+      color: "#FFCC00",
+      icon: "&#x26A0;",
+      label: "Warning"
+    }
+  });
+
+  notification_defineProperty(this, "_getContainer", function () {
+    var pos = _this._position;
+    if (_notifContainers[pos]) return _notifContainers[pos];
+    var c = document.createElement("div");
+    c.style.position = "fixed";
+    c.style.zIndex = "99998";
+    c.style.display = "flex";
+    c.style.flexDirection = pos.startsWith("top") ? "column" : "column-reverse";
+    c.style.gap = _this._gap + "px";
+    c.style.pointerEvents = "none";
+    c.style.maxHeight = "100vh";
+    c.style.overflow = "visible";
+    var offset = _this._offset + "px";
+    if (pos.includes("top")) c.style.top = offset;
+    if (pos.includes("bottom")) c.style.bottom = offset;
+
+    if (pos.includes("right")) {
+      c.style.right = offset;
+      c.style.alignItems = "flex-end";
+    }
+
+    if (pos.includes("left")) {
+      c.style.left = offset;
+      c.style.alignItems = "flex-start";
+    }
+
+    if (pos === "top-center") {
+      c.style.left = "50%";
+      c.style.transform = "translateX(-50%)";
+      c.style.alignItems = "center";
+    }
+
+    if (pos === "bottom-center") {
+      c.style.left = "50%";
+      c.style.transform = "translateX(-50%)";
+      c.style.alignItems = "center";
+    }
+
+    document.body.appendChild(c);
+    _notifContainers[pos] = c;
+    return c;
+  });
+
+  notification_defineProperty(this, "show", function () {
+    var _this$_statusConfig$s;
+
+    var status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "success";
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var title = options.title || ((_this$_statusConfig$s = _this._statusConfig[status]) === null || _this$_statusConfig$s === void 0 ? void 0 : _this$_statusConfig$s.label) || "Notification";
+    var message = options.message || "";
+    var duration = options.duration !== undefined ? options.duration : _this._duration;
+    var animationType = options.animationType || _this._animationType;
+    var animationDuration = options.animationDuration || _this._animationDuration;
+    var statusCfg = _this._statusConfig[status] || _this._statusConfig.success;
+
+    var container = _this._getContainer(); // Card
+
+
+    var card = document.createElement("div");
+    card.style.pointerEvents = "auto";
+    card.style.display = "flex";
+    card.style.alignItems = "flex-start";
+    card.style.gap = "12px";
+    card.style.padding = "14px 16px";
+    card.style.minWidth = "280px";
+    card.style.maxWidth = _this._maxWidth + "px";
+    card.style.width = "auto";
+    card.style.backgroundColor = "#18181b";
+    card.style.borderRadius = "12px";
+    card.style.border = "1px solid rgba(255,255,255,0.08)";
+    card.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
+    card.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    card.style.cursor = _this._closeOnClick ? "pointer" : "default";
+    card.style.position = "relative";
+    card.style.overflow = "hidden"; // Color accent bar
+
+    var accent = document.createElement("div");
+    accent.style.position = "absolute";
+    accent.style.top = "0";
+    accent.style.left = "0";
+    accent.style.width = "3px";
+    accent.style.height = "100%";
+    accent.style.backgroundColor = statusCfg.color;
+    accent.style.borderRadius = "12px 0 0 12px";
+    card.appendChild(accent); // Icon
+
+    var icon = document.createElement("div");
+    icon.style.width = "28px";
+    icon.style.height = "28px";
+    icon.style.borderRadius = "8px";
+    icon.style.display = "flex";
+    icon.style.alignItems = "center";
+    icon.style.justifyContent = "center";
+    icon.style.fontSize = "14px";
+    icon.style.flexShrink = "0";
+    icon.style.backgroundColor = statusCfg.color + "20";
+    icon.style.color = statusCfg.color;
+    icon.style.marginLeft = "4px";
+    icon.innerHTML = statusCfg.icon;
+    card.appendChild(icon); // Text content
+
+    var content = document.createElement("div");
+    content.style.flex = "1";
+    content.style.minWidth = "0";
+    var h = document.createElement("div");
+    h.style.fontWeight = "600";
+    h.style.fontSize = "13px";
+    h.style.color = "#e4e4e7";
+    h.style.marginBottom = message ? "2px" : "0";
+    h.textContent = title;
+    content.appendChild(h);
+
+    if (message) {
+      var p = document.createElement("div");
+      p.style.fontSize = "12px";
+      p.style.color = "#a1a1aa";
+      p.style.lineHeight = "1.4";
+      p.textContent = message;
+      content.appendChild(p);
+    }
+
+    card.appendChild(content); // Close X
+
+    var closeBtn = document.createElement("div");
+    closeBtn.style.width = "18px";
+    closeBtn.style.height = "18px";
+    closeBtn.style.display = "flex";
+    closeBtn.style.alignItems = "center";
+    closeBtn.style.justifyContent = "center";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.color = "#52525b";
+    closeBtn.style.fontSize = "14px";
+    closeBtn.style.flexShrink = "0";
+    closeBtn.style.borderRadius = "4px";
+    closeBtn.style.transition = "color .15s, background .15s";
+    closeBtn.innerHTML = "&#x2715;";
+    closeBtn.addEventListener("mouseenter", function () {
+      closeBtn.style.color = "#e4e4e7";
+      closeBtn.style.backgroundColor = "rgba(255,255,255,0.08)";
+    });
+    closeBtn.addEventListener("mouseleave", function () {
+      closeBtn.style.color = "#52525b";
+      closeBtn.style.backgroundColor = "transparent";
+    });
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+
+      _this._dismiss(card, animationType, animationDuration);
+    });
+    card.appendChild(closeBtn); // Progress bar
+
+    var progressBar = null;
+
+    if (_this._showProgress && duration > 0) {
+      progressBar = document.createElement("div");
+      progressBar.style.position = "absolute";
+      progressBar.style.bottom = "0";
+      progressBar.style.left = "0";
+      progressBar.style.height = "2px";
+      progressBar.style.backgroundColor = statusCfg.color;
+      progressBar.style.width = "100%";
+      progressBar.style.borderRadius = "0 0 12px 12px";
+      progressBar.style.transformOrigin = "left";
+      card.appendChild(progressBar);
+    }
+
+    container.appendChild(card); // Animate in
+
+    _this._animateIn(card, animationType, animationDuration); // Auto-dismiss timer with pause-on-hover
+
+
+    if (duration > 0) {
+      var remaining = duration;
+      var startTime = Date.now();
+      var timer = null;
+      var progressAnim = null;
+
+      var startTimer = function startTimer() {
+        startTime = Date.now();
+        timer = setTimeout(function () {
+          _this._dismiss(card, animationType, animationDuration);
+        }, remaining);
+
+        if (progressBar) {
+          progressAnim = progressBar.animate([{
+            transform: "scaleX(".concat(remaining / duration, ")")
+          }, {
+            transform: "scaleX(0)"
+          }], {
+            duration: remaining,
+            fill: "forwards",
+            easing: "linear"
+          });
+        }
+      };
+
+      var pauseTimer = function pauseTimer() {
+        clearTimeout(timer);
+        remaining -= Date.now() - startTime;
+        if (remaining < 0) remaining = 0;
+        if (progressAnim) progressAnim.pause();
+      };
+
+      if (_this._pauseOnHover) {
+        card.addEventListener("mouseenter", pauseTimer);
+        card.addEventListener("mouseleave", startTimer);
+      }
+
+      startTimer();
+    } // Click to dismiss
+
+
+    if (_this._closeOnClick) {
+      card.addEventListener("click", function () {
+        _this._dismiss(card, animationType, animationDuration);
+      });
+    }
+  });
+
+  notification_defineProperty(this, "_animateIn", function (card, type, duration) {
+    var pos = _this._position;
+    var keyframes;
+
+    if (type === "slide") {
+      var from;
+      if (pos.includes("right")) from = "translateX(110%)";else if (pos.includes("left")) from = "translateX(-110%)";else if (pos.startsWith("top")) from = "translateY(-110%)";else from = "translateY(110%)";
+      keyframes = [{
+        transform: from,
+        opacity: 0
+      }, {
+        transform: "translate(0)",
+        opacity: 1
+      }];
+    } else if (type === "bounce") {
+      var _from;
+
+      if (pos.includes("right")) _from = "translateX(110%)";else if (pos.includes("left")) _from = "translateX(-110%)";else if (pos.startsWith("top")) _from = "translateY(-110%)";else _from = "translateY(110%)";
+      keyframes = [{
+        transform: _from,
+        opacity: 0
+      }, {
+        transform: "translate(0) scale(1.04)",
+        opacity: 1,
+        offset: 0.6
+      }, {
+        transform: "translate(0) scale(0.98)",
+        opacity: 1,
+        offset: 0.8
+      }, {
+        transform: "translate(0) scale(1)",
+        opacity: 1
+      }];
+    } else {
+      // fade
+      keyframes = [{
+        opacity: 0,
+        transform: "scale(0.95)"
+      }, {
+        opacity: 1,
+        transform: "scale(1)"
+      }];
+    }
+
+    card.animate(keyframes, {
+      duration: duration,
+      fill: "forwards",
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+    });
+  });
+
+  notification_defineProperty(this, "_dismiss", function (card, type, duration) {
+    if (card._dismissed) return;
+    card._dismissed = true;
+    var pos = _this._position;
+    var keyframes;
+
+    if (type === "slide") {
+      var to;
+      if (pos.includes("right")) to = "translateX(110%)";else if (pos.includes("left")) to = "translateX(-110%)";else if (pos.startsWith("top")) to = "translateY(-110%)";else to = "translateY(110%)";
+      keyframes = [{
+        transform: "translate(0)",
+        opacity: 1
+      }, {
+        transform: to,
+        opacity: 0
+      }];
+    } else if (type === "bounce") {
+      var _to;
+
+      if (pos.includes("right")) _to = "translateX(110%)";else if (pos.includes("left")) _to = "translateX(-110%)";else if (pos.startsWith("top")) _to = "translateY(-110%)";else _to = "translateY(110%)";
+      keyframes = [{
+        transform: "translate(0)",
+        opacity: 1
+      }, {
+        transform: _to,
+        opacity: 0
+      }];
+    } else {
+      keyframes = [{
+        opacity: 1,
+        transform: "scale(1)"
+      }, {
+        opacity: 0,
+        transform: "scale(0.95)"
+      }];
+    }
+
+    var a = card.animate(keyframes, {
+      duration: Math.min(duration, 200),
+      fill: "forwards",
+      easing: "ease-in"
+    });
+
+    a.onfinish = function () {
+      return card.remove();
+    };
+  });
+
+  notification_defineProperty(this, "destroy", function () {
+    var c = _notifContainers[_this._position];
+
+    if (c) {
+      c.remove();
+      delete _notifContainers[_this._position];
+    }
+  });
+
+  if (settings.position) this._position = settings.position;
+  if (settings.duration !== undefined) this._duration = settings.duration;
+  if (settings.animationType) this._animationType = settings.animationType;
+  if (settings.animationDuration) this._animationDuration = settings.animationDuration;
+  if (settings.maxWidth) this._maxWidth = settings.maxWidth;
+  if (settings.gap !== undefined) this._gap = settings.gap;
+  if (settings.offset !== undefined) this._offset = settings.offset;
+  if (settings.showProgress !== undefined) this._showProgress = settings.showProgress;
+  if (settings.closeOnClick !== undefined) this._closeOnClick = settings.closeOnClick;
+  if (settings.pauseOnHover !== undefined) this._pauseOnHover = settings.pauseOnHover;
+});
+
+/* harmony default export */ const notification = (Notification);
 ;// CONCATENATED MODULE: ./js/anybox/init.js
 function init_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function init_createClass(Constructor, protoProps, staticProps) { if (protoProps) init_defineProperties(Constructor.prototype, protoProps); if (staticProps) init_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function init_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
 
 
 
@@ -1942,6 +2635,10 @@ var Anybox = /*#__PURE__*/init_createClass(function Anybox(type, settings) {
     return new lightbox(settings);
   } else if (type.toLowerCase() === "alertbox") {
     return new alertbox(settings);
+  } else if (type.toLowerCase() === "tooltip") {
+    return new tooltip(settings);
+  } else if (type.toLowerCase() === "notification") {
+    return new notification(settings);
   }
 });
 

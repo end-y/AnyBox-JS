@@ -1,101 +1,17 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
-var Anybox;
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Anybox"] = factory();
+	else
+		root["Anybox"] = factory();
+})(this, () => {
+return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./js/anybox/init.js":
-/*!***************************!*\
-  !*** ./js/anybox/init.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _modules_lightbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/lightbox.js */ \"./js/anybox/modules/lightbox.js\");\n/* harmony import */ var _modules_alertbox_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/alertbox.js */ \"./js/anybox/modules/alertbox.js\");\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\n\n\n\nvar Anybox = /*#__PURE__*/_createClass(function Anybox(type, settings) {\n  _classCallCheck(this, Anybox);\n\n  if (type.toLowerCase() == \"lightbox\") {\n    var lb = new _modules_lightbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](settings);\n  } else if (type.toLowerCase() == \"alertbox\") {\n    var al = new _modules_alertbox_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](settings);\n    return al;\n  }\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Anybox);\n\n//# sourceURL=webpack://Anybox/./js/anybox/init.js?");
-
-/***/ }),
-
-/***/ "./js/anybox/modules/alertbox.js":
-/*!***************************************!*\
-  !*** ./js/anybox/modules/alertbox.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations.js */ \"./js/anybox/modules/animations.js\");\n/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base.js */ \"./js/anybox/modules/base.js\");\n/* harmony import */ var _svg_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./svg.js */ \"./js/anybox/modules/svg.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \"function\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }, _typeof(obj); }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, \"prototype\", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } else if (call !== void 0) { throw new TypeError(\"Derived constructors may only return object or undefined\"); } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\n\nvar Alertbox = /*#__PURE__*/function (_Base) {\n  _inherits(Alertbox, _Base);\n\n  var _super = _createSuper(Alertbox);\n\n  function Alertbox(lBsettings) {\n    var _this;\n\n    _classCallCheck(this, Alertbox);\n\n    _this = _super.call(this);\n\n    _defineProperty(_assertThisInitialized(_this), \"success\", _svg_js__WEBPACK_IMPORTED_MODULE_2__.success);\n\n    _defineProperty(_assertThisInitialized(_this), \"svg\", _svg_js__WEBPACK_IMPORTED_MODULE_2__.svg);\n\n    _defineProperty(_assertThisInitialized(_this), \"fail\", _svg_js__WEBPACK_IMPORTED_MODULE_2__.fail);\n\n    _defineProperty(_assertThisInitialized(_this), \"warning\", _svg_js__WEBPACK_IMPORTED_MODULE_2__.warning);\n\n    _defineProperty(_assertThisInitialized(_this), \"status\", {\n      \"success\": {\n        svg: _this.success,\n        color: \"#198754\",\n        dash: \"150\"\n      },\n      \"fail\": {\n        svg: _this.fail,\n        color: \"#FC100D\",\n        dash: \"400\"\n      },\n      \"warning\": {\n        svg: _this.warning,\n        color: \"#FFCC00\",\n        dash: \"150\"\n      }\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"run\", function (settings) {\n      var bgColor = settings.bgColor,\n          opacity = settings.opacity,\n          top = settings.top,\n          closeButton = settings.closeButton,\n          message = settings.message,\n          headline = settings.headline,\n          buttons = settings.buttons,\n          svgStatus = settings.svgStatus,\n          animation = settings.animation;\n\n      _this.loadBaseElements(bgColor, opacity, top, closeButton, message, headline, buttons, svgStatus, animation);\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"show\", function () {\n      var status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;\n      var animation = arguments.length > 1 ? arguments[1] : undefined;\n\n      if (status) {\n        document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\".svgDiv\").remove();\n        var _this$status$status = _this.status[status],\n            _svg = _this$status$status.svg,\n            color = _this$status$status.color,\n            dash = _this$status$status.dash;\n\n        var svgDiv = _this.globalAnimation.statusAnimation(_svg, color, dash);\n\n        document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\"#svgPlace\").appendChild(svgDiv);\n      }\n\n      if (animation) {\n        document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\"#all\").parentElement.style.transform = \"scale(0) translate(-50%,-50%)\";\n\n        _this.globalAnimation.animate({\n          el: document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\"#all\"),\n          type: \"center\",\n          duration: 1000,\n          top: 40\n        });\n      }\n\n      document.getElementById(\"bg_anybox-\" + _this.id).style.opacity = \"1\";\n      document.getElementById(\"bg_anybox-\" + _this.id).style.display = \"block\";\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"loadBaseElements\", function () {\n      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"0,0,0\";\n      var opacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"0.5\";\n      var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : \"50%\";\n      var closeButton = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;\n      var message = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;\n      var headline = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;\n      var buttons = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;\n      var svgStatus = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;\n      var animation = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;\n\n      var bg = _this.getBg();\n\n      var box = _this.getBox(top);\n\n      var svgPlace = document.createElement(\"div\");\n      var all = document.createElement(\"div\");\n      all.id = \"all\";\n      svgPlace.id = \"svgPlace\";\n      var head = \"\";\n      var p = \"\";\n      box.style.fontFamily = \"sans-serif\";\n\n      if (headline && (headline.length > 0 || headline.text.length > 0)) {\n        if (typeof headline == \"string\") {\n          head = document.createElement(\"h3\");\n          head.innerText = headline;\n          head.style.paddingLeft = \"20px\";\n          head.style.paddingBottom = \"10px\";\n          head.style.borderBottom = \"1px solid #cdcdcd\";\n        } else {\n          head = document.createElement(\"h\" + headline.level);\n          head.innerText = headline.text;\n          head.style.paddingLeft = \"20px\";\n          head.style.paddingBottom = \"10px\";\n          head.style.fontFamily = headline.fontFamily;\n          head.style.borderBottom = \"1px solid #cdcdcd\";\n          head.style.color = headline.color;\n        }\n      }\n\n      var btn;\n\n      if (buttons) {\n        btn = _this.addButtons(buttons, closeButton);\n      }\n\n      if (message && (message.length > 0 || message.text.length > 0)) {\n        if (typeof message == \"string\") {\n          p = document.createElement(\"p\");\n          p.innerText = message;\n          p.style.paddingInline = \"50px\";\n        } else {\n          p = document.createElement(\"p\");\n          p.innerText = message.text;\n          p.style.fontFamily = message.fontFamily;\n          p.style.color = message.color;\n\n          switch (message.textAlign) {\n            case \"center\":\n              p.style.paddingInline = \"50px\";\n              break;\n\n            case \"left\":\n              p.style.paddingRight = \"50px\";\n              p.style.paddingLeft = \"20px\";\n              break;\n\n            case \"right\":\n              p.style.paddingLeft = \"50px\";\n              p.style.paddingRight = \"20px\";\n              break;\n          }\n        }\n      }\n\n      if (_this.isColor(\"rgba(\".concat(color, \",\").concat(opacity, \")\"))) {\n        bg.style.background = \"rgba(\".concat(color, \",\").concat(opacity, \")\");\n      } else {\n        bg.style.background = \"rgba(0,0,0,0.5)\";\n      }\n\n      if (closeButton) {\n        var cb = _this.getCloseButton(closeButton, false);\n\n        all.appendChild(cb);\n      }\n\n      if (head) {\n        all.appendChild(head);\n      }\n\n      all.appendChild(svgPlace);\n\n      if (svgStatus) {\n        var _this$status$svgStatu = _this.status[svgStatus],\n            _svg2 = _this$status$svgStatu.svg,\n            _color = _this$status$svgStatu.color,\n            dash = _this$status$svgStatu.dash;\n        var svgDiv = new _animations_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]().statusAnimation(_svg2, _color, dash);\n        svgPlace.appendChild(svgDiv);\n      }\n\n      if (p) {\n        all.appendChild(p);\n      }\n\n      if (btn) {\n        all.appendChild(btn);\n      }\n\n      box.appendChild(all);\n      bg.appendChild(box);\n      document.body.appendChild(bg);\n\n      if (animation) {\n        new _animations_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]().animate({\n          el: document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\"#all\"),\n          type: \"center\",\n          duration: 1000\n        });\n      }\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"defaultClickFunction\", function () {\n      document.getElementById(\"bg_anybox-\" + _this.id).style.opacity = \"0\";\n      document.getElementById(\"bg_anybox-\" + _this.id).style.display = \"none\";\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"addButtons\", function (buttons, closeButton) {\n      console.log(closeButton.fill);\n      var buttonsDiv = document.createElement(\"div\");\n      buttonsDiv.style.display = \"flex\";\n      buttonsDiv.style.flexWrap = \"no-wrap\";\n      buttonsDiv.style.borderTop = \"1px solid #cdcdcd\";\n      buttonsDiv.style.justifyContent = \"space-around\";\n      buttonsDiv.style.paddingBlock = \"10px\";\n\n      if (typeof buttons == \"boolean\" && buttons) {\n        var btn = document.createElement(\"button\");\n        btn.innerText = \"OK\";\n        btn.onclick = _this.defaultClickFunction;\n        btn.style.cursor = \"pointer\";\n        btn.style.color = closeButton.fill || \"#000\";\n        buttonsDiv.appendChild(btn);\n        return buttonsDiv;\n      } else {\n        var _btn;\n\n        for (var i = 0; i < buttons.length; i++) {\n          _btn = document.createElement(\"button\");\n          _btn.style.cursor = \"pointer\";\n\n          if (buttons.length % 2 == 0) {\n            if (i != 0) {\n              _btn.style.border = \"none\";\n              _btn.style.borderLeft = \"1px solid\" + (closeButton.fill || \"#000\");\n            } else {\n              _btn.style.border = \"none\";\n            }\n          } else {\n            if (i == 0 || i == buttons.length - 1) {\n              _btn.style.border = \"none\";\n            } else {\n              _btn.style.border = \"none\";\n              _btn.style.borderLeft = \"1px solid\" + (closeButton.fill || \"#000\");\n              _btn.style.borderRight = \"1px solid\" + (closeButton.fill || \"#000\");\n            }\n          }\n\n          _btn.innerText = buttons[i].buttonName;\n          _btn.style.flexGrow = \"1\";\n          _btn.style.color = closeButton.fill || \"#000\";\n          _btn.style.backgroundColor = \"transparent\";\n          _btn.onclick = buttons[i][\"function\"] || _this.defaultClickFunction;\n          buttonsDiv.appendChild(_btn);\n        }\n\n        return buttonsDiv;\n      }\n    });\n\n    _this.run(lBsettings);\n\n    window.addEventListener(\"resize\", function () {\n      console.log(window.innerHeight);\n      console.log(window.innerWidth);\n    });\n    return _this;\n  }\n\n  return _createClass(Alertbox);\n}(_base_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Alertbox);\n\n//# sourceURL=webpack://Anybox/./js/anybox/modules/alertbox.js?");
-
-/***/ }),
-
-/***/ "./js/anybox/modules/animations.js":
-/*!*****************************************!*\
-  !*** ./js/anybox/modules/animations.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction Animation() {\n  var _this = this;\n\n  this.ca;\n  this.ta;\n  this.la;\n  this.oa;\n\n  this.animate = function (_ref) {\n    var el = _ref.el,\n        type = _ref.type,\n        duration = _ref.duration,\n        _ref$top = _ref.top,\n        top = _ref$top === void 0 ? 50 : _ref$top;\n\n    switch (type) {\n      case \"center\":\n        centerAnimation(el.parentElement, top, duration);\n        break;\n\n      case \"left\":\n        leftAnimation(el.parentElement, duration);\n        break;\n\n      case \"top\":\n        topAnimation(el.parentElement, top, duration);\n        break;\n\n      case \"opacity\":\n        opacityAnimation(el.parentElement, duration, top);\n        break;\n    }\n  };\n\n  var centerAnimation = function centerAnimation(el) {\n    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;\n    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;\n    el.style.top = top + \"%\";\n    el.style.transformOrigin = \"top left\";\n    _this.ca = el.animate([{\n      transform: \"scale(0) translate(-50%,-50%)\"\n    }, {\n      transform: \"scale(1.1) translate(-50%,-50%)\"\n    }, {\n      transform: \"scale(1) translate(-50%,-50%)\"\n    }, {\n      transform: \"scale(1) translate(-50%,-50%)\"\n    }, {\n      transform: \"scale(1) translate(-50%,-50%)\"\n    }, {\n      transform: \"scale(1) translate(-50%,-50%)\"\n    }], {\n      duration: duration,\n      fill: \"forwards\"\n    });\n  };\n\n  var topAnimation = function topAnimation(el) {\n    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;\n    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;\n    el.style.transformOrigin = \"center\";\n    _this.ta = el.animate([{\n      top: \"0%\"\n    }, {\n      top: top + 5 + \"%\"\n    }, {\n      top: top + \"%\"\n    }, {\n      top: top + \"%\"\n    }, {\n      top: top + \"%\"\n    }, {\n      top: top + \"%\"\n    }], {\n      duration: duration,\n      fill: \"forwards\"\n    });\n  };\n\n  var leftAnimation = function leftAnimation(el) {\n    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;\n    _this.la = el.animate([{\n      left: \"0%\"\n    }, {\n      left: \"55%\"\n    }, {\n      left: \"50%\"\n    }, {\n      left: \"50%\"\n    }, {\n      left: \"50%\"\n    }, {\n      left: \"50%\"\n    }], {\n      duration: duration,\n      fill: \"forwards\"\n    });\n  };\n\n  var opacityAnimation = function opacityAnimation(el) {\n    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;\n    var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 50;\n    el.style.top = top + \"%\";\n    _this.oa = el.animate([{\n      opacity: \"0\"\n    }, {\n      opacity: \"1\"\n    }], {\n      duration: duration,\n      fill: \"forwards\"\n    });\n  };\n\n  this.getAnimation = function (type) {\n    var an = {\n      \"center\": _this.ca,\n      \"left\": _this.la,\n      \"top\": _this.ta,\n      \"opacity\": _this.oa\n    };\n    return an[type];\n  };\n\n  this.opacityMinus = function (el) {\n    el.reverse(); // el.style.opacity = \"0\"\n  };\n\n  this.topMinus = function (el) {\n    el.reverse(); // el.style.top = \"0%\"\n  };\n\n  this.leftMinus = function (el) {\n    el.reverse(); // el.style.left = \"0%\"\n  };\n\n  this.statusAnimation = function (success) {\n    var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"#000\";\n    var dash = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : \"80\";\n    var svgDiv = document.createElement(\"div\");\n    svgDiv.style.position = \"relative\";\n    svgDiv.style.width = \"75px\";\n    svgDiv.style.height = \"75px\";\n    svgDiv.style.margin = \"auto\";\n    svgDiv.style.marginBottom = \"30px\";\n    svgDiv.classList.add(\"svgDiv\");\n    var svg = document.createElement(\"div\");\n    svg.style.border = \"2px dashed \" + color;\n    svg.style.borderRadius = \"50%\";\n    svg.style.width = \"70px\";\n    svg.style.height = \"70px\";\n    svgDiv.innerHTML = success;\n    var anim1 = svg.animate([// keyframes\n    {\n      transform: 'scale(0)'\n    }, {\n      transform: 'scale(1.1) '\n    }, {\n      transform: 'scale(1.3) '\n    }, {\n      transform: 'scale(1.3) '\n    }, {\n      transform: 'scale(1.3) '\n    }, {\n      transform: 'scale(1.1) '\n    }, {\n      transform: 'scale(1.0) '\n    }], {\n      // timing options\n      duration: 600,\n      easing: \"ease-in\"\n    });\n    svgDiv.querySelector(\"svg\").querySelector(\"path\").style.strokeDasharray = dash;\n    svgDiv.querySelector(\"svg\").querySelector(\"path\").style.strokeDashoffset = dash;\n    svgDiv.querySelector(\"svg\").querySelector(\"path\").style.fill = \"transparent\";\n    svgDiv.querySelector(\"svg\").setAttribute(\"stroke\", color);\n    var svgAnim = svgDiv.querySelector(\"svg\").querySelector(\"path\").animate([// keyframes\n    {\n      strokeDashoffset: 0\n    }], {\n      // timing options\n      duration: 1250,\n      fill: \"forwards\"\n    });\n\n    svgAnim.onfinish = function () {\n      svgDiv.querySelector(\"svg\").querySelector(\"path\").animate([// keyframes\n      {\n        fill: color\n      }], {\n        // timing options\n        duration: 300,\n        fill: \"forwards\"\n      });\n    };\n\n    anim1.onfinish = function () {\n      svg.animate([// keyframes\n      {\n        transform: 'rotate(0deg) '\n      }, {\n        transform: 'rotate(360deg) '\n      }], {\n        // timing options\n        duration: 3000,\n        iterations: Infinity\n      });\n    };\n\n    svgDiv.appendChild(svg);\n    return svgDiv;\n  };\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Animation);\n\n//# sourceURL=webpack://Anybox/./js/anybox/modules/animations.js?");
-
-/***/ }),
-
-/***/ "./js/anybox/modules/base.js":
-/*!***********************************!*\
-  !*** ./js/anybox/modules/base.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animations_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations.js */ \"./js/anybox/modules/animations.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \"function\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }, _typeof(obj); }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\nvar Base = /*#__PURE__*/_createClass(function Base() {\n  var _this = this;\n\n  _classCallCheck(this, Base);\n\n  _defineProperty(this, \"id\", Date.now());\n\n  _defineProperty(this, \"globalAnimation\", new _animations_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]());\n\n  _defineProperty(this, \"getBg\", function () {\n    var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;\n    var bg = document.createElement(\"div\");\n    bg.style.width = window.innerWidth + \"px\";\n    bg.style.height = window.innerHeight + \"px\";\n    bg.style.position = \"fixed\";\n    bg.style.top = \"0\";\n    bg.style.left = \"0\";\n    bg.style.display = \"none\";\n    bg.id = \"bg_anybox-\" + _this.id;\n    alert(bg.id);\n    bg.className = \"bg_anybox\";\n    bg.addEventListener(\"click\", function (evt) {\n      if (evt.target.className == \"bg_anybox\") {\n        var d = 0;\n\n        if (animation) {\n          d = _this.minus(animation.type);\n        }\n\n        setTimeout(function () {\n          document.getElementById(\"bg_anybox-\" + _this.id).style.transition = \"all .2s ease\";\n          document.getElementById(\"bg_anybox-\" + _this.id).style.opacity = \"0\";\n          setTimeout(function () {\n            document.getElementById(\"bg_anybox-\" + _this.id).style.display = \"none\";\n          }, 220);\n        }, d / 1.2);\n      }\n    });\n    return bg;\n  });\n\n  _defineProperty(this, \"getBox\", function (top) {\n    var box = document.createElement(\"div\");\n    box.classList.add(\"box_anybox\");\n    box.style.top = top + \"%\";\n    box.style.left = \"50%\";\n    box.style.backgroundColor = \"white\";\n    box.style.position = \"absolute\";\n    box.style.transition = \"all .2s ease\";\n    box.style.transform = \"translate(-50%,-50%)\";\n    box.style.boxShadow = \"rgba(0, 0, 0, 0.24) 0px 3px 8px\";\n    box.style.borderRadius = \"15px\";\n    box.style.width = \"calc(100% - \".concat(window.innerWidth - 350, \"px)\");\n    return box;\n  });\n\n  _defineProperty(this, \"getCloseButton\", function (closeButton) {\n    var animation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;\n    var color = \"\";\n    var location = \"\";\n    var size = 25;\n\n    if (_typeof(closeButton) == \"object\") {\n      color = closeButton.fill;\n      location = closeButton.location;\n      size = closeButton.size;\n    }\n\n    var cb = \"\";\n\n    if (animation) {\n      cb = _this.addCloseButton(color, location, animation, animation.type, size);\n    } else {\n      cb = _this.addCloseButton(color, location, false, null, size);\n    }\n\n    return cb;\n  });\n\n  _defineProperty(this, \"addCloseButton\", function () {\n    var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"black\";\n    var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"right\";\n    var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;\n    var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : \"opacity\";\n    var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;\n    var div = document.createElement(\"div\");\n    div.style.position = \"absolute\";\n    div.style.top = \"-5px\";\n    location == \"right\" ? div.style.right = \"-5px\" : div.style.left = \"-5px\";\n    var obj = document.createElement(\"div\");\n    obj.style.width = size + \"px\";\n    obj.style.height = size + \"px\";\n    obj.innerHTML = _this.svg;\n    obj.children[0].style.fill = btnColor;\n    console.log(_this.id);\n    obj.addEventListener(\"click\", function (evt) {\n      var d = 0;\n\n      if (animation) {\n        d = _this.minus(animation.type);\n      }\n\n      setTimeout(function () {\n        document.getElementById(\"bg_anybox-\" + _this.id).style.transition = \"all .2s ease\";\n        document.getElementById(\"bg_anybox-\" + _this.id).style.opacity = \"0\";\n        setTimeout(function () {\n          document.getElementById(\"bg_anybox-\" + _this.id).style.display = \"none\";\n        }, 220);\n      }, d / 1.2);\n    });\n    div.appendChild(obj);\n    return div;\n  });\n\n  _defineProperty(this, \"isColor\", function (strColor) {\n    return new Option().style.color = strColor !== '';\n  });\n\n  window.addEventListener(\"resize\", function () {\n    document.getElementById(\"bg_anybox-\" + _this.id).style.width = window.innerWidth + \"px\";\n    document.getElementById(\"bg_anybox-\" + _this.id).style.height = window.innerHeight + \"px\";\n    document.getElementById(\"bg_anybox-\" + _this.id).querySelector(\".box_anybox\").style.width = \"calc(100% - \".concat(window.innerWidth - 350, \"px)\");\n  });\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Base);\n\n//# sourceURL=webpack://Anybox/./js/anybox/modules/base.js?");
-
-/***/ }),
-
-/***/ "./js/anybox/modules/lightbox.js":
-/*!***************************************!*\
-  !*** ./js/anybox/modules/lightbox.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ \"./js/anybox/modules/base.js\");\n/* harmony import */ var _svg_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./svg.js */ \"./js/anybox/modules/svg.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \"function\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }, _typeof(obj); }\n\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, \"prototype\", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } else if (call !== void 0) { throw new TypeError(\"Derived constructors may only return object or undefined\"); } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\nvar Lightbox = /*#__PURE__*/function (_Base) {\n  _inherits(Lightbox, _Base);\n\n  var _super = _createSuper(Lightbox);\n\n  function Lightbox(lBsettings) {\n    var _this;\n\n    _classCallCheck(this, Lightbox);\n\n    _this = _super.call(this);\n\n    _defineProperty(_assertThisInitialized(_this), \"left\", _svg_js__WEBPACK_IMPORTED_MODULE_1__.left);\n\n    _defineProperty(_assertThisInitialized(_this), \"right\", _svg_js__WEBPACK_IMPORTED_MODULE_1__.right);\n\n    _defineProperty(_assertThisInitialized(_this), \"svg\", _svg_js__WEBPACK_IMPORTED_MODULE_1__.svg);\n\n    _defineProperty(_assertThisInitialized(_this), \"duration\", void 0);\n\n    _defineProperty(_assertThisInitialized(_this), \"run\", function (settings) {\n      var srcs = _this.getSrcs();\n\n      var bgColor = settings.bgColor,\n          opacity = settings.opacity,\n          top = settings.top,\n          closeButton = settings.closeButton,\n          animation = settings.animation,\n          slider = settings.slider;\n\n      _this.loadBaseElements(srcs, bgColor, opacity, top, closeButton, animation, slider);\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"getSrcs\", function () {\n      var imgs = _this.getImages();\n\n      var srcs = imgs.map(function (e) {\n        return e.src;\n      });\n      return srcs;\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"getImages\", function () {\n      return Array.from(document.querySelectorAll(\".any-box_lightbox\"));\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"loadBaseElements\", function (srcs) {\n      var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"0,0,0\";\n      var opacity = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : \"0.5\";\n      var top = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 50;\n      var closeButton = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;\n      var animation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;\n      var slider = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;\n\n      if (typeof animation == \"boolean\" && animation) {\n        animation = {};\n        animation.type = \"opacity\";\n        animation.duration = 1000;\n      }\n\n      var bg = _this.getBg(animation);\n\n      var box = _this.getBox(top);\n\n      box.style.paddingBlock = \"50px\";\n\n      if (_this.isColor(\"rgba(\".concat(color, \",\").concat(opacity, \")\"))) {\n        bg.style.background = \"rgba(\".concat(color, \",\").concat(opacity, \")\");\n      } else {\n        bg.style.background = \"rgba(0,0,0,0.5)\";\n      }\n\n      if (slider) {\n        var element = _this.activeSlider(slider.buttonColor, slider.information, animation.type);\n\n        box.appendChild(element);\n      }\n\n      if (animation.type == \"opacity\") {\n        box.style.opacity = \"0\";\n      }\n\n      if (animation.type == \"top\") {\n        box.style.top = \"50%\";\n      } else {\n        box.style.top = top + \"%\";\n      }\n\n      if (animation.type == \"left\") {\n        box.style.left = \"0%\";\n      } else {\n        box.style.left = \"50%\";\n      }\n\n      for (var i = 0; i < srcs.length; i++) {\n        var img = new Image();\n        img.src = srcs[i];\n        img.setAttribute(\"anybox_id\", i);\n        img.style.display = \"none\";\n        img.style.margin = \"auto\";\n        img.style.width = \"100%\";\n        img.style.height = \"auto\";\n        img.className = \"any-box_lightbox_images\";\n        box.appendChild(img);\n      }\n\n      var images = _this.getImages();\n\n      var _iterator = _createForOfIteratorHelper(images),\n          _step;\n\n      try {\n        for (_iterator.s(); !(_step = _iterator.n()).done;) {\n          var image = _step.value;\n          image.addEventListener(\"click\", function (evt) {\n            bg.style.opacity = \"1\";\n            bg.style.display = \"block\";\n            box.style.maxWidth = evt.currentTarget.naturalWidth + 50 + \"px\";\n            console.log(document.querySelector(\".box_anybox\"));\n            box.style.width = \"100%\";\n\n            _this.showImage(evt.currentTarget, top, animation);\n          });\n        }\n      } catch (err) {\n        _iterator.e(err);\n      } finally {\n        _iterator.f();\n      }\n\n      if (closeButton) {\n        var cb = _this.getCloseButton(closeButton, animation);\n\n        box.appendChild(cb);\n      }\n\n      bg.appendChild(box);\n      document.body.appendChild(bg);\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"isColor\", function (strColor) {\n      return new Option().style.color = strColor !== '';\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"showImage\", function (evt) {\n      var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"50%\";\n      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;\n      var filtered = Array.from(document.querySelectorAll(\".any-box_lightbox_images\")).filter(function (e) {\n        return e.src == evt.src;\n      });\n      var notFiltered = Array.from(document.querySelectorAll(\".any-box_lightbox_images\")).filter(function (e) {\n        return e.src != evt.src;\n      });\n\n      if (animation) {\n        _this.globalAnimation.animate({\n          el: filtered[0],\n          duration: animation.duration,\n          type: animation.type,\n          top: top\n        });\n      }\n\n      filtered[0].style.display = \"block\";\n      filtered[0].classList.add(\"display_anybox\");\n      filtered[0].classList.remove(\"hide_anybox\");\n      notFiltered.forEach(function (e) {\n        e.classList.add(\"hide_anybox\");\n        e.classList.remove(\"display_anybox\");\n        e.style.display = \"none\";\n      });\n      document.getElementById(\"butonDiv_anybox\").setAttribute(\"btn_id_anybox\", parseInt(_this.getChosenImage()) + 1);\n\n      if (document.getElementById(\"infDiv\")) {\n        document.getElementById(\"infDiv\").innerText = parseInt(_this.getChosenImage()) + 1;\n      }\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"activeSlider\", function () {\n      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"#111\";\n      var information = arguments.length > 1 ? arguments[1] : undefined;\n      var animation = arguments.length > 2 ? arguments[2] : undefined;\n      var butonDiv = document.createElement(\"div\");\n      butonDiv.style.position = \"absolute\";\n      butonDiv.id = \"butonDiv_anybox\";\n      butonDiv.style.bottom = \"-30px\";\n      butonDiv.style.width = \"100%\";\n      butonDiv.style.display = \"flex\";\n      butonDiv.style.justifyContent = \"space-between\";\n      butonDiv.style.alignItems = \"center\";\n      var btn_left = document.createElement(\"button\");\n      btn_left.style.width = \"30px\";\n      btn_left.style.border = \"2px solid\" + color;\n      btn_left.style.borderRadius = \"5px\";\n      btn_left.style.backgroundColor = \"transparent\";\n      var infDiv = \"\";\n\n      if (information) {\n        infDiv = document.createElement(\"div\");\n        infDiv.style.fontFamily = \"Arial, Helvetica, sans-serif\";\n        infDiv.innerHTML = \"<span id=\\\"infDiv\\\"></span> of \".concat(_this.getSrcs().length, \" images\");\n      }\n\n      var btn_right = document.createElement(\"button\");\n      btn_right.style.width = \"30px\";\n      btn_right.style.border = \"2px solid\" + color;\n      btn_right.style.borderRadius = \"5px\";\n      btn_right.style.backgroundColor = \"transparent\";\n      btn_left.innerHTML = _this.left;\n      btn_right.innerHTML = _this.right;\n      btn_right.children[0].style.fill = color;\n      btn_left.children[0].style.fill = color;\n      btn_left.children[0].style.display = \"flex\";\n      btn_right.children[0].style.display = \"flex\";\n      btn_left.addEventListener(\"click\", function () {\n        var id = parseInt(document.getElementById(\"butonDiv_anybox\").getAttribute(\"btn_id_anybox\")) - 1;\n\n        var images = _this.getImages();\n\n        console.log(images[id - 1]);\n        images[id - 1].click();\n      });\n      btn_right.addEventListener(\"click\", function () {\n        var id = parseInt(document.getElementById(\"butonDiv_anybox\").getAttribute(\"btn_id_anybox\")) - 1;\n\n        var images = _this.getImages();\n\n        console.log(images[id + 1]);\n        images[id + 1].click();\n      });\n      butonDiv.appendChild(btn_left);\n\n      if (information && typeof infDiv != \"string\") {\n        butonDiv.appendChild(infDiv);\n      }\n\n      butonDiv.appendChild(btn_right);\n      return butonDiv;\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"addCloseButton\", function () {\n      var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"black\";\n      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : \"right\";\n      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;\n      var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : \"opacity\";\n      var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;\n      var div = document.createElement(\"div\");\n      div.style.position = \"absolute\";\n      div.style.top = \"-5px\";\n      location == \"right\" ? div.style.right = \"-5px\" : div.style.left = \"-5px\";\n      var obj = document.createElement(\"div\");\n      obj.style.width = size + \"px\";\n      obj.style.height = size + \"px\";\n      obj.innerHTML = _this.svg;\n      obj.children[0].style.fill = btnColor;\n      obj.addEventListener(\"click\", function (evt) {\n        var d = 0;\n\n        if (animation) {\n          d = _this.minus(animationType);\n        }\n\n        setTimeout(function () {\n          document.body.querySelector(\".bg_anybox\").style.transition = \"all .2s ease\";\n          document.body.querySelector(\".bg_anybox\").style.opacity = \"0\";\n          setTimeout(function () {\n            document.body.querySelector(\".bg_anybox\").style.display = \"none\";\n          }, 220);\n        }, d / 1.2);\n      });\n      div.appendChild(obj);\n      return div;\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"minus\", function (type) {\n      switch (type) {\n        case \"opacity\":\n          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation(\"opacity\"));\n\n          break;\n\n        case \"top\":\n          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation(\"top\"));\n\n          break;\n\n        case \"left\":\n          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation(\"left\"));\n\n          break;\n      }\n\n      return _this.duration;\n    });\n\n    _defineProperty(_assertThisInitialized(_this), \"getChosenImage\", function () {\n      return document.querySelector(\".display_anybox\").getAttribute(\"anybox_id\");\n    });\n\n    _this.duration = lBsettings.animation.duration;\n\n    _this.run(lBsettings);\n\n    return _this;\n  }\n\n  return _createClass(Lightbox);\n}(_base_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Lightbox);\n\n//# sourceURL=webpack://Anybox/./js/anybox/modules/lightbox.js?");
-
-/***/ }),
-
-/***/ "./js/anybox/modules/svg.js":
-/*!**********************************!*\
-  !*** ./js/anybox/modules/svg.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fail\": () => (/* binding */ fail),\n/* harmony export */   \"left\": () => (/* binding */ left),\n/* harmony export */   \"right\": () => (/* binding */ right),\n/* harmony export */   \"success\": () => (/* binding */ success),\n/* harmony export */   \"svg\": () => (/* binding */ svg),\n/* harmony export */   \"warning\": () => (/* binding */ warning)\n/* harmony export */ });\n// you can reach the following icons from Font Awesome website. https://fontawesome.com/\nvar svg = \"<svg class=\\\"times\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 512 512\\\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\\\"M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z\\\"/></svg>\";\nvar right = \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 448 512\\\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\\\"M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z\\\"/></svg>\";\nvar left = \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 448 512\\\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\\\"M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z\\\"/></svg>\"; // you can reach the following icons from Google Material Icons website. https://fonts.google.com/icons\n\nvar success = \"<svg style=\\\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" height=\\\"48\\\" fill=\\\"transparent\\\" stroke-width=\\\"1px\\\" width=\\\"48\\\"><path d=\\\"M18.9 35.7 7.7 24.5 9.85 22.35 18.9 31.4 38.1 12.2 40.25 14.35Z\\\"/></svg>\";\nvar fail = \"<svg style=\\\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\\\" fill=\\\"transparent\\\" stroke-width=\\\"1px\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" height=\\\"48\\\" width=\\\"48\\\"><path d=\\\"M12.45 37.95 10.05 35.55 21.6 24 10.05 12.45 12.45 10.05 24 21.6 35.55 10.05 37.95 12.45 26.4 24 37.95 35.55 35.55 37.95 24 26.4Z\\\"/></svg>\";\nvar warning = \"<svg style=\\\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" stroke-width=\\\"1px\\\"  height=\\\"48\\\" width=\\\"48\\\"><path d=\\\"M22.3 29.15V9.7H25.7V29.15ZM22.3 38.3V34.85H25.7V38.3Z\\\"/></svg>\";\n\n//# sourceURL=webpack://Anybox/./js/anybox/modules/svg.js?");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
@@ -115,24 +31,2627 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./js/anybox/init.js");
-/******/ 	Anybox = __webpack_exports__["default"];
-/******/ 	
+var __webpack_exports__ = {};
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ init)
+});
+
+;// CONCATENATED MODULE: ./js/anybox/modules/animations.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Animation() {
+  var _this = this;
+
+  this.ca;
+  this.ta;
+  this.la;
+  this.oa;
+
+  this.animate = function (_ref) {
+    var el = _ref.el,
+        type = _ref.type,
+        duration = _ref.duration,
+        _ref$top = _ref.top,
+        top = _ref$top === void 0 ? 50 : _ref$top,
+        _ref$direct = _ref.direct,
+        direct = _ref$direct === void 0 ? false : _ref$direct;
+    var target = direct ? el : el.parentElement;
+
+    switch (type) {
+      case "center":
+        centerAnimation(target, top, duration);
+        break;
+
+      case "left":
+        leftAnimation(target, duration);
+        break;
+
+      case "right":
+        rightAnimation(target, duration);
+        break;
+
+      case "top":
+        topAnimation(target, top, duration);
+        break;
+
+      case "bottom":
+        bottomAnimation(target, top, duration);
+        break;
+
+      case "opacity":
+        opacityAnimation(target, duration, top);
+        break;
+
+      case "flip":
+        flipAnimation(target, top, duration);
+        break;
+
+      case "rotate":
+        rotateAnimation(target, top, duration);
+        break;
+
+      case "bounce":
+        bounceAnimation(target, top, duration);
+        break;
+
+      case "elastic":
+        elasticAnimation(target, top, duration);
+        break;
+    }
+  };
+
+  var centerAnimation = function centerAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1.1) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var topAnimation = function topAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.transformOrigin = "center";
+    _this.ta = el.animate([{
+      top: "0%"
+    }, {
+      top: top + 5 + "%"
+    }, {
+      top: top + "%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var bottomAnimation = function bottomAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.transformOrigin = "center";
+    _this.ta = el.animate([{
+      top: "100%"
+    }, {
+      top: top - 5 + "%"
+    }, {
+      top: top + "%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var leftAnimation = function leftAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    _this.la = el.animate([{
+      left: "0%"
+    }, {
+      left: "55%"
+    }, {
+      left: "50%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var rightAnimation = function rightAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    _this.la = el.animate([{
+      left: "100%"
+    }, {
+      left: "45%"
+    }, {
+      left: "50%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var opacityAnimation = function opacityAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 50;
+    el.style.top = top + "%";
+    _this.oa = el.animate([{
+      opacity: "0"
+    }, {
+      opacity: "1"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var flipAnimation = function flipAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "perspective(600px) rotateY(90deg) translate(-50%,-50%)",
+      opacity: 0
+    }, {
+      transform: "perspective(600px) rotateY(-10deg) translate(-50%,-50%)",
+      opacity: 1
+    }, {
+      transform: "perspective(600px) rotateY(0deg) translate(-50%,-50%)",
+      opacity: 1
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var rotateAnimation = function rotateAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) rotate(-180deg) translate(-50%,-50%)",
+      opacity: 0
+    }, {
+      transform: "scale(1.05) rotate(10deg) translate(-50%,-50%)",
+      opacity: 1
+    }, {
+      transform: "scale(1) rotate(0deg) translate(-50%,-50%)",
+      opacity: 1
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var bounceAnimation = function bounceAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1.15) translate(-50%,-50%)",
+      offset: 0.4
+    }, {
+      transform: "scale(0.9) translate(-50%,-50%)",
+      offset: 0.6
+    }, {
+      transform: "scale(1.05) translate(-50%,-50%)",
+      offset: 0.8
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var elasticAnimation = function elasticAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scaleX(0) translate(-50%,-50%)"
+    }, {
+      transform: "scaleX(1.1) scaleY(0.9) translate(-50%,-50%)",
+      offset: 0.4
+    }, {
+      transform: "scaleX(0.95) scaleY(1.05) translate(-50%,-50%)",
+      offset: 0.7
+    }, {
+      transform: "scaleX(1) scaleY(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  this.getAnimation = function (type) {
+    var an = {
+      center: _this.ca,
+      left: _this.la,
+      right: _this.la,
+      top: _this.ta,
+      bottom: _this.ta,
+      opacity: _this.oa,
+      flip: _this.ca,
+      rotate: _this.ca,
+      bounce: _this.ca,
+      elastic: _this.ca
+    };
+    return an[type];
+  };
+
+  this.opacityMinus = function (el) {
+    if (el) el.reverse();
+  };
+
+  this.topMinus = function (el) {
+    if (el) el.reverse();
+  };
+
+  this.leftMinus = function (el) {
+    if (el) el.reverse();
+  }; // Animate element directly (no parentElement), for lightbox image transitions
+
+
+  this.animateImage = function (el, type) {
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 400;
+
+    switch (type) {
+      case "fade":
+        return el.animate([{
+          opacity: 0
+        }, {
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      case "slideLeft":
+        return el.animate([{
+          transform: "translateX(40px)",
+          opacity: 0
+        }, {
+          transform: "translateX(0)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "slideRight":
+        return el.animate([{
+          transform: "translateX(-40px)",
+          opacity: 0
+        }, {
+          transform: "translateX(0)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "zoomIn":
+        return el.animate([{
+          transform: "scale(0.85)",
+          opacity: 0
+        }, {
+          transform: "scale(1)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "zoomOut":
+        return el.animate([{
+          transform: "scale(1.15)",
+          opacity: 0
+        }, {
+          transform: "scale(1)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "flipX":
+        return el.animate([{
+          transform: "perspective(600px) rotateX(30deg)",
+          opacity: 0
+        }, {
+          transform: "perspective(600px) rotateX(0deg)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      case "flipY":
+        return el.animate([{
+          transform: "perspective(600px) rotateY(30deg)",
+          opacity: 0
+        }, {
+          transform: "perspective(600px) rotateY(0deg)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      default:
+        return el.animate([{
+          opacity: 0
+        }, {
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+    }
+  }; // ── SVG Element Helpers ──
+
+
+  var _ns = "http://www.w3.org/2000/svg";
+
+  var _svgEl = function _svgEl(tag) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var el = document.createElementNS(_ns, tag);
+
+    for (var _i = 0, _Object$entries = Object.entries(attrs); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          k = _Object$entries$_i[0],
+          v = _Object$entries$_i[1];
+
+      el.setAttribute(k, v);
+    }
+
+    return el;
+  };
+
+  var _makeContainer = function _makeContainer() {
+    var div = document.createElement("div");
+    div.classList.add("svgDiv");
+    div.style.position = "relative";
+    div.style.width = "80px";
+    div.style.height = "80px";
+    div.style.margin = "auto";
+    div.style.marginBottom = "24px";
+    return div;
+  };
+
+  var _makeSvg = function _makeSvg() {
+    var svg = _svgEl("svg", {
+      viewBox: "0 0 80 80",
+      width: "80",
+      height: "80"
+    });
+
+    svg.style.position = "absolute";
+    svg.style.left = "50%";
+    svg.style.top = "50%";
+    svg.style.transform = "translate(-50%, -50%)";
+    svg.style.overflow = "visible";
+    return svg;
+  }; // ── Particle Effects ──
+  // Minimal circle-edge sparkles — small green dots pop sequentially around the circle
+
+
+  var _burstParticles = function _burstParticles(container, color) {
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 12;
+    var radius = 38; // matches the circle radius
+
+    var _loop = function _loop(i) {
+      var dot = document.createElement("div");
+      dot.style.position = "absolute";
+      dot.style.top = "50%";
+      dot.style.left = "50%";
+      dot.style.pointerEvents = "none";
+      dot.style.borderRadius = "50%";
+      dot.style.backgroundColor = color;
+      dot.style.width = "5px";
+      dot.style.height = "5px";
+      dot.style.opacity = "0";
+      container.appendChild(dot);
+      var angle = i / count * Math.PI * 2 - Math.PI / 2; // start from top
+
+      var cx = Math.cos(angle) * radius;
+      var cy = Math.sin(angle) * radius; // small outward burst from circle edge
+
+      var bx = Math.cos(angle) * (radius + 10);
+      var by = Math.sin(angle) * (radius + 10);
+
+      dot.animate([{
+        transform: "translate(calc(-50% + ".concat(cx, "px), calc(-50% + ").concat(cy, "px)) scale(0)"),
+        opacity: 0
+      }, {
+        transform: "translate(calc(-50% + ".concat(cx, "px), calc(-50% + ").concat(cy, "px)) scale(1.3)"),
+        opacity: 1,
+        offset: 0.3
+      }, {
+        transform: "translate(calc(-50% + ".concat(bx, "px), calc(-50% + ").concat(by, "px)) scale(0)"),
+        opacity: 0
+      }], {
+        duration: 450,
+        delay: i * 40,
+        fill: "forwards",
+        easing: "ease-out"
+      }).onfinish = function () {
+        return dot.remove();
+      };
+    };
+
+    for (var i = 0; i < count; i++) {
+      _loop(i);
+    }
+  };
+
+  var _rippleEffect = function _rippleEffect(container, color) {
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2;
+
+    var _loop2 = function _loop2(i) {
+      var r = document.createElement("div");
+      r.style.position = "absolute";
+      r.style.top = "50%";
+      r.style.left = "50%";
+      r.style.transform = "translate(-50%, -50%)";
+      r.style.width = "72px";
+      r.style.height = "72px";
+      r.style.borderRadius = "50%";
+      r.style.border = "2px solid " + color;
+      r.style.opacity = "0";
+      r.style.pointerEvents = "none";
+      container.appendChild(r);
+
+      r.animate([{
+        transform: "translate(-50%, -50%) scale(0.8)",
+        opacity: 0.5
+      }, {
+        transform: "translate(-50%, -50%) scale(1.6)",
+        opacity: 0
+      }], {
+        duration: 900,
+        delay: i * 250,
+        fill: "forwards",
+        easing: "ease-out"
+      }).onfinish = function () {
+        return r.remove();
+      };
+    };
+
+    for (var i = 0; i < count; i++) {
+      _loop2(i);
+    }
+  }; // ── Success Animation ──
+  // Circle draws → bounce + glow → checkmark stroke → confetti particles
+
+
+  var _successAnimation = function _successAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var bgCircle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: color,
+      opacity: "0"
+    });
+
+    var circle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "round"
+    });
+
+    var cLen = 226;
+    circle.style.strokeDasharray = cLen;
+    circle.style.strokeDashoffset = cLen;
+
+    var check = _svgEl("path", {
+      d: "M24 42 L34 52 L56 28",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    });
+
+    var chkLen = 48;
+    check.style.strokeDasharray = chkLen;
+    check.style.strokeDashoffset = chkLen;
+    svg.appendChild(circle);
+    svg.appendChild(check);
+    container.appendChild(svg); // Phase 1 – circle draws itself
+
+    var a1 = circle.animate([{
+      strokeDashoffset: cLen
+    }, {
+      strokeDashoffset: 0
+    }], {
+      duration: 600,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+    });
+
+    a1.onfinish = function () {
+      // Phase 2 – bounce + glow
+      svg.animate([{
+        transform: "translate(-50%, -50%) scale(1)"
+      }, {
+        transform: "translate(-50%, -50%) scale(1.15)",
+        offset: 0.35
+      }, {
+        transform: "translate(-50%, -50%) scale(0.92)",
+        offset: 0.65
+      }, {
+        transform: "translate(-50%, -50%) scale(1)"
+      }], {
+        duration: 500,
+        fill: "forwards",
+        easing: "ease-out"
+      }); // Phase 3 – checkmark draws
+
+      var a2 = check.animate([{
+        strokeDashoffset: chkLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 400,
+        fill: "forwards",
+        easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+      });
+
+      a2.onfinish = function () {
+        // Phase 4 – confetti particles burst outward
+        _burstParticles(container, color, 16);
+      };
+    };
+
+    return container;
+  }; // ── Fail Animation ──
+  // Circle draws → X lines cross → aggressive shake
+
+
+  var _failAnimation = function _failAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var bgCircle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: color,
+      opacity: "0"
+    });
+
+    var circle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "round"
+    });
+
+    var cLen = 226;
+    circle.style.strokeDasharray = cLen;
+    circle.style.strokeDashoffset = cLen;
+
+    var x1 = _svgEl("path", {
+      d: "M28 28 L52 52",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    var xLen = 34;
+    x1.style.strokeDasharray = xLen;
+    x1.style.strokeDashoffset = xLen;
+
+    var x2 = _svgEl("path", {
+      d: "M52 28 L28 52",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    x2.style.strokeDasharray = xLen;
+    x2.style.strokeDashoffset = xLen;
+    svg.appendChild(bgCircle);
+    svg.appendChild(circle);
+    svg.appendChild(x1);
+    svg.appendChild(x2);
+    container.appendChild(svg); // Phase 1 – circle draws
+
+    var a1 = circle.animate([{
+      strokeDashoffset: cLen
+    }, {
+      strokeDashoffset: 0
+    }], {
+      duration: 500,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+    });
+
+    a1.onfinish = function () {
+      // Phase 2 – X lines draw simultaneously
+      x1.animate([{
+        strokeDashoffset: xLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 280,
+        fill: "forwards",
+        easing: "ease-out"
+      });
+      var a2 = x2.animate([{
+        strokeDashoffset: xLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 280,
+        delay: 80,
+        fill: "forwards",
+        easing: "ease-out"
+      });
+
+      a2.onfinish = function () {
+        // Phase 3 – red glow + shake
+        bgCircle.animate([{
+          opacity: "0"
+        }, {
+          opacity: "0.08"
+        }], {
+          duration: 300,
+          fill: "forwards"
+        });
+        svg.animate([{
+          transform: "translate(-50%, -50%) translateX(0)"
+        }, {
+          transform: "translate(-50%, -50%) translateX(-8px)",
+          offset: 0.15
+        }, {
+          transform: "translate(-50%, -50%) translateX(8px)",
+          offset: 0.3
+        }, {
+          transform: "translate(-50%, -50%) translateX(-6px)",
+          offset: 0.45
+        }, {
+          transform: "translate(-50%, -50%) translateX(6px)",
+          offset: 0.6
+        }, {
+          transform: "translate(-50%, -50%) translateX(-3px)",
+          offset: 0.75
+        }, {
+          transform: "translate(-50%, -50%) translateX(3px)",
+          offset: 0.85
+        }, {
+          transform: "translate(-50%, -50%) translateX(0)"
+        }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+      };
+    };
+
+    return container;
+  }; // ── Warning Animation ──
+  // Triangle draws → exclamation drops → dot bounces → wobble + ripple
+
+
+  var _warningAnimation = function _warningAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var triFill = _svgEl("path", {
+      d: "M40 12 L70 64 L10 64 Z",
+      fill: color,
+      opacity: "0"
+    });
+
+    var triangle = _svgEl("path", {
+      d: "M40 12 L70 64 L10 64 Z",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linejoin": "round",
+      "stroke-linecap": "round"
+    });
+
+    var triLen = 180;
+    triangle.style.strokeDasharray = triLen;
+    triangle.style.strokeDashoffset = triLen;
+
+    var exclLine = _svgEl("line", {
+      x1: "40",
+      y1: "30",
+      x2: "40",
+      y2: "48",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    exclLine.style.strokeDasharray = "18";
+    exclLine.style.strokeDashoffset = "18";
+
+    var dotGroup = _svgEl("g", {});
+
+    var exclDot = _svgEl("circle", {
+      cx: "40",
+      cy: "55",
+      r: "2.5",
+      fill: color
+    });
+
+    dotGroup.appendChild(exclDot);
+    dotGroup.style.transformOrigin = "40px 55px";
+    dotGroup.style.opacity = "0";
+    svg.appendChild(triFill);
+    svg.appendChild(triangle);
+    svg.appendChild(exclLine);
+    svg.appendChild(dotGroup);
+    container.appendChild(svg); // Phase 1 – triangle draws itself
+
+    var a1 = triangle.animate([{
+      strokeDashoffset: triLen
+    }, {
+      strokeDashoffset: 0
+    }], {
+      duration: 700,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+    });
+
+    a1.onfinish = function () {
+      // Subtle triangle fill
+      triFill.animate([{
+        opacity: "0"
+      }, {
+        opacity: "0.08"
+      }], {
+        duration: 300,
+        fill: "forwards"
+      }); // Phase 2 – exclamation line draws
+
+      var a2 = exclLine.animate([{
+        strokeDashoffset: "18"
+      }, {
+        strokeDashoffset: "0"
+      }], {
+        duration: 300,
+        fill: "forwards",
+        easing: "ease-out"
+      });
+
+      a2.onfinish = function () {
+        // Phase 3 – dot bounces in
+        dotGroup.animate([{
+          opacity: 0,
+          transform: "scale(0)"
+        }, {
+          opacity: 1,
+          transform: "scale(1.5)",
+          offset: 0.6
+        }, {
+          opacity: 1,
+          transform: "scale(1)"
+        }], {
+          duration: 400,
+          fill: "forwards",
+          easing: "ease-out"
+        }); // Phase 4 – wobble
+
+        svg.animate([{
+          transform: "translate(-50%, -50%) rotate(0deg)"
+        }, {
+          transform: "translate(-50%, -50%) rotate(-4deg)",
+          offset: 0.2
+        }, {
+          transform: "translate(-50%, -50%) rotate(4deg)",
+          offset: 0.4
+        }, {
+          transform: "translate(-50%, -50%) rotate(-2deg)",
+          offset: 0.6
+        }, {
+          transform: "translate(-50%, -50%) rotate(2deg)",
+          offset: 0.75
+        }, {
+          transform: "translate(-50%, -50%) rotate(0deg)"
+        }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "ease-out"
+        }); // Phase 5 – ripple rings
+
+        _rippleEffect(container, color, 2);
+      };
+    };
+
+    return container;
+  }; // ── Main Status Animation Entry ──
+
+
+  this.statusAnimation = function () {
+    var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#000";
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";
+
+    switch (type) {
+      case "success":
+        return _successAnimation(color);
+
+      case "fail":
+        return _failAnimation(color);
+
+      case "warning":
+        return _warningAnimation(color);
+
+      default:
+        return _successAnimation(color);
+    }
+  };
+}
+
+/* harmony default export */ const animations = (Animation);
+;// CONCATENATED MODULE: ./js/anybox/modules/base.js
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var _idCounter = 0;
+
+var Base = /*#__PURE__*/function () {
+  function Base() {
+    var _this = this;
+
+    _classCallCheck(this, Base);
+
+    _defineProperty(this, "id", "anybox-" + ++_idCounter + "-" + Date.now());
+
+    _defineProperty(this, "globalAnimation", new animations());
+
+    _defineProperty(this, "_resizeHandler", null);
+
+    _defineProperty(this, "close", function () {
+      var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var d = 0;
+
+      if (animation) {
+        d = _this.minus(animation.type);
+      }
+
+      setTimeout(function () {
+        var bg = document.getElementById("bg_" + _this.id);
+        if (!bg) return;
+        bg.style.transition = "all .2s ease";
+        bg.style.opacity = "0";
+        setTimeout(function () {
+          bg.style.display = "none";
+        }, 220);
+      }, d / 1.2);
+    });
+
+    _defineProperty(this, "getBg", function () {
+      var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var bg = document.createElement("div");
+      bg.style.width = "100vw";
+      bg.style.height = "100vh";
+      bg.style.position = "fixed";
+      bg.style.top = "0";
+      bg.style.left = "0";
+      bg.style.display = "none";
+      bg.style.zIndex = "9999";
+      bg.id = "bg_" + _this.id;
+      bg.className = "bg_anybox";
+      bg.addEventListener("click", function (evt) {
+        if (evt.target.className === "bg_anybox") {
+          _this.close(animation);
+        }
+      });
+      document.addEventListener("keydown", function (evt) {
+        if (evt.key === "Escape") {
+          var _bg = document.getElementById("bg_" + _this.id);
+
+          if (_bg && _bg.style.display !== "none") {
+            _this.close(animation);
+          }
+        }
+      });
+      return bg;
+    });
+
+    _defineProperty(this, "getBox", function (top) {
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.backgroundColor = "white";
+      box.style.position = "absolute";
+      box.style.transition = "all .2s ease";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+      box.style.borderRadius = "15px";
+      box.style.maxWidth = Math.min(window.innerWidth - 40, 500) + "px";
+      box.style.width = "90%";
+      box.style.willChange = "transform, opacity";
+      return box;
+    });
+
+    _defineProperty(this, "getCloseButton", function (closeButton) {
+      var animation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var color = "black";
+      var location = "right";
+      var size = 25;
+
+      if (_typeof(closeButton) === "object") {
+        color = closeButton.fill || "black";
+        location = closeButton.location || "right";
+        size = closeButton.size || 25;
+      }
+
+      return _this.addCloseButton(color, location, animation, animation ? animation.type : "opacity", size);
+    });
+
+    _defineProperty(this, "addCloseButton", function () {
+      var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "black";
+      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "right";
+      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "opacity";
+      var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;
+      var div = document.createElement("div");
+      div.style.position = "absolute";
+      div.style.top = "-5px";
+      div.style.cursor = "pointer";
+      location === "right" ? div.style.right = "-5px" : div.style.left = "-5px";
+      var obj = document.createElement("div");
+      obj.style.width = size + "px";
+      obj.style.height = size + "px";
+      obj.innerHTML = _this.svg;
+      obj.children[0].style.fill = btnColor;
+      obj.addEventListener("click", function () {
+        _this.close(animation);
+      });
+      div.appendChild(obj);
+      return div;
+    });
+
+    _defineProperty(this, "isColor", function (strColor) {
+      var opt = new Option().style;
+      opt.color = strColor;
+      return opt.color !== "";
+    });
+
+    this._resizeHandler = function () {
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
+      var box = bg.querySelector(".box_anybox");
+
+      if (box) {
+        box.style.maxWidth = Math.min(window.innerWidth - 40, 500) + "px";
+      }
+    };
+
+    window.addEventListener("resize", this._resizeHandler);
+  }
+
+  _createClass(Base, [{
+    key: "destroy",
+    value: function destroy() {
+      if (this._resizeHandler) {
+        window.removeEventListener("resize", this._resizeHandler);
+        this._resizeHandler = null;
+      }
+
+      var bg = document.getElementById("bg_" + this.id);
+      if (bg) bg.remove();
+    }
+  }]);
+
+  return Base;
+}();
+
+/* harmony default export */ const base = (Base);
+;// CONCATENATED MODULE: ./js/anybox/modules/svg.js
+// you can reach the following icons from Font Awesome website. https://fontawesome.com/
+var svg = "<svg class=\"times\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\"M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z\"/></svg>";
+var right = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\"M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z\"/></svg>";
+var left = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d=\"M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z\"/></svg>"; // you can reach the following icons from Google Material Icons website. https://fonts.google.com/icons
+
+var success = "<svg style=\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\" xmlns=\"http://www.w3.org/2000/svg\" height=\"48\" fill=\"transparent\" stroke-width=\"1px\" width=\"48\"><path d=\"M18.9 35.7 7.7 24.5 9.85 22.35 18.9 31.4 38.1 12.2 40.25 14.35Z\"/></svg>";
+var fail = "<svg style=\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\" fill=\"transparent\" stroke-width=\"1px\" xmlns=\"http://www.w3.org/2000/svg\" height=\"48\" width=\"48\"><path d=\"M12.45 37.95 10.05 35.55 21.6 24 10.05 12.45 12.45 10.05 24 21.6 35.55 10.05 37.95 12.45 26.4 24 37.95 35.55 35.55 37.95 24 26.4Z\"/></svg>";
+var warning = "<svg style=\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1px\"  height=\"48\" width=\"48\"><path d=\"M22.3 29.15V9.7H25.7V29.15ZM22.3 38.3V34.85H25.7V38.3Z\"/></svg>";
+;// CONCATENATED MODULE: ./js/anybox/modules/lightbox.js
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = lightbox_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function lightbox_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return lightbox_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return lightbox_arrayLikeToArray(o, minLen); }
+
+function lightbox_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function lightbox_typeof(obj) { "@babel/helpers - typeof"; return lightbox_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, lightbox_typeof(obj); }
+
+function lightbox_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function lightbox_createClass(Constructor, protoProps, staticProps) { if (protoProps) lightbox_defineProperties(Constructor.prototype, protoProps); if (staticProps) lightbox_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function lightbox_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (lightbox_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function lightbox_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var Lightbox = /*#__PURE__*/function (_Base) {
+  _inherits(Lightbox, _Base);
+
+  var _super = _createSuper(Lightbox);
+
+  function Lightbox(lBsettings) {
+    var _this;
+
+    lightbox_classCallCheck(this, Lightbox);
+
+    _this = _super.call(this);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "left", left);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "right", right);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "svg", svg);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "duration", void 0);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_images", []);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_modalImages", []);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_isFirstOpen", true);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_lastDirection", 0);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "run", function (settings) {
+      var bgColor = settings.bgColor,
+          opacity = settings.opacity,
+          top = settings.top,
+          closeButton = settings.closeButton,
+          animation = settings.animation,
+          slider = settings.slider;
+      _this._images = _this.getImages();
+
+      var srcs = _this._images.map(function (e) {
+        return e.src;
+      });
+
+      _this.loadBaseElements(srcs, bgColor, opacity, top, closeButton, animation, slider);
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "getImages", function () {
+      return Array.from(document.querySelectorAll(".any-box_lightbox"));
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "loadBaseElements", function (srcs) {
+      var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "0,0,0";
+      var opacity = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "0.5";
+      var top = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 50;
+      var closeButton = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+      var animation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+      var slider = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
+
+      if (typeof animation === "boolean" && animation) {
+        animation = {
+          type: "opacity",
+          duration: 1000
+        };
+      }
+
+      var bg = _this.getBg(animation);
+
+      if (_this.isColor("rgba(".concat(color, ",").concat(opacity, ")"))) {
+        bg.style.background = "rgba(".concat(color, ",").concat(opacity, ")");
+      } else {
+        bg.style.background = "rgba(0,0,0,0.85)";
+      } // Lightbox container
+
+
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.position = "absolute";
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.maxWidth = "90vw";
+      box.style.maxHeight = "85vh";
+      box.style.willChange = "transform, opacity"; // Image wrapper
+
+      var imgWrapper = document.createElement("div");
+      imgWrapper.style.position = "relative";
+      imgWrapper.style.borderRadius = "12px";
+      imgWrapper.style.overflow = "hidden";
+      imgWrapper.style.boxShadow = "0 25px 60px rgba(0,0,0,0.5)";
+      imgWrapper.style.lineHeight = "0";
+
+      for (var i = 0; i < srcs.length; i++) {
+        var img = new Image();
+        img.src = srcs[i];
+        img.setAttribute("anybox_id", i);
+        img.style.display = "none";
+        img.style.width = "100%";
+        img.style.height = "auto";
+        img.style.maxHeight = "80vh";
+        img.style.objectFit = "contain";
+        img.className = "any-box_lightbox_images_" + _this.id;
+
+        _this._modalImages.push(img);
+
+        imgWrapper.appendChild(img);
+      }
+
+      box.appendChild(imgWrapper); // Close button
+
+      if (closeButton) {
+        var cbColor = "white";
+        var cbSize = 28;
+
+        if (lightbox_typeof(closeButton) === "object") {
+          cbColor = closeButton.fill || "white";
+          cbSize = closeButton.size || 28;
+        }
+
+        var closeDiv = document.createElement("div");
+        closeDiv.style.position = "absolute";
+        closeDiv.style.top = "-16px";
+        closeDiv.style.right = "-16px";
+        closeDiv.style.width = cbSize + 8 + "px";
+        closeDiv.style.height = cbSize + 8 + "px";
+        closeDiv.style.background = "rgba(0,0,0,0.6)";
+        closeDiv.style.backdropFilter = "blur(8px)";
+        closeDiv.style.borderRadius = "50%";
+        closeDiv.style.display = "flex";
+        closeDiv.style.alignItems = "center";
+        closeDiv.style.justifyContent = "center";
+        closeDiv.style.cursor = "pointer";
+        closeDiv.style.transition = "all .2s";
+        closeDiv.style.zIndex = "10";
+        var closeIcon = document.createElement("div");
+        closeIcon.style.width = cbSize + "px";
+        closeIcon.style.height = cbSize + "px";
+        closeIcon.style.display = "flex";
+        closeIcon.innerHTML = _this.svg;
+        closeIcon.children[0].style.fill = cbColor;
+        closeDiv.appendChild(closeIcon);
+        closeDiv.addEventListener("click", function () {
+          return _this.close(animation);
+        });
+        closeDiv.addEventListener("mouseenter", function () {
+          closeDiv.style.background = "rgba(0,0,0,0.8)";
+          closeDiv.style.transform = "scale(1.1)";
+        });
+        closeDiv.addEventListener("mouseleave", function () {
+          closeDiv.style.background = "rgba(0,0,0,0.6)";
+          closeDiv.style.transform = "scale(1)";
+        });
+        box.appendChild(closeDiv);
+      } // Slider controls
+
+
+      if (slider) {
+        var element = _this.activeSlider(slider.buttonColor || "#fff", slider.information);
+
+        box.appendChild(element);
+      } // Thumbnail click handlers
+
+
+      var _iterator = _createForOfIteratorHelper(_this._images),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var image = _step.value;
+          image.style.cursor = "pointer";
+          image.style.transition = "transform .2s, box-shadow .2s";
+          image.addEventListener("click", function (evt) {
+            _this._isFirstOpen = bg.style.display === "none" || bg.style.display === "";
+            bg.style.opacity = "1";
+            bg.style.display = "block";
+            var liveAnimation = {
+              type: _this._animationType,
+              duration: _this._animationDuration
+            };
+
+            _this.showImage(evt.currentTarget, top, liveAnimation, box);
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      bg.appendChild(box);
+      document.body.appendChild(bg);
+
+      _this._setupKeyboardNav();
+
+      _this._setupSwipeNav(bg);
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_setupKeyboardNav", function () {
+      document.addEventListener("keydown", function (evt) {
+        var bg = document.getElementById("bg_" + _this.id);
+        if (!bg || bg.style.display === "none") return;
+
+        if (evt.key === "ArrowLeft") {
+          _this._navigateImage(-1);
+        } else if (evt.key === "ArrowRight") {
+          _this._navigateImage(1);
+        }
+      });
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_setupSwipeNav", function (bg) {
+      var touchStartX = 0;
+      bg.addEventListener("touchstart", function (evt) {
+        touchStartX = evt.changedTouches[0].screenX;
+      }, {
+        passive: true
+      });
+      bg.addEventListener("touchend", function (evt) {
+        var diff = touchStartX - evt.changedTouches[0].screenX;
+
+        if (Math.abs(diff) > 50) {
+          _this._navigateImage(diff > 0 ? 1 : -1);
+        }
+      }, {
+        passive: true
+      });
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_navigateImage", function (direction) {
+      var currentId = parseInt(_this.getChosenImage());
+      var nextId = currentId + direction;
+      if (nextId < 0 || nextId >= _this._images.length) return;
+      _this._lastDirection = direction;
+
+      _this._images[nextId].click();
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "showImage", function (evt) {
+      var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var box = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var imgClass = "any-box_lightbox_images_" + _this.id;
+      var allImages = Array.from(document.querySelectorAll("." + imgClass));
+      var filtered = allImages.filter(function (e) {
+        return e.src === evt.src;
+      });
+      var notFiltered = allImages.filter(function (e) {
+        return e.src !== evt.src;
+      });
+      filtered[0].style.display = "block"; // First open: animate the whole box (open animation)
+
+      if (_this._isFirstOpen && animation && box) {
+        _this.globalAnimation.animate({
+          el: box,
+          duration: animation.duration,
+          type: animation.type,
+          top: top,
+          direct: true
+        });
+
+        _this._isFirstOpen = false;
+      } else {
+        // Navigating between images: animate only the image
+        var transitionType = _this._imageTransition; // Auto direction-aware for slide
+
+        if (transitionType === "slide") {
+          transitionType = _this._lastDirection >= 0 ? "slideLeft" : "slideRight";
+        }
+
+        _this.globalAnimation.animateImage(filtered[0], transitionType, _this._imageTransitionDuration);
+      }
+
+      filtered[0].classList.add("display_" + _this.id);
+      filtered[0].classList.remove("hide_" + _this.id);
+      notFiltered.forEach(function (e) {
+        e.classList.add("hide_" + _this.id);
+        e.classList.remove("display_" + _this.id);
+        e.style.display = "none";
+      });
+      var butonDiv = document.getElementById("butonDiv_" + _this.id);
+
+      if (butonDiv) {
+        butonDiv.setAttribute("btn_id_anybox", parseInt(_this.getChosenImage()) + 1);
+      }
+
+      var infDiv = document.getElementById("infDiv_" + _this.id);
+
+      if (infDiv) {
+        infDiv.innerText = parseInt(_this.getChosenImage()) + 1;
+      }
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "activeSlider", function () {
+      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#fff";
+      var information = arguments.length > 1 ? arguments[1] : undefined;
+      var butonDiv = document.createElement("div");
+      butonDiv.id = "butonDiv_" + _this.id;
+      butonDiv.style.display = "flex";
+      butonDiv.style.justifyContent = "center";
+      butonDiv.style.alignItems = "center";
+      butonDiv.style.gap = "20px";
+      butonDiv.style.marginTop = "16px";
+
+      var btn_left = _this._createNavButton(color);
+
+      btn_left.innerHTML = _this.left;
+      btn_left.children[0].style.fill = color;
+      btn_left.children[0].style.display = "flex";
+      var infDiv = null;
+
+      if (information) {
+        infDiv = document.createElement("div");
+        infDiv.style.fontFamily = "Inter, Arial, Helvetica, sans-serif";
+        infDiv.style.color = color;
+        infDiv.style.fontSize = "14px";
+        infDiv.style.letterSpacing = "0.02em";
+        infDiv.style.opacity = "0.8";
+        infDiv.style.minWidth = "100px";
+        infDiv.style.textAlign = "center";
+        infDiv.innerHTML = "<span id=\"infDiv_".concat(_this.id, "\">1</span> / ").concat(_this._images.length);
+      }
+
+      var btn_right = _this._createNavButton(color);
+
+      btn_right.innerHTML = _this.right;
+      btn_right.children[0].style.fill = color;
+      btn_right.children[0].style.display = "flex";
+      btn_left.addEventListener("click", function () {
+        var id = parseInt(document.getElementById("butonDiv_" + _this.id).getAttribute("btn_id_anybox")) - 1;
+
+        if (id - 1 >= 0) {
+          _this._lastDirection = -1;
+
+          _this._images[id - 1].click();
+        }
+      });
+      btn_right.addEventListener("click", function () {
+        var id = parseInt(document.getElementById("butonDiv_" + _this.id).getAttribute("btn_id_anybox")) - 1;
+
+        if (id + 1 < _this._images.length) {
+          _this._lastDirection = 1;
+
+          _this._images[id + 1].click();
+        }
+      });
+      butonDiv.appendChild(btn_left);
+
+      if (infDiv) {
+        butonDiv.appendChild(infDiv);
+      }
+
+      butonDiv.appendChild(btn_right);
+      return butonDiv;
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_createNavButton", function (color) {
+      var btn = document.createElement("button");
+      btn.style.width = "40px";
+      btn.style.height = "40px";
+      btn.style.border = "1px solid rgba(255,255,255,0.2)";
+      btn.style.borderRadius = "50%";
+      btn.style.backgroundColor = "rgba(255,255,255,0.08)";
+      btn.style.cursor = "pointer";
+      btn.style.display = "flex";
+      btn.style.alignItems = "center";
+      btn.style.justifyContent = "center";
+      btn.style.padding = "10px";
+      btn.style.transition = "all .2s";
+      btn.addEventListener("mouseenter", function () {
+        btn.style.backgroundColor = "rgba(255,255,255,0.18)";
+        btn.style.borderColor = "rgba(255,255,255,0.4)";
+      });
+      btn.addEventListener("mouseleave", function () {
+        btn.style.backgroundColor = "rgba(255,255,255,0.08)";
+        btn.style.borderColor = "rgba(255,255,255,0.2)";
+      });
+      return btn;
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "minus", function (type) {
+      var anim = _this.globalAnimation.getAnimation(type);
+
+      if (anim) {
+        anim.reverse();
+      }
+
+      return _this.duration;
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "getChosenImage", function () {
+      var el = document.querySelector(".display_" + _this.id);
+      return el ? el.getAttribute("anybox_id") : "0";
+    });
+
+    _this.duration = lBsettings.animation ? lBsettings.animation.duration : 1000;
+    _this._imageTransition = lBsettings.imageTransition || "fade";
+    _this._imageTransitionDuration = lBsettings.imageTransitionDuration || 350;
+    _this._animationType = lBsettings.animation ? lBsettings.animation.type : "opacity";
+    _this._animationDuration = lBsettings.animation ? lBsettings.animation.duration : 1000;
+
+    _this.run(lBsettings);
+
+    return _this;
+  }
+
+  return lightbox_createClass(Lightbox);
+}(base);
+
+/* harmony default export */ const lightbox = (Lightbox);
+;// CONCATENATED MODULE: ./js/anybox/modules/alertbox.js
+function alertbox_typeof(obj) { "@babel/helpers - typeof"; return alertbox_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, alertbox_typeof(obj); }
+
+function alertbox_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function alertbox_createClass(Constructor, protoProps, staticProps) { if (protoProps) alertbox_defineProperties(Constructor.prototype, protoProps); if (staticProps) alertbox_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function alertbox_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function alertbox_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) alertbox_setPrototypeOf(subClass, superClass); }
+
+function alertbox_setPrototypeOf(o, p) { alertbox_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return alertbox_setPrototypeOf(o, p); }
+
+function alertbox_createSuper(Derived) { var hasNativeReflectConstruct = alertbox_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = alertbox_getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = alertbox_getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return alertbox_possibleConstructorReturn(this, result); }; }
+
+function alertbox_possibleConstructorReturn(self, call) { if (call && (alertbox_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return alertbox_assertThisInitialized(self); }
+
+function alertbox_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function alertbox_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function alertbox_getPrototypeOf(o) { alertbox_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return alertbox_getPrototypeOf(o); }
+
+function alertbox_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var Alertbox = /*#__PURE__*/function (_Base) {
+  alertbox_inherits(Alertbox, _Base);
+
+  var _super = alertbox_createSuper(Alertbox);
+
+  function Alertbox(lBsettings) {
+    var _this;
+
+    alertbox_classCallCheck(this, Alertbox);
+
+    _this = _super.call(this);
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "svg", svg);
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "status", {
+      success: {
+        color: "#198754",
+        type: "success"
+      },
+      fail: {
+        color: "#FC100D",
+        type: "fail"
+      },
+      warning: {
+        color: "#FFCC00",
+        type: "warning"
+      }
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_theme", "light");
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_colors", function () {
+      var dark = _this._theme === "dark";
+      return {
+        boxBg: dark ? "#18181b" : "#ffffff",
+        textColor: dark ? "#e4e4e7" : "#111111",
+        subTextColor: dark ? "#a1a1aa" : "#555555",
+        borderColor: dark ? "rgba(255,255,255,0.08)" : "#e5e5e5",
+        closeFill: dark ? "#a1a1aa" : "#111111",
+        buttonHover: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+        shadow: dark ? "0 25px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)" : "rgba(0, 0, 0, 0.12) 0px 8px 30px"
+      };
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "run", function (settings) {
+      var bgColor = settings.bgColor,
+          opacity = settings.opacity,
+          top = settings.top,
+          closeButton = settings.closeButton,
+          message = settings.message,
+          headline = settings.headline,
+          buttons = settings.buttons,
+          svgStatus = settings.svgStatus,
+          animation = settings.animation;
+
+      _this.loadBaseElements(bgColor, opacity, top, closeButton, message, headline, buttons, svgStatus, animation);
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "show", function () {
+      var status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var animation = arguments.length > 1 ? arguments[1] : undefined;
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
+
+      if (status) {
+        var svgPlace = bg.querySelector("#svgPlace_" + _this.id);
+        var oldSvg = svgPlace.querySelector(".svgDiv");
+        if (oldSvg) oldSvg.remove();
+        var _this$status$status = _this.status[status],
+            color = _this$status$status.color,
+            type = _this$status$status.type;
+
+        var svgDiv = _this.globalAnimation.statusAnimation(color, type);
+
+        svgPlace.appendChild(svgDiv);
+      }
+
+      if (animation) {
+        var allEl = bg.querySelector("#all_" + _this.id);
+        allEl.parentElement.style.transform = "scale(0) translate(-50%,-50%)";
+        var animOpts = {
+          el: allEl,
+          type: alertbox_typeof(animation) === "object" ? animation.type : "center",
+          duration: alertbox_typeof(animation) === "object" ? animation.duration : 1000,
+          top: 40
+        };
+
+        _this.globalAnimation.animate(animOpts);
+      }
+
+      bg.style.opacity = "1";
+      bg.style.display = "block";
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "loadBaseElements", function () {
+      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "0,0,0";
+      var opacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "0.5";
+      var top = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "50%";
+      var closeButton = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+      var message = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+      var headline = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+      var buttons = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
+      var svgStatus = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
+      var animation = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;
+
+      var c = _this._colors();
+
+      var bg = _this.getBg(); // Custom styled box for alertbox
+
+
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.backgroundColor = c.boxBg;
+      box.style.position = "absolute";
+      box.style.transition = "all .2s ease";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.boxShadow = c.shadow;
+      box.style.borderRadius = "16px";
+      box.style.maxWidth = Math.min(window.innerWidth - 40, 420) + "px";
+      box.style.width = "90%";
+      box.style.willChange = "transform, opacity";
+      box.style.overflow = "hidden";
+      var svgPlace = document.createElement("div");
+      var all = document.createElement("div");
+      all.id = "all_" + _this.id;
+      all.style.padding = "28px 24px 0";
+      svgPlace.id = "svgPlace_" + _this.id;
+      box.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+      var head = null;
+
+      if (headline) {
+        var hasText = typeof headline === "string" ? headline.length > 0 : headline.text && headline.text.length > 0;
+
+        if (hasText) {
+          head = document.createElement("h" + (typeof headline === "string" ? 3 : headline.level || 3));
+          head.innerText = typeof headline === "string" ? headline : headline.text;
+          head.style.textAlign = "center";
+          head.style.marginBottom = "4px";
+          head.style.fontSize = "18px";
+          head.style.fontWeight = "600";
+          head.style.letterSpacing = "-0.01em";
+          head.style.color = alertbox_typeof(headline) === "object" && headline.color ? headline.color : c.textColor;
+
+          if (alertbox_typeof(headline) === "object" && headline.fontFamily) {
+            head.style.fontFamily = headline.fontFamily;
+          }
+        }
+      }
+
+      var p = null;
+
+      if (message) {
+        var _hasText = typeof message === "string" ? message.length > 0 : message.text && message.text.length > 0;
+
+        if (_hasText) {
+          p = document.createElement("p");
+          p.innerText = typeof message === "string" ? message : message.text;
+          p.style.textAlign = "center";
+          p.style.margin = "0";
+          p.style.padding = "0 12px 20px";
+          p.style.fontSize = "14px";
+          p.style.lineHeight = "1.5";
+          p.style.color = alertbox_typeof(message) === "object" && message.color ? message.color : c.subTextColor;
+
+          if (alertbox_typeof(message) === "object" && message.fontFamily) {
+            p.style.fontFamily = message.fontFamily;
+          }
+        }
+      }
+
+      if (_this.isColor("rgba(".concat(color, ",").concat(opacity, ")"))) {
+        bg.style.background = "rgba(".concat(color, ",").concat(opacity, ")");
+      } else {
+        bg.style.background = "rgba(0,0,0,0.5)";
+      } // Close button
+
+
+      if (closeButton) {
+        var cbColor = c.closeFill;
+        var cbSize = 20;
+
+        if (alertbox_typeof(closeButton) === "object") {
+          cbColor = closeButton.fill || c.closeFill;
+          cbSize = closeButton.size || 20;
+        }
+
+        var closeDiv = document.createElement("div");
+        closeDiv.style.position = "absolute";
+        closeDiv.style.top = "12px";
+        closeDiv.style.right = "12px";
+        closeDiv.style.width = cbSize + 8 + "px";
+        closeDiv.style.height = cbSize + 8 + "px";
+        closeDiv.style.borderRadius = "8px";
+        closeDiv.style.display = "flex";
+        closeDiv.style.alignItems = "center";
+        closeDiv.style.justifyContent = "center";
+        closeDiv.style.cursor = "pointer";
+        closeDiv.style.transition = "background .15s";
+        var closeIcon = document.createElement("div");
+        closeIcon.style.width = cbSize + "px";
+        closeIcon.style.height = cbSize + "px";
+        closeIcon.style.display = "flex";
+        closeIcon.style.opacity = "0.5";
+        closeIcon.innerHTML = _this.svg;
+        closeIcon.children[0].style.fill = cbColor;
+        closeDiv.appendChild(closeIcon);
+        closeDiv.addEventListener("click", function () {
+          return _this.defaultClickFunction();
+        });
+        closeDiv.addEventListener("mouseenter", function () {
+          closeDiv.style.background = c.buttonHover;
+          closeIcon.style.opacity = "1";
+        });
+        closeDiv.addEventListener("mouseleave", function () {
+          closeDiv.style.background = "transparent";
+          closeIcon.style.opacity = "0.5";
+        });
+        all.appendChild(closeDiv);
+      }
+
+      if (head) {
+        all.appendChild(head);
+      }
+
+      all.appendChild(svgPlace);
+
+      if (svgStatus) {
+        var _this$status$svgStatu = _this.status[svgStatus],
+            statusColor = _this$status$svgStatu.color,
+            type = _this$status$svgStatu.type;
+
+        var svgDiv = _this.globalAnimation.statusAnimation(statusColor, type);
+
+        svgPlace.appendChild(svgDiv);
+      }
+
+      if (p) {
+        all.appendChild(p);
+      } // Buttons
+
+
+      var btn = null;
+
+      if (buttons) {
+        btn = _this.addButtons(buttons, closeButton);
+      }
+
+      if (btn) {
+        all.appendChild(btn);
+      }
+
+      box.appendChild(all);
+      bg.appendChild(box);
+      document.body.appendChild(bg);
+
+      if (animation) {
+        _this.globalAnimation.animate({
+          el: bg.querySelector("#all_" + _this.id),
+          type: "center",
+          duration: 1000
+        });
+      }
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "defaultClickFunction", function () {
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
+      bg.style.transition = "all .2s ease";
+      bg.style.opacity = "0";
+      setTimeout(function () {
+        bg.style.display = "none";
+      }, 220);
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "addButtons", function (buttons, closeButton) {
+      var c = _this._colors();
+
+      var fillColor = alertbox_typeof(closeButton) === "object" && closeButton.fill ? closeButton.fill : c.textColor;
+      var buttonsDiv = document.createElement("div");
+      buttonsDiv.style.display = "flex";
+      buttonsDiv.style.flexWrap = "nowrap";
+      buttonsDiv.style.borderTop = "1px solid " + c.borderColor;
+      buttonsDiv.style.margin = "0 -24px";
+      buttonsDiv.style.padding = "0";
+
+      if (typeof buttons === "boolean" && buttons) {
+        var btn = _this._createButton("OK", fillColor, c);
+
+        btn.style.borderRadius = "0 0 16px 16px";
+        btn.onclick = _this.defaultClickFunction;
+        buttonsDiv.appendChild(btn);
+        return buttonsDiv;
+      }
+
+      for (var i = 0; i < buttons.length; i++) {
+        var _btn = _this._createButton(buttons[i].buttonName, fillColor, c);
+
+        _btn.onclick = buttons[i]["function"] || _this.defaultClickFunction;
+
+        if (i !== 0) {
+          _btn.style.borderLeft = "1px solid " + c.borderColor;
+        } // Round corners for edge buttons
+
+
+        if (buttons.length > 1) {
+          if (i === 0) _btn.style.borderRadius = "0 0 0 16px";
+          if (i === buttons.length - 1) _btn.style.borderRadius = "0 0 16px 0";
+        } else {
+          _btn.style.borderRadius = "0 0 16px 16px";
+        }
+
+        buttonsDiv.appendChild(_btn);
+      }
+
+      return buttonsDiv;
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_createButton", function (text, color, c) {
+      var btn = document.createElement("button");
+      btn.innerText = text;
+      btn.style.flexGrow = "1";
+      btn.style.padding = "14px 16px";
+      btn.style.border = "none";
+      btn.style.backgroundColor = "transparent";
+      btn.style.color = color;
+      btn.style.cursor = "pointer";
+      btn.style.fontSize = "14px";
+      btn.style.fontWeight = "500";
+      btn.style.fontFamily = "inherit";
+      btn.style.transition = "background .15s";
+      btn.addEventListener("mouseenter", function () {
+        btn.style.backgroundColor = c.buttonHover;
+      });
+      btn.addEventListener("mouseleave", function () {
+        btn.style.backgroundColor = "transparent";
+      });
+      return btn;
+    });
+
+    _this._theme = lBsettings.theme || "light";
+
+    _this.run(lBsettings);
+
+    return _this;
+  }
+
+  return alertbox_createClass(Alertbox);
+}(base);
+
+/* harmony default export */ const alertbox = (Alertbox);
+;// CONCATENATED MODULE: ./js/anybox/modules/tooltip.js
+function tooltip_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function tooltip_createClass(Constructor, protoProps, staticProps) { if (protoProps) tooltip_defineProperties(Constructor.prototype, protoProps); if (staticProps) tooltip_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function tooltip_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function tooltip_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _tooltipIdCounter = 0;
+
+var Tooltip = /*#__PURE__*/tooltip_createClass( // Defaults
+// top | bottom | left | right
+function Tooltip() {
+  var _this = this;
+
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  tooltip_classCallCheck(this, Tooltip);
+
+  tooltip_defineProperty(this, "_id", "anybox-tooltip-" + ++_tooltipIdCounter + "-" + Date.now());
+
+  tooltip_defineProperty(this, "_tooltipEl", null);
+
+  tooltip_defineProperty(this, "_arrow", null);
+
+  tooltip_defineProperty(this, "_showTimeout", null);
+
+  tooltip_defineProperty(this, "_hideTimeout", null);
+
+  tooltip_defineProperty(this, "_boundShow", null);
+
+  tooltip_defineProperty(this, "_boundHide", null);
+
+  tooltip_defineProperty(this, "_boundReposition", null);
+
+  tooltip_defineProperty(this, "_targets", []);
+
+  tooltip_defineProperty(this, "_bgColor", "rgba(15,15,20,0.92)");
+
+  tooltip_defineProperty(this, "_textColor", "#fff");
+
+  tooltip_defineProperty(this, "_fontSize", 13);
+
+  tooltip_defineProperty(this, "_padding", "6px 12px");
+
+  tooltip_defineProperty(this, "_borderRadius", 6);
+
+  tooltip_defineProperty(this, "_maxWidth", 260);
+
+  tooltip_defineProperty(this, "_offset", 8);
+
+  tooltip_defineProperty(this, "_placement", "top");
+
+  tooltip_defineProperty(this, "_delay", 0);
+
+  tooltip_defineProperty(this, "_hideDelay", 0);
+
+  tooltip_defineProperty(this, "_arrow_enabled", true);
+
+  tooltip_defineProperty(this, "_init", function (selector) {
+    var els = document.querySelectorAll(selector);
+
+    _this._boundShow = function (evt) {
+      return _this._handleShow(evt);
+    };
+
+    _this._boundHide = function (evt) {
+      return _this._handleHide(evt);
+    };
+
+    els.forEach(function (el) {
+      el.addEventListener("mouseenter", _this._boundShow);
+      el.addEventListener("mouseleave", _this._boundHide);
+      el.addEventListener("focus", _this._boundShow);
+      el.addEventListener("blur", _this._boundHide);
+
+      _this._targets.push(el);
+    });
+  });
+
+  tooltip_defineProperty(this, "_handleShow", function (evt) {
+    clearTimeout(_this._hideTimeout);
+    var target = evt.currentTarget;
+    var text = target.getAttribute("data-anybox-tooltip") || target.getAttribute("title") || "";
+    if (!text) return; // Prevent native title
+
+    if (target.hasAttribute("title")) {
+      target.setAttribute("data-anybox-tooltip", target.getAttribute("title"));
+      target.removeAttribute("title");
+    }
+
+    _this._showTimeout = setTimeout(function () {
+      _this._createTooltip(text);
+
+      _this._positionTooltip(target);
+
+      _this._animateIn();
+    }, _this._delay);
+  });
+
+  tooltip_defineProperty(this, "_handleHide", function () {
+    clearTimeout(_this._showTimeout);
+    _this._hideTimeout = setTimeout(function () {
+      _this._animateOut();
+    }, _this._hideDelay);
+  });
+
+  tooltip_defineProperty(this, "_createTooltip", function (text) {
+    _this._removeTooltip();
+
+    var el = document.createElement("div");
+    el.id = _this._id;
+    el.style.position = "fixed";
+    el.style.zIndex = "99999";
+    el.style.backgroundColor = _this._bgColor;
+    el.style.color = _this._textColor;
+    el.style.fontSize = _this._fontSize + "px";
+    el.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    el.style.padding = _this._padding;
+    el.style.borderRadius = _this._borderRadius + "px";
+    el.style.maxWidth = _this._maxWidth + "px";
+    el.style.lineHeight = "1.4";
+    el.style.wordWrap = "break-word";
+    el.style.pointerEvents = "none";
+    el.style.opacity = "0";
+    el.style.whiteSpace = "normal";
+    el.style.boxShadow = "0 4px 14px rgba(0,0,0,0.25)";
+    el.textContent = text; // Arrow
+
+    if (_this._arrow_enabled) {
+      var arrow = document.createElement("div");
+      arrow.style.position = "absolute";
+      arrow.style.width = "8px";
+      arrow.style.height = "8px";
+      arrow.style.backgroundColor = _this._bgColor;
+      arrow.style.transform = "rotate(45deg)";
+      arrow.style.pointerEvents = "none";
+      el.appendChild(arrow);
+      _this._arrow = arrow;
+    }
+
+    document.body.appendChild(el);
+    _this._tooltipEl = el;
+  });
+
+  tooltip_defineProperty(this, "_positionTooltip", function (target) {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var tr = target.getBoundingClientRect();
+    var elW = el.offsetWidth;
+    var elH = el.offsetHeight;
+    var offset = _this._offset;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var placement = _this._placement;
+    var top, left; // Calculate ideal position
+
+    var positions = {
+      top: {
+        top: tr.top - elH - offset,
+        left: tr.left + tr.width / 2 - elW / 2
+      },
+      bottom: {
+        top: tr.bottom + offset,
+        left: tr.left + tr.width / 2 - elW / 2
+      },
+      left: {
+        top: tr.top + tr.height / 2 - elH / 2,
+        left: tr.left - elW - offset
+      },
+      right: {
+        top: tr.top + tr.height / 2 - elH / 2,
+        left: tr.right + offset
+      }
+    }; // Overflow detection — flip if needed
+
+    var ideal = positions[placement];
+    if (placement === "top" && ideal.top < 4) placement = "bottom";else if (placement === "bottom" && ideal.top + elH > vh - 4) placement = "top";else if (placement === "left" && ideal.left < 4) placement = "right";else if (placement === "right" && ideal.left + elW > vw - 4) placement = "left";
+    var pos = positions[placement];
+    top = pos.top;
+    left = pos.left; // Clamp horizontal
+
+    if (left < 4) left = 4;
+    if (left + elW > vw - 4) left = vw - 4 - elW; // Clamp vertical
+
+    if (top < 4) top = 4;
+    if (top + elH > vh - 4) top = vh - 4 - elH;
+    el.style.top = top + "px";
+    el.style.left = left + "px"; // Arrow positioning
+
+    if (_this._arrow_enabled && _this._arrow) {
+      var a = _this._arrow;
+      a.style.top = "";
+      a.style.bottom = "";
+      a.style.left = "";
+      a.style.right = "";
+
+      if (placement === "top") {
+        a.style.bottom = "-4px";
+        a.style.left = Math.min(Math.max(tr.left + tr.width / 2 - left - 4, 8), elW - 12) + "px";
+      } else if (placement === "bottom") {
+        a.style.top = "-4px";
+        a.style.left = Math.min(Math.max(tr.left + tr.width / 2 - left - 4, 8), elW - 12) + "px";
+      } else if (placement === "left") {
+        a.style.right = "-4px";
+        a.style.top = Math.min(Math.max(tr.top + tr.height / 2 - top - 4, 6), elH - 10) + "px";
+      } else if (placement === "right") {
+        a.style.left = "-4px";
+        a.style.top = Math.min(Math.max(tr.top + tr.height / 2 - top - 4, 6), elH - 10) + "px";
+      }
+    } // Store placement for animation direction
+
+
+    el.dataset.placement = placement;
+  });
+
+  tooltip_defineProperty(this, "_animateIn", function () {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var p = el.dataset.placement;
+    var from = p === "top" ? "translateY(4px)" : p === "bottom" ? "translateY(-4px)" : p === "left" ? "translateX(4px)" : "translateX(-4px)";
+    el.animate([{
+      opacity: 0,
+      transform: from
+    }, {
+      opacity: 1,
+      transform: "translate(0)"
+    }], {
+      duration: 150,
+      fill: "forwards",
+      easing: "ease-out"
+    });
+  });
+
+  tooltip_defineProperty(this, "_animateOut", function () {
+    var el = _this._tooltipEl;
+    if (!el) return;
+    var a = el.animate([{
+      opacity: 1
+    }, {
+      opacity: 0
+    }], {
+      duration: 100,
+      fill: "forwards",
+      easing: "ease-in"
+    });
+
+    a.onfinish = function () {
+      return _this._removeTooltip();
+    };
+  });
+
+  tooltip_defineProperty(this, "_removeTooltip", function () {
+    if (_this._tooltipEl) {
+      _this._tooltipEl.remove();
+
+      _this._tooltipEl = null;
+      _this._arrow = null;
+    }
+  });
+
+  tooltip_defineProperty(this, "destroy", function () {
+    _this._removeTooltip();
+
+    _this._targets.forEach(function (el) {
+      el.removeEventListener("mouseenter", _this._boundShow);
+      el.removeEventListener("mouseleave", _this._boundHide);
+      el.removeEventListener("focus", _this._boundShow);
+      el.removeEventListener("blur", _this._boundHide);
+    });
+
+    _this._targets = [];
+  });
+
+  if (settings.bgColor) this._bgColor = settings.bgColor;
+  if (settings.textColor) this._textColor = settings.textColor;
+  if (settings.fontSize) this._fontSize = settings.fontSize;
+  if (settings.padding) this._padding = settings.padding;
+  if (settings.borderRadius !== undefined) this._borderRadius = settings.borderRadius;
+  if (settings.maxWidth) this._maxWidth = settings.maxWidth;
+  if (settings.offset !== undefined) this._offset = settings.offset;
+  if (settings.placement) this._placement = settings.placement;
+  if (settings.delay !== undefined) this._delay = settings.delay;
+  if (settings.hideDelay !== undefined) this._hideDelay = settings.hideDelay;
+  if (settings.arrow !== undefined) this._arrow_enabled = settings.arrow;
+
+  this._init(settings.selector || "[data-anybox-tooltip]");
+});
+
+/* harmony default export */ const tooltip = (Tooltip);
+;// CONCATENATED MODULE: ./js/anybox/modules/notification.js
+function notification_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function notification_createClass(Constructor, protoProps, staticProps) { if (protoProps) notification_defineProperties(Constructor.prototype, protoProps); if (staticProps) notification_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function notification_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function notification_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _notifContainers = {};
+
+var Notification = /*#__PURE__*/notification_createClass( // Defaults
+// top-right | top-left | top-center | bottom-center | bottom-left | bottom-right
+// how long notification stays visible (ms)
+// slide | fade | bounce
+function Notification() {
+  var _this = this;
+
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  notification_classCallCheck(this, Notification);
+
+  notification_defineProperty(this, "_position", "top-right");
+
+  notification_defineProperty(this, "_duration", 4000);
+
+  notification_defineProperty(this, "_animationType", "slide");
+
+  notification_defineProperty(this, "_animationDuration", 300);
+
+  notification_defineProperty(this, "_maxWidth", 380);
+
+  notification_defineProperty(this, "_gap", 10);
+
+  notification_defineProperty(this, "_offset", 20);
+
+  notification_defineProperty(this, "_showProgress", true);
+
+  notification_defineProperty(this, "_closeOnClick", true);
+
+  notification_defineProperty(this, "_pauseOnHover", true);
+
+  notification_defineProperty(this, "_statusConfig", {
+    success: {
+      color: "#198754",
+      icon: "&#x2714;",
+      label: "Success"
+    },
+    danger: {
+      color: "#FC100D",
+      icon: "&#x2718;",
+      label: "Error"
+    },
+    warning: {
+      color: "#FFCC00",
+      icon: "&#x26A0;",
+      label: "Warning"
+    }
+  });
+
+  notification_defineProperty(this, "_getContainer", function () {
+    var pos = _this._position;
+    if (_notifContainers[pos]) return _notifContainers[pos];
+    var c = document.createElement("div");
+    c.style.position = "fixed";
+    c.style.zIndex = "99998";
+    c.style.display = "flex";
+    c.style.flexDirection = pos.startsWith("top") ? "column" : "column-reverse";
+    c.style.gap = _this._gap + "px";
+    c.style.pointerEvents = "none";
+    c.style.maxHeight = "100vh";
+    c.style.overflow = "visible";
+    var offset = _this._offset + "px";
+    if (pos.includes("top")) c.style.top = offset;
+    if (pos.includes("bottom")) c.style.bottom = offset;
+
+    if (pos.includes("right")) {
+      c.style.right = offset;
+      c.style.alignItems = "flex-end";
+    }
+
+    if (pos.includes("left")) {
+      c.style.left = offset;
+      c.style.alignItems = "flex-start";
+    }
+
+    if (pos === "top-center") {
+      c.style.left = "50%";
+      c.style.transform = "translateX(-50%)";
+      c.style.alignItems = "center";
+    }
+
+    if (pos === "bottom-center") {
+      c.style.left = "50%";
+      c.style.transform = "translateX(-50%)";
+      c.style.alignItems = "center";
+    }
+
+    document.body.appendChild(c);
+    _notifContainers[pos] = c;
+    return c;
+  });
+
+  notification_defineProperty(this, "show", function () {
+    var _this$_statusConfig$s;
+
+    var status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "success";
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var title = options.title || ((_this$_statusConfig$s = _this._statusConfig[status]) === null || _this$_statusConfig$s === void 0 ? void 0 : _this$_statusConfig$s.label) || "Notification";
+    var message = options.message || "";
+    var duration = options.duration !== undefined ? options.duration : _this._duration;
+    var animationType = options.animationType || _this._animationType;
+    var animationDuration = options.animationDuration || _this._animationDuration;
+    var statusCfg = _this._statusConfig[status] || _this._statusConfig.success;
+
+    var container = _this._getContainer(); // Card
+
+
+    var card = document.createElement("div");
+    card.style.pointerEvents = "auto";
+    card.style.display = "flex";
+    card.style.alignItems = "flex-start";
+    card.style.gap = "12px";
+    card.style.padding = "14px 16px";
+    card.style.minWidth = "280px";
+    card.style.maxWidth = _this._maxWidth + "px";
+    card.style.width = "auto";
+    card.style.backgroundColor = "#18181b";
+    card.style.borderRadius = "12px";
+    card.style.border = "1px solid rgba(255,255,255,0.08)";
+    card.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
+    card.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    card.style.cursor = _this._closeOnClick ? "pointer" : "default";
+    card.style.position = "relative";
+    card.style.overflow = "hidden"; // Color accent bar
+
+    var accent = document.createElement("div");
+    accent.style.position = "absolute";
+    accent.style.top = "0";
+    accent.style.left = "0";
+    accent.style.width = "3px";
+    accent.style.height = "100%";
+    accent.style.backgroundColor = statusCfg.color;
+    accent.style.borderRadius = "12px 0 0 12px";
+    card.appendChild(accent); // Icon
+
+    var icon = document.createElement("div");
+    icon.style.width = "28px";
+    icon.style.height = "28px";
+    icon.style.borderRadius = "8px";
+    icon.style.display = "flex";
+    icon.style.alignItems = "center";
+    icon.style.justifyContent = "center";
+    icon.style.fontSize = "14px";
+    icon.style.flexShrink = "0";
+    icon.style.backgroundColor = statusCfg.color + "20";
+    icon.style.color = statusCfg.color;
+    icon.style.marginLeft = "4px";
+    icon.innerHTML = statusCfg.icon;
+    card.appendChild(icon); // Text content
+
+    var content = document.createElement("div");
+    content.style.flex = "1";
+    content.style.minWidth = "0";
+    var h = document.createElement("div");
+    h.style.fontWeight = "600";
+    h.style.fontSize = "13px";
+    h.style.color = "#e4e4e7";
+    h.style.marginBottom = message ? "2px" : "0";
+    h.textContent = title;
+    content.appendChild(h);
+
+    if (message) {
+      var p = document.createElement("div");
+      p.style.fontSize = "12px";
+      p.style.color = "#a1a1aa";
+      p.style.lineHeight = "1.4";
+      p.textContent = message;
+      content.appendChild(p);
+    }
+
+    card.appendChild(content); // Close X
+
+    var closeBtn = document.createElement("div");
+    closeBtn.style.width = "18px";
+    closeBtn.style.height = "18px";
+    closeBtn.style.display = "flex";
+    closeBtn.style.alignItems = "center";
+    closeBtn.style.justifyContent = "center";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.color = "#52525b";
+    closeBtn.style.fontSize = "14px";
+    closeBtn.style.flexShrink = "0";
+    closeBtn.style.borderRadius = "4px";
+    closeBtn.style.transition = "color .15s, background .15s";
+    closeBtn.innerHTML = "&#x2715;";
+    closeBtn.addEventListener("mouseenter", function () {
+      closeBtn.style.color = "#e4e4e7";
+      closeBtn.style.backgroundColor = "rgba(255,255,255,0.08)";
+    });
+    closeBtn.addEventListener("mouseleave", function () {
+      closeBtn.style.color = "#52525b";
+      closeBtn.style.backgroundColor = "transparent";
+    });
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+
+      _this._dismiss(card, animationType, animationDuration);
+    });
+    card.appendChild(closeBtn); // Progress bar
+
+    var progressBar = null;
+
+    if (_this._showProgress && duration > 0) {
+      progressBar = document.createElement("div");
+      progressBar.style.position = "absolute";
+      progressBar.style.bottom = "0";
+      progressBar.style.left = "0";
+      progressBar.style.height = "2px";
+      progressBar.style.backgroundColor = statusCfg.color;
+      progressBar.style.width = "100%";
+      progressBar.style.borderRadius = "0 0 12px 12px";
+      progressBar.style.transformOrigin = "left";
+      card.appendChild(progressBar);
+    }
+
+    container.appendChild(card); // Animate in
+
+    _this._animateIn(card, animationType, animationDuration); // Auto-dismiss timer with pause-on-hover
+
+
+    if (duration > 0) {
+      var remaining = duration;
+      var startTime = Date.now();
+      var timer = null;
+      var progressAnim = null;
+
+      var startTimer = function startTimer() {
+        startTime = Date.now();
+        timer = setTimeout(function () {
+          _this._dismiss(card, animationType, animationDuration);
+        }, remaining);
+
+        if (progressBar) {
+          progressAnim = progressBar.animate([{
+            transform: "scaleX(".concat(remaining / duration, ")")
+          }, {
+            transform: "scaleX(0)"
+          }], {
+            duration: remaining,
+            fill: "forwards",
+            easing: "linear"
+          });
+        }
+      };
+
+      var pauseTimer = function pauseTimer() {
+        clearTimeout(timer);
+        remaining -= Date.now() - startTime;
+        if (remaining < 0) remaining = 0;
+        if (progressAnim) progressAnim.pause();
+      };
+
+      if (_this._pauseOnHover) {
+        card.addEventListener("mouseenter", pauseTimer);
+        card.addEventListener("mouseleave", startTimer);
+      }
+
+      startTimer();
+    } // Click to dismiss
+
+
+    if (_this._closeOnClick) {
+      card.addEventListener("click", function () {
+        _this._dismiss(card, animationType, animationDuration);
+      });
+    }
+  });
+
+  notification_defineProperty(this, "_animateIn", function (card, type, duration) {
+    var pos = _this._position;
+    var keyframes;
+
+    if (type === "slide") {
+      var from;
+      if (pos.includes("right")) from = "translateX(110%)";else if (pos.includes("left")) from = "translateX(-110%)";else if (pos.startsWith("top")) from = "translateY(-110%)";else from = "translateY(110%)";
+      keyframes = [{
+        transform: from,
+        opacity: 0
+      }, {
+        transform: "translate(0)",
+        opacity: 1
+      }];
+    } else if (type === "bounce") {
+      var _from;
+
+      if (pos.includes("right")) _from = "translateX(110%)";else if (pos.includes("left")) _from = "translateX(-110%)";else if (pos.startsWith("top")) _from = "translateY(-110%)";else _from = "translateY(110%)";
+      keyframes = [{
+        transform: _from,
+        opacity: 0
+      }, {
+        transform: "translate(0) scale(1.04)",
+        opacity: 1,
+        offset: 0.6
+      }, {
+        transform: "translate(0) scale(0.98)",
+        opacity: 1,
+        offset: 0.8
+      }, {
+        transform: "translate(0) scale(1)",
+        opacity: 1
+      }];
+    } else {
+      // fade
+      keyframes = [{
+        opacity: 0,
+        transform: "scale(0.95)"
+      }, {
+        opacity: 1,
+        transform: "scale(1)"
+      }];
+    }
+
+    card.animate(keyframes, {
+      duration: duration,
+      fill: "forwards",
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+    });
+  });
+
+  notification_defineProperty(this, "_dismiss", function (card, type, duration) {
+    if (card._dismissed) return;
+    card._dismissed = true;
+    var pos = _this._position;
+    var keyframes;
+
+    if (type === "slide") {
+      var to;
+      if (pos.includes("right")) to = "translateX(110%)";else if (pos.includes("left")) to = "translateX(-110%)";else if (pos.startsWith("top")) to = "translateY(-110%)";else to = "translateY(110%)";
+      keyframes = [{
+        transform: "translate(0)",
+        opacity: 1
+      }, {
+        transform: to,
+        opacity: 0
+      }];
+    } else if (type === "bounce") {
+      var _to;
+
+      if (pos.includes("right")) _to = "translateX(110%)";else if (pos.includes("left")) _to = "translateX(-110%)";else if (pos.startsWith("top")) _to = "translateY(-110%)";else _to = "translateY(110%)";
+      keyframes = [{
+        transform: "translate(0)",
+        opacity: 1
+      }, {
+        transform: _to,
+        opacity: 0
+      }];
+    } else {
+      keyframes = [{
+        opacity: 1,
+        transform: "scale(1)"
+      }, {
+        opacity: 0,
+        transform: "scale(0.95)"
+      }];
+    }
+
+    var a = card.animate(keyframes, {
+      duration: Math.min(duration, 200),
+      fill: "forwards",
+      easing: "ease-in"
+    });
+
+    a.onfinish = function () {
+      return card.remove();
+    };
+  });
+
+  notification_defineProperty(this, "destroy", function () {
+    var c = _notifContainers[_this._position];
+
+    if (c) {
+      c.remove();
+      delete _notifContainers[_this._position];
+    }
+  });
+
+  if (settings.position) this._position = settings.position;
+  if (settings.duration !== undefined) this._duration = settings.duration;
+  if (settings.animationType) this._animationType = settings.animationType;
+  if (settings.animationDuration) this._animationDuration = settings.animationDuration;
+  if (settings.maxWidth) this._maxWidth = settings.maxWidth;
+  if (settings.gap !== undefined) this._gap = settings.gap;
+  if (settings.offset !== undefined) this._offset = settings.offset;
+  if (settings.showProgress !== undefined) this._showProgress = settings.showProgress;
+  if (settings.closeOnClick !== undefined) this._closeOnClick = settings.closeOnClick;
+  if (settings.pauseOnHover !== undefined) this._pauseOnHover = settings.pauseOnHover;
+});
+
+/* harmony default export */ const notification = (Notification);
+;// CONCATENATED MODULE: ./js/anybox/init.js
+function init_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function init_createClass(Constructor, protoProps, staticProps) { if (protoProps) init_defineProperties(Constructor.prototype, protoProps); if (staticProps) init_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function init_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+
+
+var Anybox = /*#__PURE__*/init_createClass(function Anybox(type, settings) {
+  init_classCallCheck(this, Anybox);
+
+  if (type.toLowerCase() === "lightbox") {
+    return new lightbox(settings);
+  } else if (type.toLowerCase() === "alertbox") {
+    return new alertbox(settings);
+  } else if (type.toLowerCase() === "tooltip") {
+    return new tooltip(settings);
+  } else if (type.toLowerCase() === "notification") {
+    return new notification(settings);
+  }
+});
+
+/* harmony default export */ const init = (Anybox);
+__webpack_exports__ = __webpack_exports__["default"];
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});

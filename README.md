@@ -1,6 +1,6 @@
 # AnyBox.js
 
-A lightweight, zero-dependency JavaScript library for creating elegant lightboxes and alert dialogs with smooth animations.
+A lightweight, zero-dependency JavaScript library for creating elegant lightboxes, alert dialogs, tooltips, and toast notifications with smooth animations.
 
 ## Features
 
@@ -8,6 +8,8 @@ A lightweight, zero-dependency JavaScript library for creating elegant lightboxe
 - **10 open animations** - center, left, right, top, bottom, opacity, flip, rotate, bounce, elastic
 - **7 image transitions** - fade, slide, zoomIn, zoomOut, flipX, flipY
 - **Dark & Light themes** - Built-in theme support for alertbox
+- **Smart tooltips** - Auto-positioned with overflow detection and flip behavior
+- **Toast notifications** - Stackable, 6 positions, progress bar, pause-on-hover
 - **Keyboard navigation** - Arrow keys for gallery, Escape to close
 - **Touch support** - Swipe gestures for mobile devices
 - **Multi-instance safe** - Multiple modals on the same page without conflicts
@@ -136,6 +138,109 @@ alertBox.show("warning", { type: "elastic", duration: 800 })
 | `buttons` | `boolean\|array` | `false` | `true` for default OK button, or array of `{buttonName, function}` |
 | `closeButton` | `object\|false` | `false` | Close button configuration |
 
+## Tooltip
+
+Add `data-anybox-tooltip` attributes to your elements:
+
+```html
+<button data-anybox-tooltip="Save your changes">Save</button>
+<span data-anybox-tooltip="Click to copy">Copy Link</span>
+```
+
+Initialize the tooltip:
+
+```js
+let tooltip = new Anybox("tooltip", {
+    placement: "top",
+    bgColor: "rgba(15,15,20,0.92)",
+    textColor: "#fff",
+    fontSize: 13,
+    maxWidth: 260,
+    offset: 8,
+    arrow: true,
+    delay: 0,
+    hideDelay: 0
+})
+```
+
+The tooltip automatically detects viewport overflow and flips its position to stay visible.
+
+### Tooltip Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `selector` | `string` | `"[data-anybox-tooltip]"` | CSS selector to attach tooltips |
+| `placement` | `string` | `"top"` | Preferred position: `"top"`, `"bottom"`, `"left"`, `"right"` |
+| `bgColor` | `string` | `"rgba(15,15,20,0.92)"` | Background color |
+| `textColor` | `string` | `"#fff"` | Text color |
+| `fontSize` | `number` | `13` | Font size in pixels |
+| `padding` | `string` | `"6px 12px"` | CSS padding |
+| `borderRadius` | `number` | `6` | Border radius in pixels |
+| `maxWidth` | `number` | `260` | Maximum width in pixels |
+| `offset` | `number` | `8` | Distance from target element in pixels |
+| `arrow` | `boolean` | `true` | Show arrow pointing to target |
+| `delay` | `number` | `0` | Delay before showing (ms) |
+| `hideDelay` | `number` | `0` | Delay before hiding (ms) |
+
+## Notification
+
+Create a notification instance and call `show()` to display toast notifications:
+
+```js
+let notification = new Anybox("notification", {
+    position: "top-right",
+    duration: 4000,
+    animationType: "slide",
+    animationDuration: 300,
+    showProgress: true,
+    pauseOnHover: true,
+    closeOnClick: true
+})
+
+// Show notifications
+notification.show("success", {
+    title: "Saved!",
+    message: "Your changes have been saved."
+})
+
+notification.show("danger", {
+    title: "Error",
+    message: "Something went wrong."
+})
+
+notification.show("warning", {
+    title: "Warning",
+    message: "This action cannot be undone."
+})
+```
+
+Notifications are stackable — multiple notifications can appear at once and auto-dismiss with a progress bar.
+
+### Notification Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `position` | `string` | `"top-right"` | Position: `"top-right"`, `"top-left"`, `"top-center"`, `"bottom-center"`, `"bottom-left"`, `"bottom-right"` |
+| `duration` | `number` | `4000` | Auto-dismiss time in ms. `0` to disable |
+| `animationType` | `string` | `"slide"` | Enter/exit animation: `"slide"`, `"fade"`, `"bounce"` |
+| `animationDuration` | `number` | `300` | Animation duration in ms |
+| `maxWidth` | `number` | `380` | Maximum card width in pixels |
+| `showProgress` | `boolean` | `true` | Show progress bar countdown |
+| `closeOnClick` | `boolean` | `true` | Click notification to dismiss |
+| `pauseOnHover` | `boolean` | `true` | Pause auto-dismiss timer on hover |
+| `gap` | `number` | `10` | Space between stacked notifications |
+| `offset` | `number` | `20` | Distance from viewport edge |
+
+### show(status, options)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `status` | `string` | `"success"`, `"danger"`, or `"warning"` |
+| `options.title` | `string` | Notification title (defaults to status label) |
+| `options.message` | `string` | Notification body text |
+| `options.duration` | `number` | Override instance duration for this notification |
+| `options.animationType` | `string` | Override animation type for this notification |
+
 ## Methods
 
 ### `show(status, animation)`
@@ -151,7 +256,7 @@ Close the alertbox with a fade-out animation.
 
 ### `destroy()`
 
-Remove the modal from the DOM and clean up event listeners.
+Remove the modal from the DOM and clean up event listeners. Works on all types (lightbox, alertbox, tooltip, notification).
 
 ## Animation Types
 

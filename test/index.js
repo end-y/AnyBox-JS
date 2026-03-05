@@ -141,3 +141,78 @@ document.querySelectorAll(".anim-card").forEach(function (card) {
     activeAlertBox.show("success", { type: animType, duration: 700 });
   });
 });
+
+// ── Tooltip ──
+// Each tooltip-target has its own placement via data-placement
+document.querySelectorAll(".tooltip-target").forEach(function (el) {
+  var placement = el.getAttribute("data-placement") || "top";
+  new Anybox("tooltip", {
+    selector: '[data-placement="' + placement + '"]',
+    placement: placement,
+  });
+});
+
+// ── Notification ──
+var notifPosition = "top-right";
+var notifAnim = "slide";
+
+var notification = new Anybox("notification", {
+  position: notifPosition,
+  duration: 4000,
+  animationType: notifAnim,
+  animationDuration: 300,
+});
+
+// Position pill selector
+document.querySelectorAll("#notifPositionPills .pill").forEach(function (pill) {
+  pill.addEventListener("click", function () {
+    document
+      .querySelectorAll("#notifPositionPills .pill")
+      .forEach(function (p) {
+        p.classList.remove("active");
+      });
+    pill.classList.add("active");
+    notifPosition = pill.getAttribute("data-pos");
+    notification.destroy();
+    notification = new Anybox("notification", {
+      position: notifPosition,
+      duration: 4000,
+      animationType: notifAnim,
+      animationDuration: 300,
+    });
+  });
+});
+
+// Animation pill selector
+document.querySelectorAll("#notifAnimPills .pill").forEach(function (pill) {
+  pill.addEventListener("click", function () {
+    document.querySelectorAll("#notifAnimPills .pill").forEach(function (p) {
+      p.classList.remove("active");
+    });
+    pill.classList.add("active");
+    notifAnim = pill.getAttribute("data-anim");
+    notification._animationType = notifAnim;
+  });
+});
+
+// Notification status buttons
+document.getElementById("notifSuccess").addEventListener("click", function () {
+  notification.show("success", {
+    title: "Success!",
+    message: "Your changes have been saved successfully.",
+  });
+});
+
+document.getElementById("notifDanger").addEventListener("click", function () {
+  notification.show("danger", {
+    title: "Error",
+    message: "Something went wrong. Please try again.",
+  });
+});
+
+document.getElementById("notifWarning").addEventListener("click", function () {
+  notification.show("warning", {
+    title: "Warning",
+    message: "This action cannot be undone.",
+  });
+});

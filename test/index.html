@@ -518,6 +518,10 @@
         .anim-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .tooltip-demo-grid,
+        .notif-demo-grid {
+          grid-template-columns: 1fr;
+        }
         section {
           padding: 60px 0;
         }
@@ -537,6 +541,126 @@
         .anim-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+      }
+
+      /* Tooltip Demo */
+      .tooltip-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .tooltip-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .tooltip-target {
+        padding: 20px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        text-align: center;
+        cursor: default;
+        transition: all 0.2s;
+        font-family: inherit;
+        color: #d4d4d8;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .tooltip-target:hover {
+        background: rgba(99, 102, 241, 0.08);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+      .tooltip-target .tt-icon {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 8px;
+        opacity: 0.8;
+      }
+
+      /* Notification Demo */
+      .notification-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .notif-demo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .notif-card {
+        padding: 24px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .notif-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .notif-card .n-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        font-size: 20px;
+      }
+      .notif-card.n-success .n-icon {
+        background: rgba(25, 135, 84, 0.15);
+        color: #34d399;
+      }
+      .notif-card.n-danger .n-icon {
+        background: rgba(252, 16, 13, 0.12);
+        color: #f87171;
+      }
+      .notif-card.n-warning .n-icon {
+        background: rgba(255, 204, 0, 0.12);
+        color: #fbbf24;
+      }
+      .notif-card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .notif-card p {
+        color: #71717a;
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+      }
+      .notif-btn {
+        padding: 9px 20px;
+        border-radius: 8px;
+        border: 1px solid;
+        background: transparent;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+      .notif-btn.n-success {
+        border-color: rgba(52, 211, 153, 0.3);
+        color: #34d399;
+      }
+      .notif-btn.n-success:hover {
+        background: rgba(52, 211, 153, 0.1);
+      }
+      .notif-btn.n-danger {
+        border-color: rgba(248, 113, 113, 0.3);
+        color: #f87171;
+      }
+      .notif-btn.n-danger:hover {
+        background: rgba(248, 113, 113, 0.1);
+      }
+      .notif-btn.n-warning {
+        border-color: rgba(251, 191, 36, 0.3);
+        color: #fbbf24;
+      }
+      .notif-btn.n-warning:hover {
+        background: rgba(251, 191, 36, 0.1);
       }
     </style>
   </head>
@@ -806,6 +930,131 @@
             <h3>Warning</h3>
             <p>Heads up! Show warnings before critical actions.</p>
             <button class="alert-btn warning" id="warning">Show Warning</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tooltip Demo -->
+    <section class="tooltip-section">
+      <div class="container">
+        <div class="section-label">Tooltip</div>
+        <h2 class="section-title">Smart tooltips</h2>
+        <p class="section-desc">
+          Hover over elements to see auto-positioned tooltips. They flip
+          automatically to stay in the viewport.
+        </p>
+
+        <div class="tooltip-demo-grid">
+          <div
+            class="tooltip-target"
+            data-anybox-tooltip="This tooltip appears on top"
+            data-placement="top"
+          >
+            <span class="tt-icon">&#x2B06;&#xFE0F;</span>
+            Top
+          </div>
+          <div
+            class="tooltip-target"
+            data-anybox-tooltip="This tooltip appears on the bottom"
+            data-placement="bottom"
+          >
+            <span class="tt-icon">&#x2B07;&#xFE0F;</span>
+            Bottom
+          </div>
+          <div
+            class="tooltip-target"
+            data-anybox-tooltip="This tooltip appears on the left side"
+            data-placement="left"
+          >
+            <span class="tt-icon">&#x2B05;&#xFE0F;</span>
+            Left
+          </div>
+          <div
+            class="tooltip-target"
+            data-anybox-tooltip="This tooltip appears on the right side"
+            data-placement="right"
+          >
+            <span class="tt-icon">&#x27A1;&#xFE0F;</span>
+            Right
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notification Demo -->
+    <section class="notification-section">
+      <div class="container">
+        <div class="section-label">Notification</div>
+        <h2 class="section-title">Toast notifications</h2>
+        <p class="section-desc">
+          Stackable notifications with progress bar, pause-on-hover, and
+          multiple positions.
+        </p>
+
+        <div
+          style="
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+          "
+        >
+          Position
+        </div>
+        <div class="pill-group" id="notifPositionPills">
+          <button class="pill active" data-pos="top-right">Top Right</button>
+          <button class="pill" data-pos="top-left">Top Left</button>
+          <button class="pill" data-pos="top-center">Top Center</button>
+          <button class="pill" data-pos="bottom-center">Bottom Center</button>
+          <button class="pill" data-pos="bottom-left">Bottom Left</button>
+          <button class="pill" data-pos="bottom-right">Bottom Right</button>
+        </div>
+
+        <div
+          style="
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+          "
+        >
+          Animation
+        </div>
+        <div class="pill-group" id="notifAnimPills">
+          <button class="pill active" data-anim="slide">Slide</button>
+          <button class="pill" data-anim="fade">Fade</button>
+          <button class="pill" data-anim="bounce">Bounce</button>
+        </div>
+
+        <div class="notif-demo-grid">
+          <div class="notif-card n-success">
+            <div class="n-icon">&#x2714;</div>
+            <h3>Success</h3>
+            <p>Show a success toast notification.</p>
+            <button class="notif-btn n-success" id="notifSuccess">
+              Send Success
+            </button>
+          </div>
+          <div class="notif-card n-danger">
+            <div class="n-icon">&#x2718;</div>
+            <h3>Error</h3>
+            <p>Show an error toast notification.</p>
+            <button class="notif-btn n-danger" id="notifDanger">
+              Send Error
+            </button>
+          </div>
+          <div class="notif-card n-warning">
+            <div class="n-icon">&#x26A0;</div>
+            <h3>Warning</h3>
+            <p>Show a warning toast notification.</p>
+            <button class="notif-btn n-warning" id="notifWarning">
+              Send Warning
+            </button>
           </div>
         </div>
       </div>

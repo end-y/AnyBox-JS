@@ -1,0 +1,9 @@
+# Test & dev files
+test/
+node_modules/
+webpack.config.js
+.gitignore
+.git/
+
+# Source maps
+*.map

@@ -1,11 +1,21 @@
 {
   "name": "anybox-js",
-  "version": "0.0.1",
-  "description": "cute lighbox and alertbox",
-  "main": "./js/anybox/init.js",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency JavaScript library for creating elegant lightboxes, alert dialogs, tooltips, and toast notifications with smooth animations.",
+  "main": "dist/anybox.min.js",
+  "module": "js/anybox/init.js",
+  "unpkg": "dist/anybox.min.js",
+  "jsdelivr": "dist/anybox.min.js",
+  "files": [
+    "dist/",
+    "js/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "webpack --mode development",
     "build": "webpack --mode production",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,18 +24,28 @@
   },
   "keywords": [
     "lightbox",
-    "alertbox"
+    "alertbox",
+    "tooltip",
+    "notification",
+    "toast",
+    "modal",
+    "popup",
+    "dialog",
+    "animation",
+    "zero-dependency"
   ],
   "author": "Ender Yazici",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/end-y/AnyBox-JS/issues"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.18.2",
     "@types/webpack-dev-server": "^4.7.2",
     "babel-loader": "^8.2.5",
     "raw-loader": "^4.0.2",
+    "terser-webpack-plugin": "^5.3.3",
     "ts-loader": "^9.2.9",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
@@ -33,9 +53,5 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
   },
-  "homepage": "https://github.com/end-y/AnyBox-JS#readme",
-  "devDependencies": {
-    "@babel/preset-env": "^7.18.2",
-    "terser-webpack-plugin": "^5.3.3"
-  }
+  "homepage": "https://github.com/end-y/AnyBox-JS#readme"
 }
