@@ -1,11 +1,18 @@
 {
   "name": "@anyboxjs/anybox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lightweight, zero-dependency JavaScript library for creating elegant lightboxes, alert dialogs, tooltips, and toast notifications with smooth animations.",
   "main": "dist/anybox.min.js",
-  "module": "js/anybox/init.js",
+  "module": "dist/anybox.mjs",
   "unpkg": "dist/anybox.min.js",
   "jsdelivr": "dist/anybox.min.js",
+  "exports": {
+    ".": {
+      "import": "./dist/anybox.min.mjs",
+      "require": "./dist/anybox.min.js",
+      "default": "./dist/anybox.min.js"
+    }
+  },
   "files": [
     "dist/",
     "js/",
@@ -53,5 +60,8 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
   },
-  "homepage": "https://github.com/end-y/AnyBox-JS#readme"
+  "homepage": "https://github.com/end-y/AnyBox-JS#readme",
+  "dependencies": {
+    "@anyboxjs/anybox": "^1.0.0"
+  }
 }

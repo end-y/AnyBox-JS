@@ -38,6 +38,56 @@ const baseConfig = {
   },
 }
 
+// ESM config — no Babel transpile, preserves import/export
+const esmConfig = {
+  entry: {
+    anybox: './js/anybox/init.js',
+  },
+  module: {
+    rules: [],
+  },
+  plugins: [],
+  experiments: {
+    outputModule: true,
+  },
+  optimization: {
+    minimize: false,
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].mjs',
+    library: { type: 'module' },
+    module: true,
+    environment: {
+      module: true,
+    },
+  },
+};
+
+const esmMinConfig = {
+  ...esmConfig,
+  entry: {
+    'anybox.min': './js/anybox/init.js',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          format: { comments: false },
+          mangle: true,
+          module: true,
+        },
+      }),
+    ],
+  },
+  output: {
+    ...esmConfig.output,
+    filename: '[name].mjs',
+  },
+};
+
 module.exports = [
   // UMD build for npm (dist/)
   {
@@ -51,6 +101,9 @@ module.exports = [
       globalObject: 'this',
     },
   },
+  // ESM build for import support (dist/)
+  esmConfig,
+  esmMinConfig,
   // Browser global build for demo page (test/dist/)
   {
     ...baseConfig,
