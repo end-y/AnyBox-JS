@@ -1,5 +1,5 @@
 {
-  "name": "anybox-js",
+  "name": "@anyboxjs/anybox",
   "version": "1.0.0",
   "description": "A lightweight, zero-dependency JavaScript library for creating elegant lightboxes, alert dialogs, tooltips, and toast notifications with smooth animations.",
   "main": "dist/anybox.min.js",
