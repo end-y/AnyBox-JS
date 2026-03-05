@@ -25,9 +25,7 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    inline: true,
-  },
+  devServer: {},
   plugins: [],
   optimization: {
     minimize: true,

@@ -33,6 +33,18 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 ;// CONCATENATED MODULE: ./js/anybox/modules/animations.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function Animation() {
   var _this = this;
 
@@ -46,23 +58,50 @@ function Animation() {
         type = _ref.type,
         duration = _ref.duration,
         _ref$top = _ref.top,
-        top = _ref$top === void 0 ? 50 : _ref$top;
+        top = _ref$top === void 0 ? 50 : _ref$top,
+        _ref$direct = _ref.direct,
+        direct = _ref$direct === void 0 ? false : _ref$direct;
+    var target = direct ? el : el.parentElement;
 
     switch (type) {
       case "center":
-        centerAnimation(el.parentElement, top, duration);
+        centerAnimation(target, top, duration);
         break;
 
       case "left":
-        leftAnimation(el.parentElement, duration);
+        leftAnimation(target, duration);
+        break;
+
+      case "right":
+        rightAnimation(target, duration);
         break;
 
       case "top":
-        topAnimation(el.parentElement, top, duration);
+        topAnimation(target, top, duration);
+        break;
+
+      case "bottom":
+        bottomAnimation(target, top, duration);
         break;
 
       case "opacity":
-        opacityAnimation(el.parentElement, duration, top);
+        opacityAnimation(target, duration, top);
+        break;
+
+      case "flip":
+        flipAnimation(target, top, duration);
+        break;
+
+      case "rotate":
+        rotateAnimation(target, top, duration);
+        break;
+
+      case "bounce":
+        bounceAnimation(target, top, duration);
+        break;
+
+      case "elastic":
+        elasticAnimation(target, top, duration);
         break;
     }
   };
@@ -76,12 +115,6 @@ function Animation() {
       transform: "scale(0) translate(-50%,-50%)"
     }, {
       transform: "scale(1.1) translate(-50%,-50%)"
-    }, {
-      transform: "scale(1) translate(-50%,-50%)"
-    }, {
-      transform: "scale(1) translate(-50%,-50%)"
-    }, {
-      transform: "scale(1) translate(-50%,-50%)"
     }, {
       transform: "scale(1) translate(-50%,-50%)"
     }], {
@@ -100,10 +133,20 @@ function Animation() {
       top: top + 5 + "%"
     }, {
       top: top + "%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var bottomAnimation = function bottomAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.transformOrigin = "center";
+    _this.ta = el.animate([{
+      top: "100%"
     }, {
-      top: top + "%"
-    }, {
-      top: top + "%"
+      top: top - 5 + "%"
     }, {
       top: top + "%"
     }], {
@@ -120,10 +163,18 @@ function Animation() {
       left: "55%"
     }, {
       left: "50%"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var rightAnimation = function rightAnimation(el) {
+    var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    _this.la = el.animate([{
+      left: "100%"
     }, {
-      left: "50%"
-    }, {
-      left: "50%"
+      left: "45%"
     }, {
       left: "50%"
     }], {
@@ -146,103 +197,736 @@ function Animation() {
     });
   };
 
+  var flipAnimation = function flipAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "perspective(600px) rotateY(90deg) translate(-50%,-50%)",
+      opacity: 0
+    }, {
+      transform: "perspective(600px) rotateY(-10deg) translate(-50%,-50%)",
+      opacity: 1
+    }, {
+      transform: "perspective(600px) rotateY(0deg) translate(-50%,-50%)",
+      opacity: 1
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var rotateAnimation = function rotateAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) rotate(-180deg) translate(-50%,-50%)",
+      opacity: 0
+    }, {
+      transform: "scale(1.05) rotate(10deg) translate(-50%,-50%)",
+      opacity: 1
+    }, {
+      transform: "scale(1) rotate(0deg) translate(-50%,-50%)",
+      opacity: 1
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var bounceAnimation = function bounceAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scale(0) translate(-50%,-50%)"
+    }, {
+      transform: "scale(1.15) translate(-50%,-50%)",
+      offset: 0.4
+    }, {
+      transform: "scale(0.9) translate(-50%,-50%)",
+      offset: 0.6
+    }, {
+      transform: "scale(1.05) translate(-50%,-50%)",
+      offset: 0.8
+    }, {
+      transform: "scale(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
+  var elasticAnimation = function elasticAnimation(el) {
+    var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+    el.style.top = top + "%";
+    el.style.transformOrigin = "top left";
+    _this.ca = el.animate([{
+      transform: "scaleX(0) translate(-50%,-50%)"
+    }, {
+      transform: "scaleX(1.1) scaleY(0.9) translate(-50%,-50%)",
+      offset: 0.4
+    }, {
+      transform: "scaleX(0.95) scaleY(1.05) translate(-50%,-50%)",
+      offset: 0.7
+    }, {
+      transform: "scaleX(1) scaleY(1) translate(-50%,-50%)"
+    }], {
+      duration: duration,
+      fill: "forwards"
+    });
+  };
+
   this.getAnimation = function (type) {
     var an = {
-      "center": _this.ca,
-      "left": _this.la,
-      "top": _this.ta,
-      "opacity": _this.oa
+      center: _this.ca,
+      left: _this.la,
+      right: _this.la,
+      top: _this.ta,
+      bottom: _this.ta,
+      opacity: _this.oa,
+      flip: _this.ca,
+      rotate: _this.ca,
+      bounce: _this.ca,
+      elastic: _this.ca
     };
     return an[type];
   };
 
   this.opacityMinus = function (el) {
-    el.reverse(); // el.style.opacity = "0"
+    if (el) el.reverse();
   };
 
   this.topMinus = function (el) {
-    el.reverse(); // el.style.top = "0%"
+    if (el) el.reverse();
   };
 
   this.leftMinus = function (el) {
-    el.reverse(); // el.style.left = "0%"
+    if (el) el.reverse();
+  }; // Animate element directly (no parentElement), for lightbox image transitions
+
+
+  this.animateImage = function (el, type) {
+    var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 400;
+
+    switch (type) {
+      case "fade":
+        return el.animate([{
+          opacity: 0
+        }, {
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      case "slideLeft":
+        return el.animate([{
+          transform: "translateX(40px)",
+          opacity: 0
+        }, {
+          transform: "translateX(0)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "slideRight":
+        return el.animate([{
+          transform: "translateX(-40px)",
+          opacity: 0
+        }, {
+          transform: "translateX(0)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "zoomIn":
+        return el.animate([{
+          transform: "scale(0.85)",
+          opacity: 0
+        }, {
+          transform: "scale(1)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "zoomOut":
+        return el.animate([{
+          transform: "scale(1.15)",
+          opacity: 0
+        }, {
+          transform: "scale(1)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        });
+
+      case "flipX":
+        return el.animate([{
+          transform: "perspective(600px) rotateX(30deg)",
+          opacity: 0
+        }, {
+          transform: "perspective(600px) rotateX(0deg)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      case "flipY":
+        return el.animate([{
+          transform: "perspective(600px) rotateY(30deg)",
+          opacity: 0
+        }, {
+          transform: "perspective(600px) rotateY(0deg)",
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+
+      default:
+        return el.animate([{
+          opacity: 0
+        }, {
+          opacity: 1
+        }], {
+          duration: duration,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+    }
+  }; // ── SVG Element Helpers ──
+
+
+  var _ns = "http://www.w3.org/2000/svg";
+
+  var _svgEl = function _svgEl(tag) {
+    var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var el = document.createElementNS(_ns, tag);
+
+    for (var _i = 0, _Object$entries = Object.entries(attrs); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          k = _Object$entries$_i[0],
+          v = _Object$entries$_i[1];
+
+      el.setAttribute(k, v);
+    }
+
+    return el;
   };
 
-  this.statusAnimation = function (success) {
-    var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "#000";
-    var dash = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "80";
-    var svgDiv = document.createElement("div");
-    svgDiv.style.position = "relative";
-    svgDiv.style.width = "75px";
-    svgDiv.style.height = "75px";
-    svgDiv.style.margin = "auto";
-    svgDiv.style.marginBottom = "30px";
-    svgDiv.classList.add("svgDiv");
-    var svg = document.createElement("div");
-    svg.style.border = "2px dashed " + color;
-    svg.style.borderRadius = "50%";
-    svg.style.width = "70px";
-    svg.style.height = "70px";
-    svgDiv.innerHTML = success;
-    var anim1 = svg.animate([// keyframes
-    {
-      transform: 'scale(0)'
-    }, {
-      transform: 'scale(1.1) '
-    }, {
-      transform: 'scale(1.3) '
-    }, {
-      transform: 'scale(1.3) '
-    }, {
-      transform: 'scale(1.3) '
-    }, {
-      transform: 'scale(1.1) '
-    }, {
-      transform: 'scale(1.0) '
-    }], {
-      // timing options
-      duration: 600,
-      easing: "ease-in"
+  var _makeContainer = function _makeContainer() {
+    var div = document.createElement("div");
+    div.classList.add("svgDiv");
+    div.style.position = "relative";
+    div.style.width = "80px";
+    div.style.height = "80px";
+    div.style.margin = "auto";
+    div.style.marginBottom = "24px";
+    return div;
+  };
+
+  var _makeSvg = function _makeSvg() {
+    var svg = _svgEl("svg", {
+      viewBox: "0 0 80 80",
+      width: "80",
+      height: "80"
     });
-    svgDiv.querySelector("svg").querySelector("path").style.strokeDasharray = dash;
-    svgDiv.querySelector("svg").querySelector("path").style.strokeDashoffset = dash;
-    svgDiv.querySelector("svg").querySelector("path").style.fill = "transparent";
-    svgDiv.querySelector("svg").setAttribute("stroke", color);
-    var svgAnim = svgDiv.querySelector("svg").querySelector("path").animate([// keyframes
-    {
+
+    svg.style.position = "absolute";
+    svg.style.left = "50%";
+    svg.style.top = "50%";
+    svg.style.transform = "translate(-50%, -50%)";
+    svg.style.overflow = "visible";
+    return svg;
+  }; // ── Particle Effects ──
+  // Minimal circle-edge sparkles — small green dots pop sequentially around the circle
+
+
+  var _burstParticles = function _burstParticles(container, color) {
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 12;
+    var radius = 38; // matches the circle radius
+
+    var _loop = function _loop(i) {
+      var dot = document.createElement("div");
+      dot.style.position = "absolute";
+      dot.style.top = "50%";
+      dot.style.left = "50%";
+      dot.style.pointerEvents = "none";
+      dot.style.borderRadius = "50%";
+      dot.style.backgroundColor = color;
+      dot.style.width = "5px";
+      dot.style.height = "5px";
+      dot.style.opacity = "0";
+      container.appendChild(dot);
+      var angle = i / count * Math.PI * 2 - Math.PI / 2; // start from top
+
+      var cx = Math.cos(angle) * radius;
+      var cy = Math.sin(angle) * radius; // small outward burst from circle edge
+
+      var bx = Math.cos(angle) * (radius + 10);
+      var by = Math.sin(angle) * (radius + 10);
+
+      dot.animate([{
+        transform: "translate(calc(-50% + ".concat(cx, "px), calc(-50% + ").concat(cy, "px)) scale(0)"),
+        opacity: 0
+      }, {
+        transform: "translate(calc(-50% + ".concat(cx, "px), calc(-50% + ").concat(cy, "px)) scale(1.3)"),
+        opacity: 1,
+        offset: 0.3
+      }, {
+        transform: "translate(calc(-50% + ".concat(bx, "px), calc(-50% + ").concat(by, "px)) scale(0)"),
+        opacity: 0
+      }], {
+        duration: 450,
+        delay: i * 40,
+        fill: "forwards",
+        easing: "ease-out"
+      }).onfinish = function () {
+        return dot.remove();
+      };
+    };
+
+    for (var i = 0; i < count; i++) {
+      _loop(i);
+    }
+  };
+
+  var _rippleEffect = function _rippleEffect(container, color) {
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2;
+
+    var _loop2 = function _loop2(i) {
+      var r = document.createElement("div");
+      r.style.position = "absolute";
+      r.style.top = "50%";
+      r.style.left = "50%";
+      r.style.transform = "translate(-50%, -50%)";
+      r.style.width = "72px";
+      r.style.height = "72px";
+      r.style.borderRadius = "50%";
+      r.style.border = "2px solid " + color;
+      r.style.opacity = "0";
+      r.style.pointerEvents = "none";
+      container.appendChild(r);
+
+      r.animate([{
+        transform: "translate(-50%, -50%) scale(0.8)",
+        opacity: 0.5
+      }, {
+        transform: "translate(-50%, -50%) scale(1.6)",
+        opacity: 0
+      }], {
+        duration: 900,
+        delay: i * 250,
+        fill: "forwards",
+        easing: "ease-out"
+      }).onfinish = function () {
+        return r.remove();
+      };
+    };
+
+    for (var i = 0; i < count; i++) {
+      _loop2(i);
+    }
+  }; // ── Success Animation ──
+  // Circle draws → bounce + glow → checkmark stroke → confetti particles
+
+
+  var _successAnimation = function _successAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var bgCircle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: color,
+      opacity: "0"
+    });
+
+    var circle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "round"
+    });
+
+    var cLen = 226;
+    circle.style.strokeDasharray = cLen;
+    circle.style.strokeDashoffset = cLen;
+
+    var check = _svgEl("path", {
+      d: "M24 42 L34 52 L56 28",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    });
+
+    var chkLen = 48;
+    check.style.strokeDasharray = chkLen;
+    check.style.strokeDashoffset = chkLen;
+    svg.appendChild(circle);
+    svg.appendChild(check);
+    container.appendChild(svg); // Phase 1 – circle draws itself
+
+    var a1 = circle.animate([{
+      strokeDashoffset: cLen
+    }, {
       strokeDashoffset: 0
     }], {
-      // timing options
-      duration: 1250,
-      fill: "forwards"
+      duration: 600,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
     });
 
-    svgAnim.onfinish = function () {
-      svgDiv.querySelector("svg").querySelector("path").animate([// keyframes
-      {
-        fill: color
+    a1.onfinish = function () {
+      // Phase 2 – bounce + glow
+      svg.animate([{
+        transform: "translate(-50%, -50%) scale(1)"
+      }, {
+        transform: "translate(-50%, -50%) scale(1.15)",
+        offset: 0.35
+      }, {
+        transform: "translate(-50%, -50%) scale(0.92)",
+        offset: 0.65
+      }, {
+        transform: "translate(-50%, -50%) scale(1)"
       }], {
-        // timing options
+        duration: 500,
+        fill: "forwards",
+        easing: "ease-out"
+      }); // Phase 3 – checkmark draws
+
+      var a2 = check.animate([{
+        strokeDashoffset: chkLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 400,
+        fill: "forwards",
+        easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+      });
+
+      a2.onfinish = function () {
+        // Phase 4 – confetti particles burst outward
+        _burstParticles(container, color, 16);
+      };
+    };
+
+    return container;
+  }; // ── Fail Animation ──
+  // Circle draws → X lines cross → aggressive shake
+
+
+  var _failAnimation = function _failAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var bgCircle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: color,
+      opacity: "0"
+    });
+
+    var circle = _svgEl("circle", {
+      cx: "40",
+      cy: "40",
+      r: "36",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "round"
+    });
+
+    var cLen = 226;
+    circle.style.strokeDasharray = cLen;
+    circle.style.strokeDashoffset = cLen;
+
+    var x1 = _svgEl("path", {
+      d: "M28 28 L52 52",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    var xLen = 34;
+    x1.style.strokeDasharray = xLen;
+    x1.style.strokeDashoffset = xLen;
+
+    var x2 = _svgEl("path", {
+      d: "M52 28 L28 52",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    x2.style.strokeDasharray = xLen;
+    x2.style.strokeDashoffset = xLen;
+    svg.appendChild(bgCircle);
+    svg.appendChild(circle);
+    svg.appendChild(x1);
+    svg.appendChild(x2);
+    container.appendChild(svg); // Phase 1 – circle draws
+
+    var a1 = circle.animate([{
+      strokeDashoffset: cLen
+    }, {
+      strokeDashoffset: 0
+    }], {
+      duration: 500,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+    });
+
+    a1.onfinish = function () {
+      // Phase 2 – X lines draw simultaneously
+      x1.animate([{
+        strokeDashoffset: xLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 280,
+        fill: "forwards",
+        easing: "ease-out"
+      });
+      var a2 = x2.animate([{
+        strokeDashoffset: xLen
+      }, {
+        strokeDashoffset: 0
+      }], {
+        duration: 280,
+        delay: 80,
+        fill: "forwards",
+        easing: "ease-out"
+      });
+
+      a2.onfinish = function () {
+        // Phase 3 – red glow + shake
+        bgCircle.animate([{
+          opacity: "0"
+        }, {
+          opacity: "0.08"
+        }], {
+          duration: 300,
+          fill: "forwards"
+        });
+        svg.animate([{
+          transform: "translate(-50%, -50%) translateX(0)"
+        }, {
+          transform: "translate(-50%, -50%) translateX(-8px)",
+          offset: 0.15
+        }, {
+          transform: "translate(-50%, -50%) translateX(8px)",
+          offset: 0.3
+        }, {
+          transform: "translate(-50%, -50%) translateX(-6px)",
+          offset: 0.45
+        }, {
+          transform: "translate(-50%, -50%) translateX(6px)",
+          offset: 0.6
+        }, {
+          transform: "translate(-50%, -50%) translateX(-3px)",
+          offset: 0.75
+        }, {
+          transform: "translate(-50%, -50%) translateX(3px)",
+          offset: 0.85
+        }, {
+          transform: "translate(-50%, -50%) translateX(0)"
+        }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "ease-out"
+        });
+      };
+    };
+
+    return container;
+  }; // ── Warning Animation ──
+  // Triangle draws → exclamation drops → dot bounces → wobble + ripple
+
+
+  var _warningAnimation = function _warningAnimation(color) {
+    var container = _makeContainer();
+
+    var svg = _makeSvg();
+
+    var triFill = _svgEl("path", {
+      d: "M40 12 L70 64 L10 64 Z",
+      fill: color,
+      opacity: "0"
+    });
+
+    var triangle = _svgEl("path", {
+      d: "M40 12 L70 64 L10 64 Z",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linejoin": "round",
+      "stroke-linecap": "round"
+    });
+
+    var triLen = 180;
+    triangle.style.strokeDasharray = triLen;
+    triangle.style.strokeDashoffset = triLen;
+
+    var exclLine = _svgEl("line", {
+      x1: "40",
+      y1: "30",
+      x2: "40",
+      y2: "48",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round"
+    });
+
+    exclLine.style.strokeDasharray = "18";
+    exclLine.style.strokeDashoffset = "18";
+
+    var dotGroup = _svgEl("g", {});
+
+    var exclDot = _svgEl("circle", {
+      cx: "40",
+      cy: "55",
+      r: "2.5",
+      fill: color
+    });
+
+    dotGroup.appendChild(exclDot);
+    dotGroup.style.transformOrigin = "40px 55px";
+    dotGroup.style.opacity = "0";
+    svg.appendChild(triFill);
+    svg.appendChild(triangle);
+    svg.appendChild(exclLine);
+    svg.appendChild(dotGroup);
+    container.appendChild(svg); // Phase 1 – triangle draws itself
+
+    var a1 = triangle.animate([{
+      strokeDashoffset: triLen
+    }, {
+      strokeDashoffset: 0
+    }], {
+      duration: 700,
+      fill: "forwards",
+      easing: "cubic-bezier(0.65, 0, 0.35, 1)"
+    });
+
+    a1.onfinish = function () {
+      // Subtle triangle fill
+      triFill.animate([{
+        opacity: "0"
+      }, {
+        opacity: "0.08"
+      }], {
         duration: 300,
         fill: "forwards"
-      });
-    };
+      }); // Phase 2 – exclamation line draws
 
-    anim1.onfinish = function () {
-      svg.animate([// keyframes
-      {
-        transform: 'rotate(0deg) '
+      var a2 = exclLine.animate([{
+        strokeDashoffset: "18"
       }, {
-        transform: 'rotate(360deg) '
+        strokeDashoffset: "0"
       }], {
-        // timing options
-        duration: 3000,
-        iterations: Infinity
+        duration: 300,
+        fill: "forwards",
+        easing: "ease-out"
       });
+
+      a2.onfinish = function () {
+        // Phase 3 – dot bounces in
+        dotGroup.animate([{
+          opacity: 0,
+          transform: "scale(0)"
+        }, {
+          opacity: 1,
+          transform: "scale(1.5)",
+          offset: 0.6
+        }, {
+          opacity: 1,
+          transform: "scale(1)"
+        }], {
+          duration: 400,
+          fill: "forwards",
+          easing: "ease-out"
+        }); // Phase 4 – wobble
+
+        svg.animate([{
+          transform: "translate(-50%, -50%) rotate(0deg)"
+        }, {
+          transform: "translate(-50%, -50%) rotate(-4deg)",
+          offset: 0.2
+        }, {
+          transform: "translate(-50%, -50%) rotate(4deg)",
+          offset: 0.4
+        }, {
+          transform: "translate(-50%, -50%) rotate(-2deg)",
+          offset: 0.6
+        }, {
+          transform: "translate(-50%, -50%) rotate(2deg)",
+          offset: 0.75
+        }, {
+          transform: "translate(-50%, -50%) rotate(0deg)"
+        }], {
+          duration: 500,
+          fill: "forwards",
+          easing: "ease-out"
+        }); // Phase 5 – ripple rings
+
+        _rippleEffect(container, color, 2);
+      };
     };
 
-    svgDiv.appendChild(svg);
-    return svgDiv;
+    return container;
+  }; // ── Main Status Animation Entry ──
+
+
+  this.statusAnimation = function () {
+    var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#000";
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";
+
+    switch (type) {
+      case "success":
+        return _successAnimation(color);
+
+      case "fail":
+        return _failAnimation(color);
+
+      case "warning":
+        return _warningAnimation(color);
+
+      default:
+        return _successAnimation(color);
+    }
   };
 }
 
@@ -250,111 +934,31 @@ function Animation() {
 ;// CONCATENATED MODULE: ./js/anybox/modules/base.js
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+var _idCounter = 0;
 
-var Base = /*#__PURE__*/_createClass(function Base() {
-  var _this = this;
+var Base = /*#__PURE__*/function () {
+  function Base() {
+    var _this = this;
 
-  _classCallCheck(this, Base);
+    _classCallCheck(this, Base);
 
-  _defineProperty(this, "id", Date.now());
+    _defineProperty(this, "id", "anybox-" + ++_idCounter + "-" + Date.now());
 
-  _defineProperty(this, "globalAnimation", new animations());
+    _defineProperty(this, "globalAnimation", new animations());
 
-  _defineProperty(this, "getBg", function () {
-    var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var bg = document.createElement("div");
-    bg.style.width = window.innerWidth + "px";
-    bg.style.height = window.innerHeight + "px";
-    bg.style.position = "fixed";
-    bg.style.top = "0";
-    bg.style.left = "0";
-    bg.style.display = "none";
-    bg.id = "bg_anybox-" + _this.id;
-    bg.className = "bg_anybox";
-    bg.addEventListener("click", function (evt) {
-      if (evt.target.className == "bg_anybox") {
-        var d = 0;
+    _defineProperty(this, "_resizeHandler", null);
 
-        if (animation) {
-          d = _this.minus(animation.type);
-        }
-
-        setTimeout(function () {
-          document.getElementById("bg_anybox-" + _this.id).style.transition = "all .2s ease";
-          document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
-          setTimeout(function () {
-            document.getElementById("bg_anybox-" + _this.id).style.display = "none";
-          }, 220);
-        }, d / 1.2);
-      }
-    });
-    return bg;
-  });
-
-  _defineProperty(this, "getBox", function (top) {
-    var box = document.createElement("div");
-    box.classList.add("box_anybox");
-    box.style.top = top + "%";
-    box.style.left = "50%";
-    box.style.backgroundColor = "white";
-    box.style.position = "absolute";
-    box.style.transition = "all .2s ease";
-    box.style.transform = "translate(-50%,-50%)";
-    box.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
-    box.style.borderRadius = "15px";
-    box.style.width = "calc(100% - ".concat(window.innerWidth - 350, "px)");
-    return box;
-  });
-
-  _defineProperty(this, "getCloseButton", function (closeButton) {
-    var animation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    var color = "";
-    var location = "";
-    var size = 25;
-
-    if (_typeof(closeButton) == "object") {
-      color = closeButton.fill;
-      location = closeButton.location;
-      size = closeButton.size;
-    }
-
-    var cb = "";
-
-    if (animation) {
-      cb = _this.addCloseButton(color, location, animation, animation.type, size);
-    } else {
-      cb = _this.addCloseButton(color, location, false, null, size);
-    }
-
-    return cb;
-  });
-
-  _defineProperty(this, "addCloseButton", function () {
-    var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "black";
-    var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "right";
-    var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-    var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "opacity";
-    var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;
-    var div = document.createElement("div");
-    div.style.position = "absolute";
-    div.style.top = "-5px";
-    location == "right" ? div.style.right = "-5px" : div.style.left = "-5px";
-    var obj = document.createElement("div");
-    obj.style.width = size + "px";
-    obj.style.height = size + "px";
-    obj.innerHTML = _this.svg;
-    obj.children[0].style.fill = btnColor;
-    console.log(_this.id);
-    obj.addEventListener("click", function (evt) {
+    _defineProperty(this, "close", function () {
+      var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var d = 0;
 
       if (animation) {
@@ -362,27 +966,134 @@ var Base = /*#__PURE__*/_createClass(function Base() {
       }
 
       setTimeout(function () {
-        document.getElementById("bg_anybox-" + _this.id).style.transition = "all .2s ease";
-        document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
+        var bg = document.getElementById("bg_" + _this.id);
+        if (!bg) return;
+        bg.style.transition = "all .2s ease";
+        bg.style.opacity = "0";
         setTimeout(function () {
-          document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+          bg.style.display = "none";
         }, 220);
       }, d / 1.2);
     });
-    div.appendChild(obj);
-    return div;
-  });
 
-  _defineProperty(this, "isColor", function (strColor) {
-    return new Option().style.color = strColor !== '';
-  });
+    _defineProperty(this, "getBg", function () {
+      var animation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var bg = document.createElement("div");
+      bg.style.width = "100vw";
+      bg.style.height = "100vh";
+      bg.style.position = "fixed";
+      bg.style.top = "0";
+      bg.style.left = "0";
+      bg.style.display = "none";
+      bg.style.zIndex = "9999";
+      bg.id = "bg_" + _this.id;
+      bg.className = "bg_anybox";
+      bg.addEventListener("click", function (evt) {
+        if (evt.target.className === "bg_anybox") {
+          _this.close(animation);
+        }
+      });
+      document.addEventListener("keydown", function (evt) {
+        if (evt.key === "Escape") {
+          var _bg = document.getElementById("bg_" + _this.id);
 
-  window.addEventListener("resize", function () {
-    document.getElementById("bg_anybox-" + _this.id).style.width = window.innerWidth + "px";
-    document.getElementById("bg_anybox-" + _this.id).style.height = window.innerHeight + "px";
-    document.getElementById("bg_anybox-" + _this.id).querySelector(".box_anybox").style.width = "calc(100% - ".concat(window.innerWidth - 350, "px)");
-  });
-});
+          if (_bg && _bg.style.display !== "none") {
+            _this.close(animation);
+          }
+        }
+      });
+      return bg;
+    });
+
+    _defineProperty(this, "getBox", function (top) {
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.backgroundColor = "white";
+      box.style.position = "absolute";
+      box.style.transition = "all .2s ease";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+      box.style.borderRadius = "15px";
+      box.style.maxWidth = Math.min(window.innerWidth - 40, 500) + "px";
+      box.style.width = "90%";
+      box.style.willChange = "transform, opacity";
+      return box;
+    });
+
+    _defineProperty(this, "getCloseButton", function (closeButton) {
+      var animation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var color = "black";
+      var location = "right";
+      var size = 25;
+
+      if (_typeof(closeButton) === "object") {
+        color = closeButton.fill || "black";
+        location = closeButton.location || "right";
+        size = closeButton.size || 25;
+      }
+
+      return _this.addCloseButton(color, location, animation, animation ? animation.type : "opacity", size);
+    });
+
+    _defineProperty(this, "addCloseButton", function () {
+      var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "black";
+      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "right";
+      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "opacity";
+      var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;
+      var div = document.createElement("div");
+      div.style.position = "absolute";
+      div.style.top = "-5px";
+      div.style.cursor = "pointer";
+      location === "right" ? div.style.right = "-5px" : div.style.left = "-5px";
+      var obj = document.createElement("div");
+      obj.style.width = size + "px";
+      obj.style.height = size + "px";
+      obj.innerHTML = _this.svg;
+      obj.children[0].style.fill = btnColor;
+      obj.addEventListener("click", function () {
+        _this.close(animation);
+      });
+      div.appendChild(obj);
+      return div;
+    });
+
+    _defineProperty(this, "isColor", function (strColor) {
+      var opt = new Option().style;
+      opt.color = strColor;
+      return opt.color !== "";
+    });
+
+    this._resizeHandler = function () {
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
+      var box = bg.querySelector(".box_anybox");
+
+      if (box) {
+        box.style.maxWidth = Math.min(window.innerWidth - 40, 500) + "px";
+      }
+    };
+
+    window.addEventListener("resize", this._resizeHandler);
+  }
+
+  _createClass(Base, [{
+    key: "destroy",
+    value: function destroy() {
+      if (this._resizeHandler) {
+        window.removeEventListener("resize", this._resizeHandler);
+        this._resizeHandler = null;
+      }
+
+      var bg = document.getElementById("bg_" + this.id);
+      if (bg) bg.remove();
+    }
+  }]);
+
+  return Base;
+}();
 
 /* harmony default export */ const base = (Base);
 ;// CONCATENATED MODULE: ./js/anybox/modules/svg.js
@@ -395,13 +1106,13 @@ var success = "<svg style=\"position:absolute; left:50%; top:50%; transform:tran
 var fail = "<svg style=\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\" fill=\"transparent\" stroke-width=\"1px\" xmlns=\"http://www.w3.org/2000/svg\" height=\"48\" width=\"48\"><path d=\"M12.45 37.95 10.05 35.55 21.6 24 10.05 12.45 12.45 10.05 24 21.6 35.55 10.05 37.95 12.45 26.4 24 37.95 35.55 35.55 37.95 24 26.4Z\"/></svg>";
 var warning = "<svg style=\"position:absolute; left:50%; top:50%; transform:translate(-50%,-50%)\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1px\"  height=\"48\" width=\"48\"><path d=\"M22.3 29.15V9.7H25.7V29.15ZM22.3 38.3V34.85H25.7V38.3Z\"/></svg>";
 ;// CONCATENATED MODULE: ./js/anybox/modules/lightbox.js
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = lightbox_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function lightbox_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return lightbox_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return lightbox_arrayLikeToArray(o, minLen); }
+
+function lightbox_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function lightbox_typeof(obj) { "@babel/helpers - typeof"; return lightbox_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, lightbox_typeof(obj); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function lightbox_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -448,26 +1159,28 @@ var Lightbox = /*#__PURE__*/function (_Base) {
 
     lightbox_defineProperty(_assertThisInitialized(_this), "duration", void 0);
 
-    lightbox_defineProperty(_assertThisInitialized(_this), "run", function (settings) {
-      var srcs = _this.getSrcs();
+    lightbox_defineProperty(_assertThisInitialized(_this), "_images", []);
 
+    lightbox_defineProperty(_assertThisInitialized(_this), "_modalImages", []);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_isFirstOpen", true);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_lastDirection", 0);
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "run", function (settings) {
       var bgColor = settings.bgColor,
           opacity = settings.opacity,
           top = settings.top,
           closeButton = settings.closeButton,
           animation = settings.animation,
           slider = settings.slider;
+      _this._images = _this.getImages();
 
-      _this.loadBaseElements(srcs, bgColor, opacity, top, closeButton, animation, slider);
-    });
-
-    lightbox_defineProperty(_assertThisInitialized(_this), "getSrcs", function () {
-      var imgs = _this.getImages();
-
-      var srcs = imgs.map(function (e) {
+      var srcs = _this._images.map(function (e) {
         return e.src;
       });
-      return srcs;
+
+      _this.loadBaseElements(srcs, bgColor, opacity, top, closeButton, animation, slider);
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "getImages", function () {
@@ -482,74 +1195,128 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       var animation = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
       var slider = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
 
-      if (typeof animation == "boolean" && animation) {
-        animation = {};
-        animation.type = "opacity";
-        animation.duration = 1000;
+      if (typeof animation === "boolean" && animation) {
+        animation = {
+          type: "opacity",
+          duration: 1000
+        };
       }
 
       var bg = _this.getBg(animation);
 
-      var box = _this.getBox(top);
-
-      box.style.paddingBlock = "50px";
-
       if (_this.isColor("rgba(".concat(color, ",").concat(opacity, ")"))) {
         bg.style.background = "rgba(".concat(color, ",").concat(opacity, ")");
       } else {
-        bg.style.background = "rgba(0,0,0,0.5)";
-      }
+        bg.style.background = "rgba(0,0,0,0.85)";
+      } // Lightbox container
 
-      if (slider) {
-        var element = _this.activeSlider(slider.buttonColor, slider.information, animation.type);
 
-        box.appendChild(element);
-      }
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.position = "absolute";
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.maxWidth = "90vw";
+      box.style.maxHeight = "85vh";
+      box.style.willChange = "transform, opacity"; // Image wrapper
 
-      if (animation.type == "opacity") {
-        box.style.opacity = "0";
-      }
-
-      if (animation.type == "top") {
-        box.style.top = "50%";
-      } else {
-        box.style.top = top + "%";
-      }
-
-      if (animation.type == "left") {
-        box.style.left = "0%";
-      } else {
-        box.style.left = "50%";
-      }
+      var imgWrapper = document.createElement("div");
+      imgWrapper.style.position = "relative";
+      imgWrapper.style.borderRadius = "12px";
+      imgWrapper.style.overflow = "hidden";
+      imgWrapper.style.boxShadow = "0 25px 60px rgba(0,0,0,0.5)";
+      imgWrapper.style.lineHeight = "0";
 
       for (var i = 0; i < srcs.length; i++) {
         var img = new Image();
         img.src = srcs[i];
         img.setAttribute("anybox_id", i);
         img.style.display = "none";
-        img.style.margin = "auto";
         img.style.width = "100%";
         img.style.height = "auto";
-        img.className = "any-box_lightbox_images";
-        box.appendChild(img);
+        img.style.maxHeight = "80vh";
+        img.style.objectFit = "contain";
+        img.className = "any-box_lightbox_images_" + _this.id;
+
+        _this._modalImages.push(img);
+
+        imgWrapper.appendChild(img);
       }
 
-      var images = _this.getImages();
+      box.appendChild(imgWrapper); // Close button
 
-      var _iterator = _createForOfIteratorHelper(images),
+      if (closeButton) {
+        var cbColor = "white";
+        var cbSize = 28;
+
+        if (lightbox_typeof(closeButton) === "object") {
+          cbColor = closeButton.fill || "white";
+          cbSize = closeButton.size || 28;
+        }
+
+        var closeDiv = document.createElement("div");
+        closeDiv.style.position = "absolute";
+        closeDiv.style.top = "-16px";
+        closeDiv.style.right = "-16px";
+        closeDiv.style.width = cbSize + 8 + "px";
+        closeDiv.style.height = cbSize + 8 + "px";
+        closeDiv.style.background = "rgba(0,0,0,0.6)";
+        closeDiv.style.backdropFilter = "blur(8px)";
+        closeDiv.style.borderRadius = "50%";
+        closeDiv.style.display = "flex";
+        closeDiv.style.alignItems = "center";
+        closeDiv.style.justifyContent = "center";
+        closeDiv.style.cursor = "pointer";
+        closeDiv.style.transition = "all .2s";
+        closeDiv.style.zIndex = "10";
+        var closeIcon = document.createElement("div");
+        closeIcon.style.width = cbSize + "px";
+        closeIcon.style.height = cbSize + "px";
+        closeIcon.style.display = "flex";
+        closeIcon.innerHTML = _this.svg;
+        closeIcon.children[0].style.fill = cbColor;
+        closeDiv.appendChild(closeIcon);
+        closeDiv.addEventListener("click", function () {
+          return _this.close(animation);
+        });
+        closeDiv.addEventListener("mouseenter", function () {
+          closeDiv.style.background = "rgba(0,0,0,0.8)";
+          closeDiv.style.transform = "scale(1.1)";
+        });
+        closeDiv.addEventListener("mouseleave", function () {
+          closeDiv.style.background = "rgba(0,0,0,0.6)";
+          closeDiv.style.transform = "scale(1)";
+        });
+        box.appendChild(closeDiv);
+      } // Slider controls
+
+
+      if (slider) {
+        var element = _this.activeSlider(slider.buttonColor || "#fff", slider.information);
+
+        box.appendChild(element);
+      } // Thumbnail click handlers
+
+
+      var _iterator = _createForOfIteratorHelper(_this._images),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var image = _step.value;
+          image.style.cursor = "pointer";
+          image.style.transition = "transform .2s, box-shadow .2s";
           image.addEventListener("click", function (evt) {
+            _this._isFirstOpen = bg.style.display === "none" || bg.style.display === "";
             bg.style.opacity = "1";
             bg.style.display = "block";
-            box.style.maxWidth = evt.currentTarget.naturalWidth + 50 + "px";
-            console.log(document.querySelector(".box_anybox"));
-            box.style.width = "100%";
+            var liveAnimation = {
+              type: _this._animationType,
+              duration: _this._animationDuration
+            };
 
-            _this.showImage(evt.currentTarget, top, animation);
+            _this.showImage(evt.currentTarget, top, liveAnimation, box);
           });
         }
       } catch (err) {
@@ -558,109 +1325,165 @@ var Lightbox = /*#__PURE__*/function (_Base) {
         _iterator.f();
       }
 
-      if (closeButton) {
-        var cb = _this.getCloseButton(closeButton, animation);
-
-        box.appendChild(cb);
-      }
-
       bg.appendChild(box);
       document.body.appendChild(bg);
+
+      _this._setupKeyboardNav();
+
+      _this._setupSwipeNav(bg);
     });
 
-    lightbox_defineProperty(_assertThisInitialized(_this), "isColor", function (strColor) {
-      return new Option().style.color = strColor !== '';
+    lightbox_defineProperty(_assertThisInitialized(_this), "_setupKeyboardNav", function () {
+      document.addEventListener("keydown", function (evt) {
+        var bg = document.getElementById("bg_" + _this.id);
+        if (!bg || bg.style.display === "none") return;
+
+        if (evt.key === "ArrowLeft") {
+          _this._navigateImage(-1);
+        } else if (evt.key === "ArrowRight") {
+          _this._navigateImage(1);
+        }
+      });
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_setupSwipeNav", function (bg) {
+      var touchStartX = 0;
+      bg.addEventListener("touchstart", function (evt) {
+        touchStartX = evt.changedTouches[0].screenX;
+      }, {
+        passive: true
+      });
+      bg.addEventListener("touchend", function (evt) {
+        var diff = touchStartX - evt.changedTouches[0].screenX;
+
+        if (Math.abs(diff) > 50) {
+          _this._navigateImage(diff > 0 ? 1 : -1);
+        }
+      }, {
+        passive: true
+      });
+    });
+
+    lightbox_defineProperty(_assertThisInitialized(_this), "_navigateImage", function (direction) {
+      var currentId = parseInt(_this.getChosenImage());
+      var nextId = currentId + direction;
+      if (nextId < 0 || nextId >= _this._images.length) return;
+      _this._lastDirection = direction;
+
+      _this._images[nextId].click();
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "showImage", function (evt) {
-      var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "50%";
+      var top = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
       var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      var filtered = Array.from(document.querySelectorAll(".any-box_lightbox_images")).filter(function (e) {
-        return e.src == evt.src;
+      var box = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var imgClass = "any-box_lightbox_images_" + _this.id;
+      var allImages = Array.from(document.querySelectorAll("." + imgClass));
+      var filtered = allImages.filter(function (e) {
+        return e.src === evt.src;
       });
-      var notFiltered = Array.from(document.querySelectorAll(".any-box_lightbox_images")).filter(function (e) {
-        return e.src != evt.src;
+      var notFiltered = allImages.filter(function (e) {
+        return e.src !== evt.src;
       });
+      filtered[0].style.display = "block"; // First open: animate the whole box (open animation)
 
-      if (animation) {
+      if (_this._isFirstOpen && animation && box) {
         _this.globalAnimation.animate({
-          el: filtered[0],
+          el: box,
           duration: animation.duration,
           type: animation.type,
-          top: top
+          top: top,
+          direct: true
         });
+
+        _this._isFirstOpen = false;
+      } else {
+        // Navigating between images: animate only the image
+        var transitionType = _this._imageTransition; // Auto direction-aware for slide
+
+        if (transitionType === "slide") {
+          transitionType = _this._lastDirection >= 0 ? "slideLeft" : "slideRight";
+        }
+
+        _this.globalAnimation.animateImage(filtered[0], transitionType, _this._imageTransitionDuration);
       }
 
-      filtered[0].style.display = "block";
-      filtered[0].classList.add("display_anybox");
-      filtered[0].classList.remove("hide_anybox");
+      filtered[0].classList.add("display_" + _this.id);
+      filtered[0].classList.remove("hide_" + _this.id);
       notFiltered.forEach(function (e) {
-        e.classList.add("hide_anybox");
-        e.classList.remove("display_anybox");
+        e.classList.add("hide_" + _this.id);
+        e.classList.remove("display_" + _this.id);
         e.style.display = "none";
       });
-      document.getElementById("butonDiv_anybox").setAttribute("btn_id_anybox", parseInt(_this.getChosenImage()) + 1);
+      var butonDiv = document.getElementById("butonDiv_" + _this.id);
 
-      if (document.getElementById("infDiv")) {
-        document.getElementById("infDiv").innerText = parseInt(_this.getChosenImage()) + 1;
+      if (butonDiv) {
+        butonDiv.setAttribute("btn_id_anybox", parseInt(_this.getChosenImage()) + 1);
+      }
+
+      var infDiv = document.getElementById("infDiv_" + _this.id);
+
+      if (infDiv) {
+        infDiv.innerText = parseInt(_this.getChosenImage()) + 1;
       }
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "activeSlider", function () {
-      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#111";
+      var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "#fff";
       var information = arguments.length > 1 ? arguments[1] : undefined;
-      var animation = arguments.length > 2 ? arguments[2] : undefined;
       var butonDiv = document.createElement("div");
-      butonDiv.style.position = "absolute";
-      butonDiv.id = "butonDiv_anybox";
-      butonDiv.style.bottom = "-30px";
-      butonDiv.style.width = "100%";
+      butonDiv.id = "butonDiv_" + _this.id;
       butonDiv.style.display = "flex";
-      butonDiv.style.justifyContent = "space-between";
+      butonDiv.style.justifyContent = "center";
       butonDiv.style.alignItems = "center";
-      var btn_left = document.createElement("button");
-      btn_left.style.width = "30px";
-      btn_left.style.border = "2px solid" + color;
-      btn_left.style.borderRadius = "5px";
-      btn_left.style.backgroundColor = "transparent";
-      var infDiv = "";
+      butonDiv.style.gap = "20px";
+      butonDiv.style.marginTop = "16px";
+
+      var btn_left = _this._createNavButton(color);
+
+      btn_left.innerHTML = _this.left;
+      btn_left.children[0].style.fill = color;
+      btn_left.children[0].style.display = "flex";
+      var infDiv = null;
 
       if (information) {
         infDiv = document.createElement("div");
-        infDiv.style.fontFamily = "Arial, Helvetica, sans-serif";
-        infDiv.innerHTML = "<span id=\"infDiv\"></span> of ".concat(_this.getSrcs().length, " images");
+        infDiv.style.fontFamily = "Inter, Arial, Helvetica, sans-serif";
+        infDiv.style.color = color;
+        infDiv.style.fontSize = "14px";
+        infDiv.style.letterSpacing = "0.02em";
+        infDiv.style.opacity = "0.8";
+        infDiv.style.minWidth = "100px";
+        infDiv.style.textAlign = "center";
+        infDiv.innerHTML = "<span id=\"infDiv_".concat(_this.id, "\">1</span> / ").concat(_this._images.length);
       }
 
-      var btn_right = document.createElement("button");
-      btn_right.style.width = "30px";
-      btn_right.style.border = "2px solid" + color;
-      btn_right.style.borderRadius = "5px";
-      btn_right.style.backgroundColor = "transparent";
-      btn_left.innerHTML = _this.left;
+      var btn_right = _this._createNavButton(color);
+
       btn_right.innerHTML = _this.right;
       btn_right.children[0].style.fill = color;
-      btn_left.children[0].style.fill = color;
-      btn_left.children[0].style.display = "flex";
       btn_right.children[0].style.display = "flex";
       btn_left.addEventListener("click", function () {
-        var id = parseInt(document.getElementById("butonDiv_anybox").getAttribute("btn_id_anybox")) - 1;
+        var id = parseInt(document.getElementById("butonDiv_" + _this.id).getAttribute("btn_id_anybox")) - 1;
 
-        var images = _this.getImages();
+        if (id - 1 >= 0) {
+          _this._lastDirection = -1;
 
-        console.log(images[id - 1]);
-        images[id - 1].click();
+          _this._images[id - 1].click();
+        }
       });
       btn_right.addEventListener("click", function () {
-        var id = parseInt(document.getElementById("butonDiv_anybox").getAttribute("btn_id_anybox")) - 1;
+        var id = parseInt(document.getElementById("butonDiv_" + _this.id).getAttribute("btn_id_anybox")) - 1;
 
-        var images = _this.getImages();
+        if (id + 1 < _this._images.length) {
+          _this._lastDirection = 1;
 
-        console.log(images[id + 1]);
-        images[id + 1].click();
+          _this._images[id + 1].click();
+        }
       });
       butonDiv.appendChild(btn_left);
 
-      if (information && typeof infDiv != "string") {
+      if (infDiv) {
         butonDiv.appendChild(infDiv);
       }
 
@@ -668,66 +1491,50 @@ var Lightbox = /*#__PURE__*/function (_Base) {
       return butonDiv;
     });
 
-    lightbox_defineProperty(_assertThisInitialized(_this), "addCloseButton", function () {
-      var btnColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "black";
-      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "right";
-      var animation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-      var animationType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "opacity";
-      var size = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 25;
-      var div = document.createElement("div");
-      div.style.position = "absolute";
-      div.style.top = "-5px";
-      location == "right" ? div.style.right = "-5px" : div.style.left = "-5px";
-      var obj = document.createElement("div");
-      obj.style.width = size + "px";
-      obj.style.height = size + "px";
-      obj.innerHTML = _this.svg;
-      obj.children[0].style.fill = btnColor;
-      obj.addEventListener("click", function (evt) {
-        var d = 0;
-
-        if (animation) {
-          d = _this.minus(animationType);
-        }
-
-        setTimeout(function () {
-          document.body.querySelector(".bg_anybox").style.transition = "all .2s ease";
-          document.body.querySelector(".bg_anybox").style.opacity = "0";
-          setTimeout(function () {
-            document.body.querySelector(".bg_anybox").style.display = "none";
-          }, 220);
-        }, d / 1.2);
+    lightbox_defineProperty(_assertThisInitialized(_this), "_createNavButton", function (color) {
+      var btn = document.createElement("button");
+      btn.style.width = "40px";
+      btn.style.height = "40px";
+      btn.style.border = "1px solid rgba(255,255,255,0.2)";
+      btn.style.borderRadius = "50%";
+      btn.style.backgroundColor = "rgba(255,255,255,0.08)";
+      btn.style.cursor = "pointer";
+      btn.style.display = "flex";
+      btn.style.alignItems = "center";
+      btn.style.justifyContent = "center";
+      btn.style.padding = "10px";
+      btn.style.transition = "all .2s";
+      btn.addEventListener("mouseenter", function () {
+        btn.style.backgroundColor = "rgba(255,255,255,0.18)";
+        btn.style.borderColor = "rgba(255,255,255,0.4)";
       });
-      div.appendChild(obj);
-      return div;
+      btn.addEventListener("mouseleave", function () {
+        btn.style.backgroundColor = "rgba(255,255,255,0.08)";
+        btn.style.borderColor = "rgba(255,255,255,0.2)";
+      });
+      return btn;
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "minus", function (type) {
-      switch (type) {
-        case "opacity":
-          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("opacity"));
+      var anim = _this.globalAnimation.getAnimation(type);
 
-          break;
-
-        case "top":
-          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("top"));
-
-          break;
-
-        case "left":
-          _this.globalAnimation.opacityMinus(_this.globalAnimation.getAnimation("left"));
-
-          break;
+      if (anim) {
+        anim.reverse();
       }
 
       return _this.duration;
     });
 
     lightbox_defineProperty(_assertThisInitialized(_this), "getChosenImage", function () {
-      return document.querySelector(".display_anybox").getAttribute("anybox_id");
+      var el = document.querySelector(".display_" + _this.id);
+      return el ? el.getAttribute("anybox_id") : "0";
     });
 
-    _this.duration = lBsettings.animation.duration;
+    _this.duration = lBsettings.animation ? lBsettings.animation.duration : 1000;
+    _this._imageTransition = lBsettings.imageTransition || "fade";
+    _this._imageTransitionDuration = lBsettings.imageTransitionDuration || 350;
+    _this._animationType = lBsettings.animation ? lBsettings.animation.type : "opacity";
+    _this._animationDuration = lBsettings.animation ? lBsettings.animation.duration : 1000;
 
     _this.run(lBsettings);
 
@@ -766,7 +1573,6 @@ function alertbox_defineProperty(obj, key, value) { if (key in obj) { Object.def
 
 
 
-
 var Alertbox = /*#__PURE__*/function (_Base) {
   alertbox_inherits(Alertbox, _Base);
 
@@ -779,30 +1585,36 @@ var Alertbox = /*#__PURE__*/function (_Base) {
 
     _this = _super.call(this);
 
-    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "success", success);
-
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "svg", svg);
 
-    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "fail", fail);
-
-    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "warning", warning);
-
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "status", {
-      "success": {
-        svg: _this.success,
+      success: {
         color: "#198754",
-        dash: "150"
+        type: "success"
       },
-      "fail": {
-        svg: _this.fail,
+      fail: {
         color: "#FC100D",
-        dash: "400"
+        type: "fail"
       },
-      "warning": {
-        svg: _this.warning,
+      warning: {
         color: "#FFCC00",
-        dash: "150"
+        type: "warning"
       }
+    });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_theme", "light");
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_colors", function () {
+      var dark = _this._theme === "dark";
+      return {
+        boxBg: dark ? "#18181b" : "#ffffff",
+        textColor: dark ? "#e4e4e7" : "#111111",
+        subTextColor: dark ? "#a1a1aa" : "#555555",
+        borderColor: dark ? "rgba(255,255,255,0.08)" : "#e5e5e5",
+        closeFill: dark ? "#a1a1aa" : "#111111",
+        buttonHover: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+        shadow: dark ? "0 25px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)" : "rgba(0, 0, 0, 0.12) 0px 8px 30px"
+      };
     });
 
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "run", function (settings) {
@@ -822,32 +1634,37 @@ var Alertbox = /*#__PURE__*/function (_Base) {
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "show", function () {
       var status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var animation = arguments.length > 1 ? arguments[1] : undefined;
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
 
       if (status) {
-        document.getElementById("bg_anybox-" + _this.id).querySelector(".svgDiv").remove();
+        var svgPlace = bg.querySelector("#svgPlace_" + _this.id);
+        var oldSvg = svgPlace.querySelector(".svgDiv");
+        if (oldSvg) oldSvg.remove();
         var _this$status$status = _this.status[status],
-            _svg = _this$status$status.svg,
             color = _this$status$status.color,
-            dash = _this$status$status.dash;
+            type = _this$status$status.type;
 
-        var svgDiv = _this.globalAnimation.statusAnimation(_svg, color, dash);
+        var svgDiv = _this.globalAnimation.statusAnimation(color, type);
 
-        document.getElementById("bg_anybox-" + _this.id).querySelector("#svgPlace").appendChild(svgDiv);
+        svgPlace.appendChild(svgDiv);
       }
 
       if (animation) {
-        document.getElementById("bg_anybox-" + _this.id).querySelector("#all").parentElement.style.transform = "scale(0) translate(-50%,-50%)";
-
-        _this.globalAnimation.animate({
-          el: document.getElementById("bg_anybox-" + _this.id).querySelector("#all"),
-          type: "center",
-          duration: 1000,
+        var allEl = bg.querySelector("#all_" + _this.id);
+        allEl.parentElement.style.transform = "scale(0) translate(-50%,-50%)";
+        var animOpts = {
+          el: allEl,
+          type: alertbox_typeof(animation) === "object" ? animation.type : "center",
+          duration: alertbox_typeof(animation) === "object" ? animation.duration : 1000,
           top: 40
-        });
+        };
+
+        _this.globalAnimation.animate(animOpts);
       }
 
-      document.getElementById("bg_anybox-" + _this.id).style.opacity = "1";
-      document.getElementById("bg_anybox-" + _this.id).style.display = "block";
+      bg.style.opacity = "1";
+      bg.style.display = "block";
     });
 
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "loadBaseElements", function () {
@@ -861,67 +1678,69 @@ var Alertbox = /*#__PURE__*/function (_Base) {
       var svgStatus = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
       var animation = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;
 
-      var bg = _this.getBg();
+      var c = _this._colors();
 
-      var box = _this.getBox(top);
+      var bg = _this.getBg(); // Custom styled box for alertbox
 
+
+      var box = document.createElement("div");
+      box.classList.add("box_anybox");
+      box.style.top = top + "%";
+      box.style.left = "50%";
+      box.style.backgroundColor = c.boxBg;
+      box.style.position = "absolute";
+      box.style.transition = "all .2s ease";
+      box.style.transform = "translate(-50%,-50%)";
+      box.style.boxShadow = c.shadow;
+      box.style.borderRadius = "16px";
+      box.style.maxWidth = Math.min(window.innerWidth - 40, 420) + "px";
+      box.style.width = "90%";
+      box.style.willChange = "transform, opacity";
+      box.style.overflow = "hidden";
       var svgPlace = document.createElement("div");
       var all = document.createElement("div");
-      all.id = "all";
-      svgPlace.id = "svgPlace";
-      var head = "";
-      var p = "";
-      box.style.fontFamily = "sans-serif";
+      all.id = "all_" + _this.id;
+      all.style.padding = "28px 24px 0";
+      svgPlace.id = "svgPlace_" + _this.id;
+      box.style.fontFamily = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+      var head = null;
 
-      if (headline && (headline.length > 0 || headline.text.length > 0)) {
-        if (typeof headline == "string") {
-          head = document.createElement("h3");
-          head.innerText = headline;
-          head.style.paddingLeft = "20px";
-          head.style.paddingBottom = "10px";
-          head.style.borderBottom = "1px solid #cdcdcd";
-        } else {
-          head = document.createElement("h" + headline.level);
-          head.innerText = headline.text;
-          head.style.paddingLeft = "20px";
-          head.style.paddingBottom = "10px";
-          head.style.fontFamily = headline.fontFamily;
-          head.style.borderBottom = "1px solid #cdcdcd";
-          head.style.color = headline.color;
+      if (headline) {
+        var hasText = typeof headline === "string" ? headline.length > 0 : headline.text && headline.text.length > 0;
+
+        if (hasText) {
+          head = document.createElement("h" + (typeof headline === "string" ? 3 : headline.level || 3));
+          head.innerText = typeof headline === "string" ? headline : headline.text;
+          head.style.textAlign = "center";
+          head.style.marginBottom = "4px";
+          head.style.fontSize = "18px";
+          head.style.fontWeight = "600";
+          head.style.letterSpacing = "-0.01em";
+          head.style.color = alertbox_typeof(headline) === "object" && headline.color ? headline.color : c.textColor;
+
+          if (alertbox_typeof(headline) === "object" && headline.fontFamily) {
+            head.style.fontFamily = headline.fontFamily;
+          }
         }
       }
 
-      var btn;
+      var p = null;
 
-      if (buttons) {
-        btn = _this.addButtons(buttons, closeButton);
-      }
+      if (message) {
+        var _hasText = typeof message === "string" ? message.length > 0 : message.text && message.text.length > 0;
 
-      if (message && (message.length > 0 || message.text.length > 0)) {
-        if (typeof message == "string") {
+        if (_hasText) {
           p = document.createElement("p");
-          p.innerText = message;
-          p.style.paddingInline = "50px";
-        } else {
-          p = document.createElement("p");
-          p.innerText = message.text;
-          p.style.fontFamily = message.fontFamily;
-          p.style.color = message.color;
+          p.innerText = typeof message === "string" ? message : message.text;
+          p.style.textAlign = "center";
+          p.style.margin = "0";
+          p.style.padding = "0 12px 20px";
+          p.style.fontSize = "14px";
+          p.style.lineHeight = "1.5";
+          p.style.color = alertbox_typeof(message) === "object" && message.color ? message.color : c.subTextColor;
 
-          switch (message.textAlign) {
-            case "center":
-              p.style.paddingInline = "50px";
-              break;
-
-            case "left":
-              p.style.paddingRight = "50px";
-              p.style.paddingLeft = "20px";
-              break;
-
-            case "right":
-              p.style.paddingLeft = "50px";
-              p.style.paddingRight = "20px";
-              break;
+          if (alertbox_typeof(message) === "object" && message.fontFamily) {
+            p.style.fontFamily = message.fontFamily;
           }
         }
       }
@@ -930,12 +1749,50 @@ var Alertbox = /*#__PURE__*/function (_Base) {
         bg.style.background = "rgba(".concat(color, ",").concat(opacity, ")");
       } else {
         bg.style.background = "rgba(0,0,0,0.5)";
-      }
+      } // Close button
+
 
       if (closeButton) {
-        var cb = _this.getCloseButton(closeButton, false);
+        var cbColor = c.closeFill;
+        var cbSize = 20;
 
-        all.appendChild(cb);
+        if (alertbox_typeof(closeButton) === "object") {
+          cbColor = closeButton.fill || c.closeFill;
+          cbSize = closeButton.size || 20;
+        }
+
+        var closeDiv = document.createElement("div");
+        closeDiv.style.position = "absolute";
+        closeDiv.style.top = "12px";
+        closeDiv.style.right = "12px";
+        closeDiv.style.width = cbSize + 8 + "px";
+        closeDiv.style.height = cbSize + 8 + "px";
+        closeDiv.style.borderRadius = "8px";
+        closeDiv.style.display = "flex";
+        closeDiv.style.alignItems = "center";
+        closeDiv.style.justifyContent = "center";
+        closeDiv.style.cursor = "pointer";
+        closeDiv.style.transition = "background .15s";
+        var closeIcon = document.createElement("div");
+        closeIcon.style.width = cbSize + "px";
+        closeIcon.style.height = cbSize + "px";
+        closeIcon.style.display = "flex";
+        closeIcon.style.opacity = "0.5";
+        closeIcon.innerHTML = _this.svg;
+        closeIcon.children[0].style.fill = cbColor;
+        closeDiv.appendChild(closeIcon);
+        closeDiv.addEventListener("click", function () {
+          return _this.defaultClickFunction();
+        });
+        closeDiv.addEventListener("mouseenter", function () {
+          closeDiv.style.background = c.buttonHover;
+          closeIcon.style.opacity = "1";
+        });
+        closeDiv.addEventListener("mouseleave", function () {
+          closeDiv.style.background = "transparent";
+          closeIcon.style.opacity = "0.5";
+        });
+        all.appendChild(closeDiv);
       }
 
       if (head) {
@@ -946,15 +1803,23 @@ var Alertbox = /*#__PURE__*/function (_Base) {
 
       if (svgStatus) {
         var _this$status$svgStatu = _this.status[svgStatus],
-            _svg2 = _this$status$svgStatu.svg,
-            _color = _this$status$svgStatu.color,
-            dash = _this$status$svgStatu.dash;
-        var svgDiv = new animations().statusAnimation(_svg2, _color, dash);
+            statusColor = _this$status$svgStatu.color,
+            type = _this$status$svgStatu.type;
+
+        var svgDiv = _this.globalAnimation.statusAnimation(statusColor, type);
+
         svgPlace.appendChild(svgDiv);
       }
 
       if (p) {
         all.appendChild(p);
+      } // Buttons
+
+
+      var btn = null;
+
+      if (buttons) {
+        btn = _this.addButtons(buttons, closeButton);
       }
 
       if (btn) {
@@ -966,8 +1831,8 @@ var Alertbox = /*#__PURE__*/function (_Base) {
       document.body.appendChild(bg);
 
       if (animation) {
-        new animations().animate({
-          el: document.getElementById("bg_anybox-" + _this.id).querySelector("#all"),
+        _this.globalAnimation.animate({
+          el: bg.querySelector("#all_" + _this.id),
           type: "center",
           duration: 1000
         });
@@ -975,69 +1840,84 @@ var Alertbox = /*#__PURE__*/function (_Base) {
     });
 
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "defaultClickFunction", function () {
-      document.getElementById("bg_anybox-" + _this.id).style.opacity = "0";
-      document.getElementById("bg_anybox-" + _this.id).style.display = "none";
+      var bg = document.getElementById("bg_" + _this.id);
+      if (!bg) return;
+      bg.style.transition = "all .2s ease";
+      bg.style.opacity = "0";
+      setTimeout(function () {
+        bg.style.display = "none";
+      }, 220);
     });
 
     alertbox_defineProperty(alertbox_assertThisInitialized(_this), "addButtons", function (buttons, closeButton) {
-      console.log(closeButton.fill);
+      var c = _this._colors();
+
+      var fillColor = alertbox_typeof(closeButton) === "object" && closeButton.fill ? closeButton.fill : c.textColor;
       var buttonsDiv = document.createElement("div");
       buttonsDiv.style.display = "flex";
-      buttonsDiv.style.flexWrap = "no-wrap";
-      buttonsDiv.style.borderTop = "1px solid #cdcdcd";
-      buttonsDiv.style.justifyContent = "space-around";
-      buttonsDiv.style.paddingBlock = "10px";
+      buttonsDiv.style.flexWrap = "nowrap";
+      buttonsDiv.style.borderTop = "1px solid " + c.borderColor;
+      buttonsDiv.style.margin = "0 -24px";
+      buttonsDiv.style.padding = "0";
 
-      if (typeof buttons == "boolean" && buttons) {
-        var btn = document.createElement("button");
-        btn.innerText = "OK";
+      if (typeof buttons === "boolean" && buttons) {
+        var btn = _this._createButton("OK", fillColor, c);
+
+        btn.style.borderRadius = "0 0 16px 16px";
         btn.onclick = _this.defaultClickFunction;
-        btn.style.cursor = "pointer";
-        btn.style.color = closeButton.fill || "#000";
         buttonsDiv.appendChild(btn);
         return buttonsDiv;
-      } else {
-        var _btn;
+      }
 
-        for (var i = 0; i < buttons.length; i++) {
-          _btn = document.createElement("button");
-          _btn.style.cursor = "pointer";
+      for (var i = 0; i < buttons.length; i++) {
+        var _btn = _this._createButton(buttons[i].buttonName, fillColor, c);
 
-          if (buttons.length % 2 == 0) {
-            if (i != 0) {
-              _btn.style.border = "none";
-              _btn.style.borderLeft = "1px solid" + (closeButton.fill || "#000");
-            } else {
-              _btn.style.border = "none";
-            }
-          } else {
-            if (i == 0 || i == buttons.length - 1) {
-              _btn.style.border = "none";
-            } else {
-              _btn.style.border = "none";
-              _btn.style.borderLeft = "1px solid" + (closeButton.fill || "#000");
-              _btn.style.borderRight = "1px solid" + (closeButton.fill || "#000");
-            }
-          }
+        _btn.onclick = buttons[i]["function"] || _this.defaultClickFunction;
 
-          _btn.innerText = buttons[i].buttonName;
-          _btn.style.flexGrow = "1";
-          _btn.style.color = closeButton.fill || "#000";
-          _btn.style.backgroundColor = "transparent";
-          _btn.onclick = buttons[i]["function"] || _this.defaultClickFunction;
-          buttonsDiv.appendChild(_btn);
+        if (i !== 0) {
+          _btn.style.borderLeft = "1px solid " + c.borderColor;
+        } // Round corners for edge buttons
+
+
+        if (buttons.length > 1) {
+          if (i === 0) _btn.style.borderRadius = "0 0 0 16px";
+          if (i === buttons.length - 1) _btn.style.borderRadius = "0 0 16px 0";
+        } else {
+          _btn.style.borderRadius = "0 0 16px 16px";
         }
 
-        return buttonsDiv;
+        buttonsDiv.appendChild(_btn);
       }
+
+      return buttonsDiv;
     });
+
+    alertbox_defineProperty(alertbox_assertThisInitialized(_this), "_createButton", function (text, color, c) {
+      var btn = document.createElement("button");
+      btn.innerText = text;
+      btn.style.flexGrow = "1";
+      btn.style.padding = "14px 16px";
+      btn.style.border = "none";
+      btn.style.backgroundColor = "transparent";
+      btn.style.color = color;
+      btn.style.cursor = "pointer";
+      btn.style.fontSize = "14px";
+      btn.style.fontWeight = "500";
+      btn.style.fontFamily = "inherit";
+      btn.style.transition = "background .15s";
+      btn.addEventListener("mouseenter", function () {
+        btn.style.backgroundColor = c.buttonHover;
+      });
+      btn.addEventListener("mouseleave", function () {
+        btn.style.backgroundColor = "transparent";
+      });
+      return btn;
+    });
+
+    _this._theme = lBsettings.theme || "light";
 
     _this.run(lBsettings);
 
-    window.addEventListener("resize", function () {
-      console.log(window.innerHeight);
-      console.log(window.innerWidth);
-    });
     return _this;
   }
 
@@ -1058,11 +1938,10 @@ function init_classCallCheck(instance, Constructor) { if (!(instance instanceof 
 var Anybox = /*#__PURE__*/init_createClass(function Anybox(type, settings) {
   init_classCallCheck(this, Anybox);
 
-  if (type.toLowerCase() == "lightbox") {
-    var lb = new lightbox(settings);
-  } else if (type.toLowerCase() == "alertbox") {
-    var al = new alertbox(settings);
-    return al;
+  if (type.toLowerCase() === "lightbox") {
+    return new lightbox(settings);
+  } else if (type.toLowerCase() === "alertbox") {
+    return new alertbox(settings);
   }
 });
 

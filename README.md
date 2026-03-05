@@ -1,106 +1,194 @@
-# AnyBox-JS
+# AnyBox.js
 
-You can create fancy alertbox or lightbox
+A lightweight, zero-dependency JavaScript library for creating elegant lightboxes and alert dialogs with smooth animations.
 
-## TODOS
-  1.prepare react version
+## Features
 
-### Lightbox
+- **Zero dependencies** - Pure vanilla JavaScript, no frameworks needed
+- **10 open animations** - center, left, right, top, bottom, opacity, flip, rotate, bounce, elastic
+- **7 image transitions** - fade, slide, zoomIn, zoomOut, flipX, flipY
+- **Dark & Light themes** - Built-in theme support for alertbox
+- **Keyboard navigation** - Arrow keys for gallery, Escape to close
+- **Touch support** - Swipe gestures for mobile devices
+- **Multi-instance safe** - Multiple modals on the same page without conflicts
+- **Web Animations API** - Hardware-accelerated, compositor-thread animations
 
-````
-new Anybox("lightbox",{
-    bgColor:"0,0,0",
-    opacity:"0.3",
-    top: "40%", 
-    slider:{
-        buttonColor:"#111",
-        information:true
-    },
+## Installation
+
+```html
+<script src="anybox.min.js"></script>
+```
+
+## Lightbox
+
+Add the `any-box_lightbox` class to your images:
+
+```html
+<img class="any-box_lightbox" src="image1.jpg">
+<img class="any-box_lightbox" src="image2.jpg">
+<img class="any-box_lightbox" src="image3.jpg">
+```
+
+Initialize the lightbox:
+
+```js
+let lightbox = new Anybox("lightbox", {
+    bgColor: "0,0,0",
+    opacity: "0.85",
+    top: 50,
     animation: {
-        type:"left",
-        duration:1000
+        type: "bounce",
+        duration: 700
+    },
+    imageTransition: "slide",
+    imageTransitionDuration: 350,
+    slider: {
+        buttonColor: "#fff",
+        information: true
     },
     closeButton: {
-        size: 25,
-        fill: "#111",
-        location:"right"
+        size: 22,
+        fill: "#fff",
+        location: "right"
     }
 })
-````
-`bgColor:` It describes lightbox's background color
+```
 
-`opacity:` It describes lightbox's background's opacity. Type: an integer between 0 and 1.
+### Lightbox Options
 
-`top`: You can arrange the vertical position of the lightbox. Type: String between 0% and 100%
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `bgColor` | `string` | `"0,0,0"` | Background color as RGB values |
+| `opacity` | `string` | `"0.5"` | Background overlay opacity (0-1) |
+| `top` | `number` | `50` | Vertical position as percentage |
+| `animation` | `boolean\|object` | `false` | Open animation. `true` for default, or `{type, duration}` |
+| `animation.type` | `string` | `"opacity"` | One of: `center`, `left`, `right`, `top`, `bottom`, `opacity`, `flip`, `rotate`, `bounce`, `elastic` |
+| `animation.duration` | `number` | `1000` | Animation duration in milliseconds |
+| `imageTransition` | `string` | `"fade"` | Image navigation transition: `fade`, `slide`, `zoomIn`, `zoomOut`, `flipX`, `flipY` |
+| `imageTransitionDuration` | `number` | `350` | Transition duration in milliseconds |
+| `slider` | `object\|false` | `false` | Slider navigation controls |
+| `slider.buttonColor` | `string` | `"#111"` | Slider button color |
+| `slider.information` | `boolean` | `false` | Show "1 / 3" image counter |
+| `closeButton` | `object\|false` | `false` | Close button configuration |
+| `closeButton.fill` | `string` | `"white"` | Close button color |
+| `closeButton.size` | `number` | `28` | Close button size in pixels |
+| `closeButton.location` | `string` | `"right"` | `"right"` or `"left"` |
 
-`slider`: You can moniterize all images through the slider. Type: Boolean || Object
+## Alertbox
 
-`buttonColor`: You can determine the color of slider buttons Type: String
-
-`information`:  It shows information text like "1 of 3 images", "2 of 3 images". Type: Boolean
-
-`animation`: It activates the animation. Type: Boolean || Object
-
-`type`: It describes animation type. Type: String. "left", "top", "opacity".
-
-`duration`: It describes animation duration. Type: Integer
-
-`closeButton`: It shows the close button and it defines properties of close button. Type: Boolean || Integer
-
-### Alertbox
-
-`````
-let alertBox = new Anybox("alertbox",{
-    bgColor:"0,0,0",
+```js
+let alertBox = new Anybox("alertbox", {
+    bgColor: "0,0,0",
+    opacity: "0.3",
+    top: 40,
+    theme: "dark",
     headline: {
-        text: "Alert Box",
-        color:"#111",
-        level: 3,
-        fontFamily:"Arial, Helvetica, sans-serif"
+        text: "Success!",
+        level: 3
     },
-    message:{
-        text: "Hello world.This is alert message",
-        color:"#111",
-        fontFamily:"Arial, Helvetica, sans-serif",
-        textAlign:"center"
+    message: {
+        text: "Your action was completed.",
+        textAlign: "center"
     },
+    svgStatus: "success",
     animation: true,
-    svgStatus: "warning",
-    buttons:[
+    buttons: [
         {
-            "buttonName": "OK",
-            "function" : alert1
+            buttonName: "OK",
+            function: function() {
+                alertBox.defaultClickFunction()
+            }
         },
         {
-            "buttonName": "Cancel"
-        },
-        {
-            "buttonName":"Warning"
-        },
+            buttonName: "Cancel"
+        }
     ],
-    opacity:"0.3",
-    top: "40%",
     closeButton: {
-        size: 25,
-        fill: "#111",
-        location:"right"
+        size: 20,
+        location: "right"
     }
 })
-`````
+```
 
-`bgColor:` It describes alertbox's background color. Type: String
+### Showing the Alertbox
 
-`headline`: You can arrange head text, color, font family or alignment Type: Boolean || Object
+```js
+// Show with status and animation
+alertBox.show("success", true)
 
-`animation`: It activates the animation. Type: Boolean
+// Show with custom animation type
+alertBox.show("fail", { type: "bounce", duration: 700 })
+alertBox.show("warning", { type: "elastic", duration: 800 })
+```
 
-`svgStatus`: You can determine how react alertbox. Type: String. "fail" | "success" | "warning
+### Alertbox Options
 
-`buttons`: You can create buttons for the alertbox and you can assign button name and function to them. Type: Object[]
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `bgColor` | `string` | `"0,0,0"` | Background color as RGB values |
+| `opacity` | `string` | `"0.5"` | Background overlay opacity (0-1) |
+| `top` | `string\|number` | `"50%"` | Vertical position |
+| `theme` | `string` | `"light"` | `"light"` or `"dark"` |
+| `headline` | `string\|object` | `false` | Headline text or `{text, level, color, fontFamily}` |
+| `message` | `string\|object` | `false` | Message text or `{text, color, fontFamily, textAlign}` |
+| `svgStatus` | `string` | `false` | Animated SVG icon: `"success"`, `"fail"`, `"warning"` |
+| `animation` | `boolean` | `false` | Enable open animation |
+| `buttons` | `boolean\|array` | `false` | `true` for default OK button, or array of `{buttonName, function}` |
+| `closeButton` | `object\|false` | `false` | Close button configuration |
 
-`opacity:` It describes alertbox's background's opacity. Type: an integer between 0 and 1.
+## Methods
 
-`top`: You can arrange the vertical position of the alertbox. Type: String between 0% and 100%
+### `show(status, animation)`
 
-`closebutton`: It shows the close button and it defines properties of close button. Type: Boolean || Integer
+Show the alertbox with a status and animation.
 
+- `status` - `"success"`, `"fail"`, or `"warning"`
+- `animation` - `true` for center animation, or `{type: "bounce", duration: 700}`
+
+### `defaultClickFunction()`
+
+Close the alertbox with a fade-out animation.
+
+### `destroy()`
+
+Remove the modal from the DOM and clean up event listeners.
+
+## Animation Types
+
+### Open Animations
+Used when the modal first appears.
+
+| Type | Description |
+|------|-------------|
+| `center` | Scale up from center |
+| `bounce` | Scale with bounce effect |
+| `elastic` | Elastic stretch effect |
+| `flip` | 3D flip on Y axis |
+| `rotate` | Rotate and scale in |
+| `opacity` | Simple fade in |
+| `top` | Slide down from top |
+| `bottom` | Slide up from bottom |
+| `left` | Slide in from left |
+| `right` | Slide in from right |
+
+### Image Transitions
+Used when navigating between images in the lightbox. Only the image is animated, controls stay static.
+
+| Type | Description |
+|------|-------------|
+| `fade` | Crossfade between images |
+| `slide` | Direction-aware slide (auto left/right) |
+| `slideLeft` | Slide from right to left |
+| `slideRight` | Slide from left to right |
+| `zoomIn` | Zoom in from smaller |
+| `zoomOut` | Zoom in from larger |
+| `flipX` | 3D flip on X axis |
+| `flipY` | 3D flip on Y axis |
+
+## Browser Support
+
+Works in all modern browsers that support the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+
+## License
+
+MIT - [Ender Yazici](https://github.com/end-y)
